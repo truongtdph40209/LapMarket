@@ -49,6 +49,10 @@
                 android:title="Giỏ Hàng Của Tôi"
                 android:icon="@drawable/giohang"/>
             <item
+                android:id="@+id/lichsu"
+                android:title="Lịch sử mua hàng"
+                android:icon="@drawable/lichsu"/>
+            <item
                 android:id="@+id/doimk"
                 android:title="Đổi mật khẩu"
                 android:icon="@drawable/doimk"/>
