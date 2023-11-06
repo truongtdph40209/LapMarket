@@ -19,6 +19,7 @@ import android.widget.ViewFlipper;
 import com.example.lapmarket.frg.frg_cskh;
 import com.example.lapmarket.frg.frg_gaming_doHoa;
 import com.example.lapmarket.frg.frg_giohang;
+import com.example.lapmarket.frg.frg_lichsu;
 import com.example.lapmarket.frg.frg_phuKien;
 import com.example.lapmarket.frg.frg_trangchu;
 import com.example.lapmarket.frg.frg_vanPhong_macbook;
@@ -95,6 +96,12 @@ public class MainActivity extends AppCompatActivity {
                     frg_giohang giohang = new frg_giohang();
                     replaceFragment(giohang);
                     Toast.makeText(MainActivity.this, "Giỏ Hàng Của Tôi", Toast.LENGTH_SHORT).show();
+                }
+
+                else if (item.getItemId()==R.id.lichsu) {
+                    frg_lichsu frgLichsu = new frg_lichsu();
+                    replaceFragment(frgLichsu);
+                    Toast.makeText(MainActivity.this, "Lịch Sử Mua Hàng", Toast.LENGTH_SHORT).show();
                 }
 
 
