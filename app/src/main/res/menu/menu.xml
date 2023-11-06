@@ -1,57 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/ql_phieumuon"
-        android:title="Quản lý phiếu mượn"
+        android:id="@+id/trangchu"
+        android:title="Trang Chủ"
         android:icon="@drawable/baseline_home_24"/>
 
-    <item
-        android:id="@+id/ql_loaisach"
-        android:title="Quản lý loại sách"
-        android:icon="@drawable/ic_quanliloaisach"/>
-
-    <item
-        android:id="@+id/ql_sach"
-        android:title="Quản lý sách"
-        android:icon="@drawable/baseline_picture_as_pdf_24"/>
-
-    <item
-        android:id="@+id/ql_thanhvien"
-        android:title="Quản lý thành viên"
-        android:icon="@drawable/baseline_group_24"/>
 
 
     <item
-        android:title="Thống kê">
+        android:title="Danh Mục Sản Phẩm">
         <menu>
             <item
-                android:id="@+id/top10_sach"
-                android:title="Top 10 sách mượn nhiều nhất"
-                android:icon="@drawable/top10_sach"/>
+                android:id="@+id/lapGaming_doHoa"
+                android:title="Laptop Gaming, Đồ Họa"
+                android:icon="@drawable/game"/>
             <item
-                android:id="@+id/doanhthu"
-                android:title="Doanh thu"
-                android:icon="@drawable/doanhthu"/>
+                android:id="@+id/lapVanPhong_macbook"
+                android:title="Laptop Văn phòng, Macbook"
+                android:icon="@drawable/vanphong"/>
+            <item
+                android:id="@+id/phuKien"
+                android:title="Phụ Kiện Laptop, PC, Mobile"
+                android:icon="@drawable/phukien"/>
         </menu>
     </item>
+
+
+
+
+
+    <item
+        android:title="CSKH">
+        <menu>
+            <item
+                android:id="@+id/cskh"
+                android:title="Thông Tin Liên hệ"
+                android:icon="@drawable/call"/>
+
+        </menu>
+    </item>
+
 
     <item
         android:title="Người dùng">
         <menu>
             <item
-                android:id="@+id/add_nguoidung"
-                android:title="Thêm người dùng"
-                android:icon="@drawable/add_nguoidung"
-
-                />
+                android:id="@+id/giohang"
+                android:title="Giỏ Hàng Của Tôi"
+                android:icon="@drawable/giohang"/>
             <item
                 android:id="@+id/doimk"
                 android:title="Đổi mật khẩu"
-                android:icon="@drawable/baseline_vpn_key_24"/>
+                android:icon="@drawable/doimk"/>
             <item
                 android:id="@+id/thoat"
                 android:title="Thoát"
                 android:icon="@drawable/baseline_logout_24"/>
         </menu>
     </item>
+
+
 </menu>
