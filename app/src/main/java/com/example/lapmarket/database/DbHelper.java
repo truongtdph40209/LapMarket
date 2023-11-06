@@ -12,10 +12,10 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String account = "CREATE TABLE ACCOUNT(taikhoan TEXT PRIMARY KEY, hoten TEXT, matkhau TEXT, loaitaikhoan text)";
+        String account = "CREATE TABLE ACCOUNT(id INTEGER PRIMARY KEY AUTOINCREMENT,taikhoan TEXT , hoten TEXT, matkhau TEXT,email TEXT, loaitaikhoan TEXT)";
         db.execSQL(account);
 
-        db.execSQL("INSERT INTO ACCOUNT VALUES ('admin','Trịnh Đình Trường','123456', 'admin'),('user','Trịnh Đình Sơn ','654321', 'user')");
+        db.execSQL("INSERT INTO ACCOUNT VALUES (1,'admin','Trịnh Đình Trường','123456','anhlabachu2004@gmail.com', 'admin'),(2,'user','Trịnh Đình Sơn ','654321','truongtdph40209@fpt.edu.vn', 'user')");
     }
 
     @Override

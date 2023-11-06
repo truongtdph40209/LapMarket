@@ -7,12 +7,14 @@
 
 
 
-    <ImageView
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="350px"
-        android:src="@drawable/img"/>
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ĐĂNG KÍ TÀI KHOẢN"
+        android:gravity="center"
+        android:textSize="33dp"
+        android:textColor="#F44336"
+        android:textStyle="bold"/>
     <LinearLayout
         android:layout_marginTop="20dp"
         android:orientation="vertical"
@@ -73,6 +75,19 @@
             android:inputType="textPassword"
             android:background="@drawable/custom"
             android:hint="Nhập lại mật khẩu"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email:"
+            android:textSize="26dp"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/edt_email_dk"
+            android:layout_width="match_parent"
+            android:background="@drawable/custom"
+            android:hint="Nhập email"
             android:layout_height="wrap_content"
             android:textSize="25dp"/>
 

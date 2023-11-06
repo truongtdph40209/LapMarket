@@ -10,12 +10,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.example.lapmarket.dao.AccountDAO;
 import com.example.lapmarket.frg.frg_cskh;
 import com.example.lapmarket.frg.frg_gaming_doHoa;
 import com.example.lapmarket.frg.frg_giohang;
@@ -23,10 +25,15 @@ import com.example.lapmarket.frg.frg_lichsu;
 import com.example.lapmarket.frg.frg_phuKien;
 import com.example.lapmarket.frg.frg_trangchu;
 import com.example.lapmarket.frg.frg_vanPhong_macbook;
+import com.example.lapmarket.model.account;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    private AccountDAO accountDAO;
+    private ArrayList<account> list;
 
     DrawerLayout drawerLayout;
     NavigationView nav;
@@ -37,7 +44,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        list = new ArrayList<>();
 
+        accountDAO = new AccountDAO(this);
         drawerLayout = findViewById(R.id.drawerlayout);
         toolbar = findViewById(R.id.toolbar);
         nav = findViewById(R.id.nav);
@@ -103,6 +112,16 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(frgLichsu);
                     Toast.makeText(MainActivity.this, "Lịch Sử Mua Hàng", Toast.LENGTH_SHORT).show();
                 }
+
+//                else if (item.getItemId()==R.id.xoatk) {
+//                     accountDAO.delete(list.);
+//
+//
+//                    Toast.makeText(MainActivity.this, "Đã xóa tài khoản", Toast.LENGTH_SHORT).show();
+//
+//
+//
+//                }
 
 
                 getSupportActionBar().setTitle(item.getTitle());
