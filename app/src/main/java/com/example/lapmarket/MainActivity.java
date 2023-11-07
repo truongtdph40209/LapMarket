@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         nav = findViewById(R.id.nav);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Trang Chủ");
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout,toolbar,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();

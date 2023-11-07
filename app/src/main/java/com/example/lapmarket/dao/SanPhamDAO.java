@@ -32,4 +32,33 @@ public class SanPhamDAO {
 
 
     }
+
+    public ArrayList<sanpham> selectGAMING(){
+        ArrayList<sanpham> list = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM GAMING",null);
+        if (cursor.getCount() != 0){
+            cursor.moveToFirst();
+            do {
+                list.add(new sanpham(cursor.getInt(0), cursor.getString(1),  cursor.getInt(2)));
+
+            }while (cursor.moveToNext());
+        }
+        return list;
+    }
+
+    public ArrayList<sanpham> selectMACBOOK(){
+        ArrayList<sanpham> list = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM VANPHONG",null);
+        if (cursor.getCount() != 0){
+            cursor.moveToFirst();
+            do {
+                list.add(new sanpham(cursor.getInt(0), cursor.getString(1),  cursor.getInt(2)));
+
+            }while (cursor.moveToNext());
+        }
+        return list;
+    }
+
 }

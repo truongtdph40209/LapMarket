@@ -40,10 +40,15 @@ public class SanphamAdapter extends RecyclerView.Adapter<SanphamAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.txt_tensp.setText("Laptop: " + list.get(position).getTensp());
+        holder.txt_tensp.setText(list.get(position).getTensp());
         holder.txt_gia.setText("Giá: " + list.get(position).getGia() + "VND");
 
-
+        holder.txt_xemthem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //
+            }
+        });
     }
 
     @Override
