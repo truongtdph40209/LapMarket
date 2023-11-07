@@ -2,7 +2,7 @@
     <string name="app_name">LapMarket</string>
     <string name="sign_up">Bạn chưa có tài khoản? <b>Đăng kí</b></string>
     <string name="quenmk"><b>Quên mật khẩu</b></string>
-    <string name="xemthem"><b>Xem Thêm Chi Tiết</b></string>
+    <string name="xemthem"><b>Xem Thêm</b></string>
     <string name="back">Bạn đã có tài khoản? <b>Đăng nhập</b></string>
     <string name="open">Open nav</string>
     <string name="close">Close nav</string>

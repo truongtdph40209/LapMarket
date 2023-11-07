@@ -64,6 +64,30 @@ public class frg_trangchu extends Fragment {
 
         loadData();
 
+
+
+
+        //tìm kiếm
+        list1 = sanPhamDAO.selectSANPHAM();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                list.clear();
+                for (sanpham tv : list1 ) {
+                    if (String.valueOf(tv.getTensp()).contains(newText) || String.valueOf(tv.getGia()).contains(newText) ){
+                        list.add(tv);
+                    }
+                    sanphamAdapter.notifyDataSetChanged();
+                }
+                return false;
+            }
+        });
+
         return view;
     }
 
