@@ -52,20 +52,22 @@ public class man_hinh_dang_ki extends AppCompatActivity {
                 String repass =  edt_repass.getText().toString();
                 String email =  edt_email.getText().toString();
 
-                if (user.isEmpty() || hoten.isEmpty() || pass.isEmpty() || repass.isEmpty() || email.isEmpty()){
-                    Toast.makeText(man_hinh_dang_ki.this, "Không để trống dữ liệu", Toast.LENGTH_SHORT).show();
-                
-                }else {
 
-                    if (!pass.equals(repass)){
-                        Toast.makeText(man_hinh_dang_ki.this, "Mật khẩu không trùng nhau", Toast.LENGTH_SHORT).show();
+                    if (user.isEmpty() || hoten.isEmpty() || pass.isEmpty() || repass.isEmpty() ||email.isEmpty() ){
+                        Toast.makeText(man_hinh_dang_ki.this, "Không để trống dữ liệu", Toast.LENGTH_SHORT).show();
+
                     }else {
-                        boolean check = accountDAO.signup(user, hoten, pass, email);
-                        if (check){
-                            Toast.makeText(man_hinh_dang_ki.this, "Đăng kí thành công", Toast.LENGTH_SHORT).show();
-                            finish();
+
+                        if (!pass.equals(repass)){
+                            Toast.makeText(man_hinh_dang_ki.this, "Mật khẩu không trùng nhau", Toast.LENGTH_SHORT).show();
                         }else {
-                            Toast.makeText(man_hinh_dang_ki.this, "Đăng kí thất bại", Toast.LENGTH_SHORT).show();
+                            boolean check = accountDAO.signup(user, hoten, pass, email);
+                            if (check){
+                                Toast.makeText(man_hinh_dang_ki.this, "Đăng kí thành công", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }else {
+                                Toast.makeText(man_hinh_dang_ki.this, "Đăng kí thất bại", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 }
@@ -74,7 +76,8 @@ public class man_hinh_dang_ki extends AppCompatActivity {
 
 
 
-            }
+
+
         });
     }
 }
