@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DbHelper extends SQLiteOpenHelper {
     public DbHelper(Context context) {
-        super(context, "LapMarket", null, 5);
+        super(context, "LapMarket", null, 6);
     }
 
 
@@ -57,6 +57,22 @@ public class DbHelper extends SQLiteOpenHelper {
                 "(9,'Macbook Pro 16',57000000, 'Apple', 'Thái Lan', '12.6 inch', 'Đen', '2.5 kg', 'Nhựa', 'Appple m2', 'HDD', '12GB', '256GB', 'RTX 1050', '4.7GHz', '3 cổng', 'Có')");
 
 
+        String sanpham_phukien = "CREATE TABLE PHUKIEN(mapk INTEGER PRIMARY KEY AUTOINCREMENT,tenpk TEXT , gia INTEGER, dungluong TEXT, loairam TEXT, hotro TEXT, voltage TEXT, busram TEXT, hangsanxuat TEXT)";
+        db.execSQL(sanpham_phukien);
+
+        db.execSQL("INSERT INTO PHUKIEN VALUES (1,'RAM Laptop Kingston',570000, '8GB', 'DDR4', 'SO-DIMM(Laptop)', '1.2V', '3200MHz', 'Kingston')," +
+                " (2,'RAM Laptop Lexar',490000, '8GB', 'DDR4', 'SO-DIMM(Laptop)', '1.2V', '3200MHz','Lexar')," +
+                " (3,'RAM Laptop Samsung',650000, '8GB', 'DDR4', 'SO-DIMM(Laptop)', '1.2V', '3200MHz','Samsung')," +
+                " (4,'RAM Laptop Samsung',1090000, '16GB', 'DDR4', 'SO-DIMM(Laptop)', '1.2V', '3200MHz','Samsung')," +
+                " (5,'RAM PC T-Force',750000, '8GB', 'DDR4', 'DIMM(PC, Destop)', '1.35V', '3200MHz','Hãng khác')," +
+                " (6,'RAM Laptop Kingston',890000, '8GB', 'DDR5', 'SO-DIMM(Laptop)', '1.1V', '4800MT/s','Kingston')," +
+                " (7,'RAM Laptop Samsung',790000, '8GB', 'DDR5', 'SO-DIMM(Laptop)', '1.1V', '4800MT/s','Samsung')," +
+                " (8,'RAM Laptop Kingston',1490000, '16GB', 'DDR5', 'SO-DIMM(Laptop)', '1.1V', '3200MHz','Kingston')");
+
+
+
+
+
 
     }
 
@@ -67,6 +83,7 @@ public class DbHelper extends SQLiteOpenHelper {
             db.execSQL("drop table if exists SANPHAM");
             db.execSQL("drop table if exists GAMING");
             db.execSQL("drop table if exists VANPHONG");
+            db.execSQL("drop table if exists PHUKIEN");
             onCreate(db);
         }
     }

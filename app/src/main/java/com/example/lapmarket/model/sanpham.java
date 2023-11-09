@@ -4,9 +4,6 @@ public class sanpham {
     private int masp;
     private String tensp;
     private int gia;
-
-
-
     private  String thuonghieu;
     private  String xuatxu;
     private  String kichthuocmanhinh;
