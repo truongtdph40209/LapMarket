@@ -24,7 +24,7 @@ public class SanPhamDAO {
         if (cursor.getCount() != 0){
             cursor.moveToFirst();
             do {
-                list.add(new sanpham(cursor.getInt(0), cursor.getString(1),  cursor.getInt(2)));
+                list.add(new sanpham(cursor.getInt(0), cursor.getString(1),  cursor.getInt(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), cursor.getString(12), cursor.getString(13), cursor.getString(14), cursor.getString(15), cursor.getString(16)));
 
             }while (cursor.moveToNext());
         }
@@ -40,7 +40,7 @@ public class SanPhamDAO {
         if (cursor.getCount() != 0){
             cursor.moveToFirst();
             do {
-                list.add(new sanpham(cursor.getInt(0), cursor.getString(1),  cursor.getInt(2)));
+                list.add(new sanpham(cursor.getInt(0), cursor.getString(1),  cursor.getInt(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), cursor.getString(12), cursor.getString(13), cursor.getString(14), cursor.getString(15), cursor.getString(16)));
 
             }while (cursor.moveToNext());
         }
@@ -54,7 +54,8 @@ public class SanPhamDAO {
         if (cursor.getCount() != 0){
             cursor.moveToFirst();
             do {
-                list.add(new sanpham(cursor.getInt(0), cursor.getString(1),  cursor.getInt(2)));
+                list.add(new sanpham(cursor.getInt(0), cursor.getString(1),  cursor.getInt(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), cursor.getString(12), cursor.getString(13), cursor.getString(14), cursor.getString(15), cursor.getString(16)));
+
 
             }while (cursor.moveToNext());
         }

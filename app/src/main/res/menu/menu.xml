@@ -57,10 +57,6 @@
                 android:title="Đổi mật khẩu"
                 android:icon="@drawable/doimk"/>
             <item
-                android:id="@+id/xoatk"
-                android:title="Xóa tài khoản"
-                android:icon="@drawable/xoatk"/>
-            <item
                 android:id="@+id/thoat"
                 android:title="Thoát"
                 android:icon="@drawable/baseline_logout_24"/>
