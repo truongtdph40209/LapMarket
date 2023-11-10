@@ -72,18 +72,18 @@ public class AccountDAO {
 
 
 
-    //xoatk
-    public int delete(int id){
+    // doimk
+    public boolean capNhatMatKhau(String taikhoan, String mathauCu, String matkhauMoi){
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM ACCOUNT WHERE id = ?", new String[]{String.valueOf(id)});
-        if (cursor.getCount() != 0){
-            return -1;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM ACCOUNT WHERE taikhoan = ? AND matkhau = ? ", new String[]{taikhoan,mathauCu});
+        if (cursor.getCount() > 0 ){
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("matkhau", matkhauMoi);
+            long check =  sqLiteDatabase.update("ACCOUNT",contentValues, "taikhoan = ?", new String[]{taikhoan} );
+            if (check == -1){
+                return false;
+            }return true;
         }
-        long check = sqLiteDatabase.delete("ACCOUNT","id = ?", new String[]{String.valueOf(id)});
-
-        if (check == -1){
-            return 0;
-        }
-        return 1;
+        return false;
     }
 }
