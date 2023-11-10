@@ -2,6 +2,7 @@ package com.example.lapmarket;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -11,8 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -91,10 +97,10 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Phụ Kiện Laptop", Toast.LENGTH_SHORT).show();
                 }
 
-//                else if (item.getItemId()==R.id.doimk) {
-//                    showDoiMK();
-//                    Toast.makeText(MainActivity.this, "Đổi mật khẩu", Toast.LENGTH_SHORT).show();
-//                }
+                else if (item.getItemId()==R.id.doimk) {
+                    showDoiMK();
+                    Toast.makeText(MainActivity.this, "Đổi mật khẩu", Toast.LENGTH_SHORT).show();
+                }
 
                 else if (item.getItemId()==R.id.cskh) {
                     frg_cskh frgCskh  = new frg_cskh();
@@ -134,6 +140,67 @@ public class MainActivity extends AppCompatActivity {
     public void replaceFragment(Fragment frg){
         FragmentManager fm = getSupportFragmentManager();
         fm.beginTransaction().replace(R.id.frmNav,frg).commit();
+    }
+
+    private void showDoiMK(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.item_doimatkhau,null);
+
+
+        EditText edt_mkCu = view.findViewById(R.id.edt_mkCu);
+        EditText edt_mkMoi = view.findViewById(R.id.edt_mkMoi);
+        EditText edt_nhapLai_mkMoi = view.findViewById(R.id.edt_NhapLai_mkMoi);
+
+        builder.setView(view);
+
+
+
+        builder.setPositiveButton("Hủy", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+
+        builder.setNegativeButton("Xác nhận", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String mkCu = edt_mkCu.getText().toString();
+                String mkMoi = edt_mkMoi.getText().toString();
+                String nhaplai_mkMoi = edt_nhapLai_mkMoi.getText().toString();
+
+                if (mkCu.isEmpty() || mkMoi.isEmpty() || nhaplai_mkMoi.isEmpty()){
+                    Toast.makeText(MainActivity.this, "Nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                }
+
+                if (mkMoi.equals(nhaplai_mkMoi)){
+                    SharedPreferences sharedPreferences = getSharedPreferences("THONGTIN", MODE_PRIVATE);
+
+                    String matt = sharedPreferences.getString("taikhoan", "");
+                    accountDAO  = new AccountDAO(MainActivity.this);
+                    boolean check = accountDAO.capNhatMatKhau(matt, mkCu, mkMoi);
+                    if (check){
+                        Toast.makeText(MainActivity.this, "Đổi mk thành công", Toast.LENGTH_SHORT).show();
+                        finish();
+
+                    }else {
+                        Toast.makeText(MainActivity.this, "Đổi mk thất bại", Toast.LENGTH_SHORT).show();
+                    }
+
+                }else {
+                    Toast.makeText(MainActivity.this, "Nhập mk không trùng", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+
+
+
     }
 
 
