@@ -29,6 +29,7 @@ import com.example.lapmarket.frg.frg_gaming_doHoa;
 import com.example.lapmarket.frg.frg_giohang;
 import com.example.lapmarket.frg.frg_lichsu;
 import com.example.lapmarket.frg.frg_phuKien;
+import com.example.lapmarket.frg.frg_quanly_phukien;
 import com.example.lapmarket.frg.frg_trangchu;
 import com.example.lapmarket.frg.frg_vanPhong_macbook;
 import com.example.lapmarket.model.account;
@@ -69,8 +70,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if(item.getItemId()==R.id.thoat){
-                    Toast.makeText(MainActivity.this, "Đã đăng xuất", Toast.LENGTH_SHORT).show();
-                    finish();
+                    showdialogDangXuat();
                 }
 
                 else if (item.getItemId()==R.id.trangchu) {
@@ -120,15 +120,16 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Lịch Sử Mua Hàng", Toast.LENGTH_SHORT).show();
                 }
 
-//                else if (item.getItemId()==R.id.xoatk) {
-//                     accountDAO.delete(list.);
-//
-//
-//                    Toast.makeText(MainActivity.this, "Đã xóa tài khoản", Toast.LENGTH_SHORT).show();
-//
-//
-//
-//                }
+                else if (item.getItemId()==R.id.quanli_phukien) {
+
+                    frg_quanly_phukien frgQuanlyPhukien = new frg_quanly_phukien();
+                    replaceFragment(frgQuanlyPhukien);
+
+                    Toast.makeText(MainActivity.this, "Quản lí phụ kiện", Toast.LENGTH_SHORT).show();
+
+
+
+                }
 
 
                 getSupportActionBar().setTitle(item.getTitle());
@@ -199,8 +200,30 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
 
 
+    }
 
 
+
+    private void showdialogDangXuat(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this); //tạo dối tượng
+        builder.setIcon(R.drawable.canhbao); //set icon
+        builder.setMessage("Bạn chắc chắn muốn thoát");
+
+
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+                Toast.makeText(MainActivity.this, "Đã đăng xuất", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        AlertDialog dialog = builder.create(); //tạo hộp thoại
+        dialog.show();
     }
 
 
