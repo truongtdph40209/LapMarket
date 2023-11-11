@@ -103,7 +103,7 @@ public class PhuKienAdapter extends RecyclerView.Adapter<PhuKienAdapter.ViewHold
 
 
         txt_tenpk_chitiet_pk.setText(pk.getTenpk());
-        txt_gia_chitiet_pk.setText(pk.getGia() + "VND");
+        txt_gia_chitiet_pk.setText(pk.getGia() + " VND");
         txt_ram_chitiet_pk.setText(pk.getDungluong());
         txt_loairam_chitiet_pk.setText(pk.getLoairam());
         txt_busram_chitiet_pk.setText(pk.getBusram());
