@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:backgroundTint="#DBECC8"
+    android:layout_margin="7dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:padding="15dp"
+            android:src="@drawable/phukien_laptop"/>
+
+        <LinearLayout
+            android:padding="15dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txt_tensp_phukien"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tên Sản Phẩm"
+                android:textSize="17dp"/>
+            <TextView
+                android:id="@+id/txt_giasp_phukien"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Giá Sản Phẩm"
+                android:textColor="#F44336"
+                android:textSize="17dp"/>
+            <TextView
+                android:id="@+id/txt_xemthem_phukien"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/xemthem"
+                android:textSize="17dp"/>
+
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_mua_phukien"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="#F47F76"
+                    android:text="MUA NGAY"
+
+                    android:textColor="@color/white"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_giohang_phukien"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="#03A9F4"
+                    android:text="GIỎ HÀNG"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
