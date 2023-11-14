@@ -18,10 +18,12 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView nav;
     Toolbar toolbar;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerlayout);
         toolbar = findViewById(R.id.toolbar);
         nav = findViewById(R.id.nav);
+        View headerLayout = nav.getHeaderView(0);
+        TextView txt_ten = headerLayout.findViewById(R.id.txt_ten);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Trang Chủ");
 
@@ -194,6 +200,31 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        //hien thi chuc nang cho admin
+        SharedPreferences sharedPreferences = getSharedPreferences("THONGTIN", MODE_PRIVATE);
+        String loaitk = sharedPreferences.getString("loaitaikhoan", "");
+        if (!loaitk.equals("admin")){
+            Menu menu = nav.getMenu();
+            menu.findItem(R.id.quanli_phukien).setVisible(false);
+            menu.findItem(R.id.quanli_sp_home).setVisible(false);
+            menu.findItem(R.id.quanli_sp_gaming).setVisible(false);
+            menu.findItem(R.id.quanli_sp_vanphong).setVisible(false);
+        } else if (loaitk.equals("admin")) {
+            Menu menu = nav.getMenu();
+            menu.findItem(R.id.cskh).setVisible(false);
+            menu.findItem(R.id.giohang).setVisible(false);
+            menu.findItem(R.id.lichsu).setVisible(false);
+//            menu.findItem(R.id.lapGaming_doHoa).setVisible(false);
+//            menu.findItem(R.id.lapVanPhong_macbook).setVisible(false);
+//            menu.findItem(R.id.phuKien).setVisible(false);
+//            menu.findItem(R.id.trangchu).setVisible(false);
+        }
+
+        //
+        String hoten = sharedPreferences.getString("hoten", "");
+        txt_ten.setText(hoten);
+
 
     }
     public void replaceFragment(Fragment frg){
