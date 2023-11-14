@@ -12,11 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.lapmarket.util.Amount;
 import com.example.lapmarket.R;
 import com.example.lapmarket.dao.PhuKienDAO;
-import com.example.lapmarket.dao.SanPhamDAO;
 import com.example.lapmarket.model.phukien;
-import com.example.lapmarket.model.sanpham;
 
 import java.util.ArrayList;
 
@@ -45,7 +44,9 @@ public class PhuKienAdapter extends RecyclerView.Adapter<PhuKienAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.txt_tenpk.setText(list.get(position).getTenpk());
-        holder.txt_gia.setText(""+ list.get(position).getGia() + "VND");
+
+        holder.txt_gia.setText(Amount.moneyFormat(list.get(position).getGia()));
+
 
         holder.txt_xemthem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +104,7 @@ public class PhuKienAdapter extends RecyclerView.Adapter<PhuKienAdapter.ViewHold
 
 
         txt_tenpk_chitiet_pk.setText(pk.getTenpk());
-        txt_gia_chitiet_pk.setText(pk.getGia() + " VND");
+        txt_gia_chitiet_pk.setText(Amount.moneyFormat(pk.getGia() ));
         txt_ram_chitiet_pk.setText(pk.getDungluong());
         txt_loairam_chitiet_pk.setText(pk.getLoairam());
         txt_busram_chitiet_pk.setText(pk.getBusram());

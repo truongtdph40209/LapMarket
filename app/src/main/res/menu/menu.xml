@@ -45,6 +45,17 @@
             <item
                 android:id="@+id/quanli_phukien"
                 android:title="Quản lí phụ kiện" />
+            <item
+                android:id="@+id/quanli_sp_home"
+                android:title="Quản lí sản phẩm" />
+            <item
+                android:id="@+id/quanli_sp_gaming"
+                android:title="Quản lí SP gaming" />
+            <item
+                android:id="@+id/quanli_sp_vanphong"
+                android:title="Quản lí SP văn phòng" />
+
+
 
         </menu>
     </item>
@@ -65,6 +76,9 @@
                 android:id="@+id/doimk"
                 android:title="Đổi mật khẩu"
                 android:icon="@drawable/doimk"/>
+            <item
+                android:id="@+id/tuhuy"
+                android:title="Tự hủy" />
             <item
                 android:id="@+id/thoat"
                 android:title="Thoát"
