@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".frg.frg_quanly_phukien">
+    tools:context=".frg.frg_quanly_gaming">
+
 
 
         <LinearLayout
@@ -13,7 +14,7 @@
 
             <androidx.appcompat.widget.SearchView
                 android:background="@drawable/customsearch"
-                android:id="@+id/search_quanly_pk"
+                android:id="@+id/search_quanly_gaming"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -27,7 +28,7 @@
 
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView_quanli_pk"
+                    android:id="@+id/recyclerView_quanli_gaming"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
@@ -39,13 +40,14 @@
                     android:src="@drawable/add"
                     android:layout_margin="10dp"
                     android:backgroundTint="#4CAF50"
-                    android:id="@+id/float_add_pk"/>
+                    android:id="@+id/float_add_gaming"/>
 
 
 
             </RelativeLayout>
 
         </LinearLayout>
+
 
 
 </FrameLayout>

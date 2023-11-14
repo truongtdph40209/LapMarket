@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.lapmarket.R;
 import com.example.lapmarket.dao.PhuKienDAO;
 import com.example.lapmarket.model.phukien;
+import com.example.lapmarket.util.Amount;
 
 import java.util.ArrayList;
 
@@ -38,7 +39,7 @@ public class QuanLyPhuKienAdapter extends RecyclerView.Adapter<QuanLyPhuKienAdap
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-        View view = inflater.inflate(R.layout.item_sua, parent, false);
+        View view = inflater.inflate(R.layout.item_admin_phukien, parent, false);
         return new ViewHolder(view);
     }
 
@@ -46,7 +47,8 @@ public class QuanLyPhuKienAdapter extends RecyclerView.Adapter<QuanLyPhuKienAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.txt_tenpk_ql.setText(list.get(position).getTenpk());
-        holder.txt_gia_ql.setText(""+ list.get(position).getGia() + "VND");
+        holder.txt_gia_ql.setText(Amount.moneyFormat(list.get(position).getGia()));
+
 
         holder.txt_xemthem_ql.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,12 +162,19 @@ public class QuanLyPhuKienAdapter extends RecyclerView.Adapter<QuanLyPhuKienAdap
                 String hangsanxuat_update = edt_hangsanxuat_update.getText().toString();
                 int mapk = pk.getMapk();
 
-                boolean check = phuKienDAO.updatePhuKien(mapk, tenpk_update,gia_update,dungluong_update, loairam_update, hotro_update, voltage_update, busram_update, hangsanxuat_update );
-                if (check){
-                    Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
-                    loadData();
+                    if (tenpk_update.isEmpty() || String.valueOf(gia_update).isEmpty() || dungluong_update.isEmpty() || loairam_update.isEmpty() || hotro_update.isEmpty() || voltage_update.isEmpty() || busram_update.isEmpty() || hangsanxuat_update.isEmpty()){
+
                 }else {
-                    Toast.makeText(context, "Cập nhật không thành công", Toast.LENGTH_SHORT).show();
+
+
+                    boolean check = phuKienDAO.updatePhuKien(mapk, tenpk_update, gia_update, dungluong_update, loairam_update, hotro_update, voltage_update, busram_update, hangsanxuat_update);
+                    if (check) {
+                        Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                        loadData();
+                    } else {
+                        Toast.makeText(context, "Cập nhật không thành công", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
 
             }
@@ -201,7 +210,7 @@ public class QuanLyPhuKienAdapter extends RecyclerView.Adapter<QuanLyPhuKienAdap
 
         //code
         txt_tenpk_chitiet_pk.setText(pk.getTenpk());
-        txt_gia_chitiet_pk.setText(pk.getGia() + " VND");
+        txt_gia_chitiet_pk.setText(Amount.moneyFormat(pk.getGia()));
         txt_ram_chitiet_pk.setText(pk.getDungluong());
         txt_loairam_chitiet_pk.setText(pk.getLoairam());
         txt_busram_chitiet_pk.setText(pk.getBusram());
