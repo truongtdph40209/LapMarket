@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="UPDATE PHỤ KIỆN"
+            android:textSize="30dp"
+            android:gravity="center"
+            android:textColor="#F44336"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tên Phụ Kiện"
+            android:textSize="19dp"
+            android:textColor="#F44336"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/edt_tenpk_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:hint="Nhập tên phụ kiện"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Giá"
+            android:textColor="#F44336"
+            android:textSize="19dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edt_gia_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:hint="Nhập giá tiền"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dung Lượng"
+            android:textSize="19dp"
+            android:textColor="#F44336"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/edt_dungluong_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:hint="Nhập dung lượng"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Loại Ram"
+            android:textSize="19dp"
+            android:textColor="#F44336"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/edt_loairam_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:hint="Nhập loại ram"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hỗ trợ"
+            android:textSize="19dp"
+            android:textColor="#F44336"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/edt_hotro_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:hint="Nhập hỗ trợ dòng máy"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Voltage"
+            android:textSize="19dp"
+            android:textColor="#F44336"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/edt_voltage_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:hint="Nhập voltage (v)"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bus Ram"
+            android:textSize="19dp"
+            android:textColor="#F44336"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/edt_busram_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:hint="Nhập bus ram"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hãng sản xuất"
+            android:textSize="19dp"
+            android:textColor="#F44336"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/edt_hangsanxuat_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:hint="Nhập hãng"/>
+
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

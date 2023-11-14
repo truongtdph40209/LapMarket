@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.lapmarket.R;
 import com.example.lapmarket.dao.SanPhamDAO;
 import com.example.lapmarket.model.sanpham;
+import com.example.lapmarket.util.Amount;
 
 import java.util.ArrayList;
 
@@ -43,7 +44,7 @@ public class SanphamAdapter extends RecyclerView.Adapter<SanphamAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.txt_tensp.setText(list.get(position).getTensp());
-        holder.txt_gia.setText("Giá: " + list.get(position).getGia() + "VND");
+        holder.txt_gia.setText("Giá: " + Amount.moneyFormat( list.get(position).getGia()));
 
         holder.txt_xemthem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +100,8 @@ public class SanphamAdapter extends RecyclerView.Adapter<SanphamAdapter.ViewHold
 
         //code
         txt_tensp_chitiet.setText("Tên: " + sanPham.getTensp());
-        txt_giasp_chitiet.setText("Giá: " + sanPham.getGia() + "VND");
+        txt_giasp_chitiet.setText("Giá: " + Amount.moneyFormat(sanPham.getGia())
+        );
         txt_thuonghieu_chtiet.setText("Thương hiệu: " + sanPham.getThuonghieu());
         txt_xuatxu_chtiet.setText("Xuất xứ: " + sanPham.getXuatxu());
         txt_kichthuoc_chitiet.setText("Kích thước: " + sanPham.getKichthuocmanhinh());

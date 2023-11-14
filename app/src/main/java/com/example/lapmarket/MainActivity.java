@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -29,6 +31,10 @@ import com.example.lapmarket.frg.frg_gaming_doHoa;
 import com.example.lapmarket.frg.frg_giohang;
 import com.example.lapmarket.frg.frg_lichsu;
 import com.example.lapmarket.frg.frg_phuKien;
+import com.example.lapmarket.frg.frg_quanly_gaming;
+import com.example.lapmarket.frg.frg_quanly_phukien;
+import com.example.lapmarket.frg.frg_quanly_sanpham_home;
+import com.example.lapmarket.frg.frg_quanly_vanphong;
 import com.example.lapmarket.frg.frg_trangchu;
 import com.example.lapmarket.frg.frg_vanPhong_macbook;
 import com.example.lapmarket.model.account;
@@ -69,8 +75,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if(item.getItemId()==R.id.thoat){
-                    Toast.makeText(MainActivity.this, "Đã đăng xuất", Toast.LENGTH_SHORT).show();
-                    finish();
+                    showdialogDangXuat();
                 }
 
                 else if (item.getItemId()==R.id.trangchu) {
@@ -120,15 +125,69 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Lịch Sử Mua Hàng", Toast.LENGTH_SHORT).show();
                 }
 
-//                else if (item.getItemId()==R.id.xoatk) {
-//                     accountDAO.delete(list.);
-//
-//
-//                    Toast.makeText(MainActivity.this, "Đã xóa tài khoản", Toast.LENGTH_SHORT).show();
-//
-//
-//
-//                }
+                else if (item.getItemId()==R.id.quanli_phukien) {
+
+                    frg_quanly_phukien frgQuanlyPhukien = new frg_quanly_phukien();
+                    replaceFragment(frgQuanlyPhukien);
+
+                    Toast.makeText(MainActivity.this, "Quản lí phụ kiện", Toast.LENGTH_SHORT).show();
+
+                }
+
+                else if (item.getItemId()==R.id.quanli_sp_home) {
+
+                    frg_quanly_sanpham_home frg_quanly_sanpham_home = new frg_quanly_sanpham_home();
+                    replaceFragment(frg_quanly_sanpham_home);
+
+                    Toast.makeText(MainActivity.this, "Quản lí sản phẩm", Toast.LENGTH_SHORT).show();
+
+                }
+
+                else if (item.getItemId()==R.id.quanli_sp_gaming) {
+
+                    frg_quanly_gaming frgQuanlyGaming = new frg_quanly_gaming();
+                    replaceFragment(frgQuanlyGaming);
+
+                    Toast.makeText(MainActivity.this, "Quản lí sp gaming", Toast.LENGTH_SHORT).show();
+
+                }
+
+                else if (item.getItemId()==R.id.quanli_sp_vanphong) {
+
+                    frg_quanly_vanphong frg_quanly_vanphong = new frg_quanly_vanphong();
+                    replaceFragment(frg_quanly_vanphong);
+
+                    Toast.makeText(MainActivity.this, "Quản lí sp văn phòng", Toast.LENGTH_SHORT).show();
+
+                }
+
+                else if (item.getItemId()==R.id.tuhuy) {
+                    //
+                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(MainActivity.this); //tạo dối tượng
+                    builder.setIcon(R.drawable.canhbao); //set icon
+                    builder.setMessage("Bạn chắc chắn muốn Tự Hủy");
+
+                    builder.setPositiveButton("Có tôi muốn", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //
+                            Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                            intent.setData(Uri.parse("package:" + getPackageName()));
+                            startActivity(intent);
+
+                        }
+                    });
+                    builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(MainActivity.this, "Không tự hủy", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    android.app.AlertDialog dialog = builder.create(); //tạo hộp thoại
+                    dialog.show();
+                }
+
+
 
 
                 getSupportActionBar().setTitle(item.getTitle());
@@ -199,8 +258,30 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
 
 
+    }
 
 
+
+    private void showdialogDangXuat(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this); //tạo dối tượng
+        builder.setIcon(R.drawable.canhbao); //set icon
+        builder.setMessage("Bạn chắc chắn muốn thoát");
+
+
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+                Toast.makeText(MainActivity.this, "Đã đăng xuất", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        AlertDialog dialog = builder.create(); //tạo hộp thoại
+        dialog.show();
     }
 
 
