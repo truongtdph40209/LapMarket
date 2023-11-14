@@ -1,7 +1,10 @@
 package com.example.lapmarket.dao;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -11,10 +14,12 @@ import com.example.lapmarket.model.account;
 import java.util.ArrayList;
 
 public class AccountDAO {
+    SharedPreferences sharedPreferences;
 
     DbHelper dbHelper;
     public AccountDAO(Context context) {
         dbHelper = new DbHelper(context);
+        sharedPreferences = context.getSharedPreferences("THONGTIN", MODE_PRIVATE);
 
     }
     public ArrayList<account> selectALL_Account(){
@@ -33,8 +38,16 @@ public class AccountDAO {
 
     public boolean checkdn(String taikhoan, String matkhau){
         SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
+
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM ACCOUNT WHERE taikhoan = ? AND matkhau = ?", new String[]{taikhoan, matkhau});
         if (cursor.getCount() != 0) {
+
+            cursor.moveToFirst();
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("taikhoan", cursor.getString(1));
+            editor.putString("loaitaikhoan", cursor.getString(5));
+            editor.putString("hoten", cursor.getString(2));
+            editor.commit();
             return true;
         }else {
             return false;
@@ -69,7 +82,6 @@ public class AccountDAO {
         }
         return "";
     }
-
 
 
     // doimk
