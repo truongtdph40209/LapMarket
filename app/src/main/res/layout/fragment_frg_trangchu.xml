@@ -22,7 +22,9 @@
             android:id="@+id/search_sanpham"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#EFE9B7"/>
+            android:layout_margin="5dp"
+            android:background="@drawable/customsearch"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="228dp"
