@@ -10,6 +10,13 @@ public class giohang {
         this.SOLUONG = SOLUONG;
     }
 
+    public giohang(int ID, String tensp, int gia, int SOLUONG) {
+        this.ID = ID;
+        this.tensp = tensp;
+        this.gia = gia;
+        this.SOLUONG = SOLUONG;
+    }
+
     public int getSOLUONG() {
         return SOLUONG;
     }

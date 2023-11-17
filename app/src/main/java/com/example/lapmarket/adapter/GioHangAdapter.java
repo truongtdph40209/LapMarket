@@ -2,6 +2,7 @@ package com.example.lapmarket.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.lapmarket.R;
 import com.example.lapmarket.dao.GioHangDAO;
 import com.example.lapmarket.model.giohang;
+import com.example.lapmarket.util.Amount;
 
 import java.util.ArrayList;
 
@@ -23,20 +25,20 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
 
     private Context context;
     private ViewHolder holder;
-
+    private ArrayList<giohang> list;
+    private GioHangDAO gioHangDAO;
 
     public GioHangAdapter(Context context, ArrayList<giohang> list, GioHangDAO gioHangDAO) {
         this.context = context;
         this.list = list;
         this.gioHangDAO = gioHangDAO;
     }
-    
-    private ArrayList<giohang> list;
-    private GioHangDAO gioHangDAO;
+
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = ((Activity)context).getLayoutInflater();
+        LayoutInflater inflater = ((Activity) context).getLayoutInflater();
         View view = inflater.inflate(R.layout.item_giohang, parent, false);
         return new ViewHolder(view);
     }
@@ -45,7 +47,10 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.txt_tenGioHang.setText(list.get(position).getTensp());
-        holder.txt_giaTiengh.setText("Giá: " + list.get(position).getGia() + "VND");
+//        Log.e("aaa" , "aac");
+        holder.txt_soLuong.setText("Số lượng: " + list.get(position).getSOLUONG());
+
+        holder.txt_giaTiengh.setText(Amount.moneyFormat(list.get(position).getGia() * list.get(position).getSOLUONG()));
 
         holder.iv_Del.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,16 +82,17 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
         int magh = list.get(viTri).getID();
         int soLuongHienTai = list.get(viTri).getSOLUONG();
         int soLuongMoiC = soLuongHienTai + 1;
+        int giaGoc = list.get(viTri).getGia();
 
         if (soLuongMoiC >= 0) {
             gioHangDAO.updateQuantity(magh, soLuongMoiC);
 
             list.get(viTri).setSOLUONG(soLuongMoiC);
 
-            int giaMoiC = soLuongMoiC * list.get(viTri).getGia();
-            list.get(viTri).setGia(giaMoiC);
+            int giaMoiC = soLuongMoiC * giaGoc;
+            gioHangDAO.updateQuantity(list.get(viTri).getID(), soLuongMoiC);
 
-            holder.txt_giaTiengh.setText("Giá: " + giaMoiC + "VND");
+            holder.txt_giaTiengh.setText(Amount.moneyFormat(giaMoiC));
             holder.txt_soLuong.setText("Số lượng: " + soLuongMoiC);
         }
     }
@@ -101,14 +107,16 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
 
             list.get(viTri).setSOLUONG(soLuongMoiT);
 
-            int giaMoiT = soLuongMoiT * list.get(viTri).getGia();
-            list.get(viTri).setGia(giaMoiT);
+            if (soLuongMoiT > 0) {
+                int giaMoiT = soLuongMoiT * list.get(viTri).getGia();
+                gioHangDAO.updateQuantity(list.get(viTri).getID(), soLuongMoiT);
+                holder.txt_giaTiengh.setText(Amount.moneyFormat(giaMoiT));
+                holder.txt_soLuong.setText("Số lượng: " + soLuongMoiT);
+            }
 
-            holder.txt_giaTiengh.setText("Giá: " + giaMoiT + "VND");
-            holder.txt_soLuong.setText("Số lượng: " + soLuongMoiT);
-                         }
+
+        }
     }
-
 
 
     private void xoaSanPham(int viTri) {
@@ -130,12 +138,13 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txt_tenGioHang,txt_giaTiengh, txt_soLuong;
+        TextView txt_tenGioHang, txt_giaTiengh, txt_soLuong;
         ImageButton iv_Del;
         Button btn_Slt, btn_Slc;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            txt_tenGioHang =itemView.findViewById(R.id.txt_tenGioHang);
+            txt_tenGioHang = itemView.findViewById(R.id.txt_tenGioHang);
             txt_giaTiengh = itemView.findViewById(R.id.txt_giaTiengh);
             iv_Del = itemView.findViewById(R.id.iv_Del);
             btn_Slc = itemView.findViewById(R.id.btn_slC);

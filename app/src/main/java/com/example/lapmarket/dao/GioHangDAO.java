@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.lapmarket.database.DbHelper;
 import com.example.lapmarket.model.giohang;
@@ -17,6 +18,9 @@ public class GioHangDAO {
         dbHelper = new DbHelper(context);
     }
 
+//    String giohang = "CREATE TABLE GIOHANG(ID INTEGER PRIMARY KEY AUTOINCREMENT" +
+//            ", tensp TEXT REFERENCES SANPHAM(tensp), " +
+//            "gia INTEGER REFERENCES SANPHAM(gia),  SOLUONG INTEGER)";
     public ArrayList<giohang> listGH() {
         ArrayList<giohang> list = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
@@ -24,7 +28,7 @@ public class GioHangDAO {
         if (cursor.getCount() != 0) {
             cursor.moveToFirst();
             do {
-                list.add(new giohang(cursor.getInt(0), cursor.getString(1), cursor.getInt(2)));
+                list.add(new giohang(cursor.getInt(0), cursor.getString(1), cursor.getInt(2),cursor.getInt(3)));
             } while (cursor.moveToNext());
         }
         return list;
