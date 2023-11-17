@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -75,7 +76,9 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+
         getSupportFragmentManager().beginTransaction().replace(R.id.frmNav, new frg_trangchu()).commit();
+
 
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -83,52 +86,46 @@ public class MainActivity extends AppCompatActivity {
                 if(item.getItemId()==R.id.thoat){
                     showdialogDangXuat();
                 }
-
                 else if (item.getItemId()==R.id.trangchu) {
                     frg_trangchu frgTrangchu = new frg_trangchu();
                     replaceFragment(frgTrangchu);
-                    Toast.makeText(MainActivity.this, "Trang Chủ", Toast.LENGTH_SHORT).show();
+
                 }
+
 
                 else if (item.getItemId()==R.id.lapGaming_doHoa) {
                     frg_gaming_doHoa frgGamingDoHoa = new frg_gaming_doHoa();
                     replaceFragment(frgGamingDoHoa);
-                    Toast.makeText(MainActivity.this, "Laptop Gaming, Đồ Họa", Toast.LENGTH_SHORT).show();
                 }
 
                 else if (item.getItemId()==R.id.lapVanPhong_macbook) {
                     frg_vanPhong_macbook frgVanPhongMacbook = new frg_vanPhong_macbook();
                     replaceFragment(frgVanPhongMacbook);
-                    Toast.makeText(MainActivity.this, "Laptop Văn Phòng, Macbook", Toast.LENGTH_SHORT).show();
                 }
 
                 else if (item.getItemId()==R.id.phuKien) {
                     frg_phuKien frgPhuKien = new frg_phuKien();
                     replaceFragment(frgPhuKien);
-                    Toast.makeText(MainActivity.this, "Phụ Kiện Laptop", Toast.LENGTH_SHORT).show();
                 }
 
                 else if (item.getItemId()==R.id.doimk) {
                     showDoiMK();
-                    Toast.makeText(MainActivity.this, "Đổi mật khẩu", Toast.LENGTH_SHORT).show();
                 }
 
                 else if (item.getItemId()==R.id.cskh) {
                     frg_cskh frgCskh  = new frg_cskh();
                     replaceFragment(frgCskh);
-                    Toast.makeText(MainActivity.this, "Chăm Sóc Khách Hàng", Toast.LENGTH_SHORT).show();
                 }
 
                 else if (item.getItemId()==R.id.giohang) {
                     frg_giohang giohang = new frg_giohang();
                     replaceFragment(giohang);
-                    Toast.makeText(MainActivity.this, "Giỏ Hàng Của Tôi", Toast.LENGTH_SHORT).show();
+
                 }
 
                 else if (item.getItemId()==R.id.lichsu) {
                     frg_lichsu frgLichsu = new frg_lichsu();
                     replaceFragment(frgLichsu);
-                    Toast.makeText(MainActivity.this, "Lịch Sử Mua Hàng", Toast.LENGTH_SHORT).show();
                 }
 
                 else if (item.getItemId()==R.id.quanli_phukien) {
@@ -136,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
                     frg_quanly_phukien frgQuanlyPhukien = new frg_quanly_phukien();
                     replaceFragment(frgQuanlyPhukien);
 
-                    Toast.makeText(MainActivity.this, "Quản lí phụ kiện", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -145,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
                     frg_quanly_sanpham_home frg_quanly_sanpham_home = new frg_quanly_sanpham_home();
                     replaceFragment(frg_quanly_sanpham_home);
 
-                    Toast.makeText(MainActivity.this, "Quản lí sản phẩm", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -154,7 +149,6 @@ public class MainActivity extends AppCompatActivity {
                     frg_quanly_gaming frgQuanlyGaming = new frg_quanly_gaming();
                     replaceFragment(frgQuanlyGaming);
 
-                    Toast.makeText(MainActivity.this, "Quản lí sp gaming", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -163,36 +157,13 @@ public class MainActivity extends AppCompatActivity {
                     frg_quanly_vanphong frg_quanly_vanphong = new frg_quanly_vanphong();
                     replaceFragment(frg_quanly_vanphong);
 
-                    Toast.makeText(MainActivity.this, "Quản lí sp văn phòng", Toast.LENGTH_SHORT).show();
 
                 }
 
-                else if (item.getItemId()==R.id.tuhuy) {
-                    //
-                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(MainActivity.this); //tạo dối tượng
-                    builder.setIcon(R.drawable.canhbao); //set icon
-                    builder.setMessage("Bạn chắc chắn muốn Tự Hủy");
 
-                    builder.setPositiveButton("Có tôi muốn", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            //
-                            Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                            intent.setData(Uri.parse("package:" + getPackageName()));
-                            startActivity(intent);
 
-                        }
-                    });
-                    builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(MainActivity.this, "Không tự hủy", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    android.app.AlertDialog dialog = builder.create(); //tạo hộp thoại
-                    dialog.show();
-                }
 
+                drawerLayout.closeDrawer(GravityCompat.START);  // Đóng NavigationView
 
 
 
@@ -200,6 +171,10 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+
+
+
 
         //hien thi chuc nang cho admin
         SharedPreferences sharedPreferences = getSharedPreferences("THONGTIN", MODE_PRIVATE);
@@ -230,6 +205,10 @@ public class MainActivity extends AppCompatActivity {
     public void replaceFragment(Fragment frg){
         FragmentManager fm = getSupportFragmentManager();
         fm.beginTransaction().replace(R.id.frmNav,frg).commit();
+
+
+
+
     }
 
     private void showDoiMK(){
@@ -287,6 +266,7 @@ public class MainActivity extends AppCompatActivity {
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+
 
 
     }

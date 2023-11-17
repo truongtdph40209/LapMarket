@@ -77,9 +77,6 @@
                 android:title="Đổi mật khẩu"
                 android:icon="@drawable/doimk"/>
             <item
-                android:id="@+id/tuhuy"
-                android:title="Tự hủy" />
-            <item
                 android:id="@+id/thoat"
                 android:title="Thoát"
                 android:icon="@drawable/baseline_logout_24"/>
