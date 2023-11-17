@@ -79,7 +79,7 @@ public class frg_vanPhong_macbook extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerSanpham.setLayoutManager(linearLayoutManager);
 
-        sanphamAdapter = new SanphamAdapter(getContext(), list, sanPhamDAO);
+        sanphamAdapter = new SanphamAdapter(getContext(), list, sanPhamDAO, null);
         recyclerSanpham.setAdapter(sanphamAdapter);
     }
 }

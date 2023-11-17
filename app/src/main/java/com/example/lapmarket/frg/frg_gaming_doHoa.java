@@ -72,6 +72,13 @@ public class frg_gaming_doHoa extends Fragment {
             }
         });
 
+        sanphamAdapter = new SanphamAdapter(getContext(), list, sanPhamDAO, new SanphamAdapter.OnAddToCartClickListener() {
+            @Override
+            public void onAddToCartClick(sanpham sanPham) {
+                onAddToCartClick(sanPham);
+            }
+        });
+
 
         return view;
     }
@@ -83,7 +90,7 @@ public class frg_gaming_doHoa extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerSanpham.setLayoutManager(linearLayoutManager);
 
-        sanphamAdapter = new SanphamAdapter(getContext(), list, sanPhamDAO);
+        sanphamAdapter = new SanphamAdapter(getContext(), list, sanPhamDAO, null);
         recyclerSanpham.setAdapter(sanphamAdapter);
     }
 

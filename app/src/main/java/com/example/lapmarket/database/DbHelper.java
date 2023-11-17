@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DbHelper extends SQLiteOpenHelper {
     public DbHelper(Context context) {
-        super(context, "LapMarket", null, 6);
+        super(context, "LapMarket", null, 7);
     }
 
 
@@ -70,7 +70,10 @@ public class DbHelper extends SQLiteOpenHelper {
                 " (8,'RAM Laptop Kingston',1490000, '16GB', 'DDR5', 'SO-DIMM(Laptop)', '1.1V', '3200MHz','Kingston')");
 
 
-
+        String giohang = "CREATE TABLE GIOHANG(ID INTEGER PRIMARY KEY AUTOINCREMENT" +
+                ", tensp TEXT REFERENCES SANPHAM(tensp), " +
+                "gia INTEGER REFERENCES SANPHAM(gia),  SOLUONG INTEGER)";
+        db.execSQL(giohang);
 
 
 
@@ -84,6 +87,7 @@ public class DbHelper extends SQLiteOpenHelper {
             db.execSQL("drop table if exists GAMING");
             db.execSQL("drop table if exists VANPHONG");
             db.execSQL("drop table if exists PHUKIEN");
+            db.execSQL("drop table if exists GIOHANG");
             onCreate(db);
         }
     }

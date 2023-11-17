@@ -1,5 +1,6 @@
 package com.example.lapmarket.dao;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -32,8 +33,15 @@ public class PhuKienDAO {
 
     }
 
+    public void addToCart(phukien phuKien) {
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("TENPK", phuKien.getTenpk());
+        values.put("GIA", phuKien.getGia());
 
-
-
+        // Insert the product into the GIOHANG table
+        sqLiteDatabase.insert("GIOHANG", null, values);
+        sqLiteDatabase.close();
+    }
 
 }
