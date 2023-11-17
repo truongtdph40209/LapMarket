@@ -20,9 +20,8 @@ import com.example.lapmarket.util.SendMail;
 import org.w3c.dom.Text;
 
 public class man_hinh_dang_nhap extends AppCompatActivity {
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
-    CheckBox chk_remember;
+
+
     private AccountDAO accountDAO;
     private SendMail sendMail;
 
@@ -34,9 +33,9 @@ public class man_hinh_dang_nhap extends AppCompatActivity {
         accountDAO = new AccountDAO(this);
         sendMail = new SendMail();
 
-        sharedPreferences = getSharedPreferences("THONGTIN", MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-        chk_remember = findViewById(R.id.chk_remember);
+
+
+        CheckBox  chk_remember = findViewById(R.id.chk_remember);
 
         TextView txt_signup  =findViewById(R.id.txt_signup);
         TextView txt_quenmk  =findViewById(R.id.txt_quenmatkhau);
@@ -47,6 +46,8 @@ public class man_hinh_dang_nhap extends AppCompatActivity {
         AccountDAO accountDAO = new AccountDAO(this);
 
         //nho mk
+        SharedPreferences sharedPreferences = getSharedPreferences("THONGTIN", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         boolean rememberMe = sharedPreferences.getBoolean("remember_me", false);
         if (rememberMe) {
@@ -63,11 +64,10 @@ public class man_hinh_dang_nhap extends AppCompatActivity {
                 String user = edt_user.getText().toString();
                 String pass = edt_pass.getText().toString();
 
+
                 if (accountDAO.checkdn(user, pass)){
 
-                    editor.putString("taikhoan", user);
-
-
+//                    editor.putString("taikhoan", user);
                     //
                     if (chk_remember.isChecked()) {
                         editor.putString("taikhoan", user);
@@ -79,9 +79,10 @@ public class man_hinh_dang_nhap extends AppCompatActivity {
                         editor.apply();
                     }
 
-                    editor.commit();
-
                     //
+//                    editor.commit();
+
+
                     startActivity(new Intent(man_hinh_dang_nhap.this, MainActivity.class));
 
                 }else {
@@ -90,7 +91,6 @@ public class man_hinh_dang_nhap extends AppCompatActivity {
 
             }
         });
-
 
 
         txt_signup.setOnClickListener(new View.OnClickListener() {

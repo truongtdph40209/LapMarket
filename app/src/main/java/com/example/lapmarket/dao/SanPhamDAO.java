@@ -18,45 +18,46 @@ public class SanPhamDAO {
         dbHelper = new DbHelper(context);
     }
 
-    public ArrayList<sanpham> selectSANPHAM(){
+    public ArrayList<sanpham> selectSANPHAM() {
         ArrayList<sanpham> list = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM SANPHAM",null);
-        if (cursor.getCount() != 0){
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM SANPHAM", null);
+        if (cursor.getCount() != 0) {
             cursor.moveToFirst();
             do {
-                list.add(new sanpham(cursor.getInt(0), cursor.getString(1),  cursor.getInt(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), cursor.getString(12), cursor.getString(13), cursor.getString(14), cursor.getString(15), cursor.getString(16)));
+                list.add(new sanpham(cursor.getInt(0), cursor.getString(1), cursor.getInt(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), cursor.getString(12), cursor.getString(13), cursor.getString(14), cursor.getString(15), cursor.getString(16)));
 
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
         return list;
 
 
     }
 
-    public ArrayList<sanpham> selectGAMING(){
+
+    public ArrayList<sanpham> selectGAMING() {
         ArrayList<sanpham> list = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM GAMING",null);
-        if (cursor.getCount() != 0){
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM GAMING", null);
+        if (cursor.getCount() != 0) {
             cursor.moveToFirst();
             do {
-                list.add(new sanpham(cursor.getInt(0), cursor.getString(1),  cursor.getInt(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), cursor.getString(12), cursor.getString(13), cursor.getString(14), cursor.getString(15), cursor.getString(16)));
+                list.add(new sanpham(cursor.getInt(0), cursor.getString(1), cursor.getInt(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), cursor.getString(12), cursor.getString(13), cursor.getString(14), cursor.getString(15), cursor.getString(16)));
 
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
         return list;
     }
 
-    public ArrayList<sanpham> selectMACBOOK(){
+    public ArrayList<sanpham> selectMACBOOK() {
         ArrayList<sanpham> list = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM VANPHONG",null);
-        if (cursor.getCount() != 0){
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM VANPHONG", null);
+        if (cursor.getCount() != 0) {
             cursor.moveToFirst();
             do {
-                list.add(new sanpham(cursor.getInt(0), cursor.getString(1),  cursor.getInt(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), cursor.getString(12), cursor.getString(13), cursor.getString(14), cursor.getString(15), cursor.getString(16)));
-            }while (cursor.moveToNext());
+                list.add(new sanpham(cursor.getInt(0), cursor.getString(1), cursor.getInt(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), cursor.getString(12), cursor.getString(13), cursor.getString(14), cursor.getString(15), cursor.getString(16)));
+            } while (cursor.moveToNext());
         }
         return list;
     }
@@ -70,6 +71,211 @@ public class SanPhamDAO {
         // Insert the product into the GIOHANG table
         sqLiteDatabase.insert("GIOHANG", null, values);
         sqLiteDatabase.close();
-    }
 
+        //delete
+        public boolean deleteSP ( int masp){
+            SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+            long row = sqLiteDatabase.delete("SANPHAM", "masp = ?", new String[]{String.valueOf(masp)});
+            if (row <= 0) {
+                return false;
+            }
+            return true;
+        }
+        public boolean deleteGAM ( int masp){
+            SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+            long row = sqLiteDatabase.delete("GAMING", "masp = ?", new String[]{String.valueOf(masp)});
+            if (row <= 0) {
+                return false;
+            }
+            return true;
+        }
+        public boolean deleteVP ( int masp){
+            SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+            long row = sqLiteDatabase.delete("VANPHONG", "masp = ?", new String[]{String.valueOf(masp)});
+            if (row <= 0) {
+                return false;
+            }
+            return true;
+        }
+
+        //update
+        public boolean updateSP ( int masp, String tensp,int gia, String thuonghieu, String
+        xuatxu, String kichthuocmanhinh, String mausac, String trongluong, String chatlieu, String
+        cpu, String ocung, String ram, String rom, String card, String tocdocpu, String
+        congusb, String vantay){
+            SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("tensp", tensp);
+            contentValues.put("gia", gia);
+            contentValues.put("thuonghieu", thuonghieu);
+            contentValues.put("xuatxu", xuatxu);
+            contentValues.put("kichthuocmanhinh", kichthuocmanhinh);
+            contentValues.put("mausac", mausac);
+            contentValues.put("trongluong", trongluong);
+            contentValues.put("chatlieu", chatlieu);
+            contentValues.put("cpu", cpu);
+            contentValues.put("ocung", ocung);
+            contentValues.put("ram", ram);
+            contentValues.put("rom", rom);
+            contentValues.put("card", card);
+            contentValues.put("tocdocpu", tocdocpu);
+            contentValues.put("congusb", congusb);
+            contentValues.put("vantay", vantay);
+
+            long check = sqLiteDatabase.update("SANPHAM", contentValues, "masp = ?", new String[]{String.valueOf(masp)});
+            if (check == -1) {
+                return false;
+            }
+            return true;
+
+        }
+        public boolean updateGAM ( int masp, String tensp,int gia, String thuonghieu, String
+        xuatxu, String kichthuocmanhinh, String mausac, String trongluong, String chatlieu, String
+        cpu, String ocung, String ram, String rom, String card, String tocdocpu, String
+        congusb, String vantay){
+            SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("tensp", tensp);
+            contentValues.put("gia", gia);
+            contentValues.put("thuonghieu", thuonghieu);
+            contentValues.put("xuatxu", xuatxu);
+            contentValues.put("kichthuocmanhinh", kichthuocmanhinh);
+            contentValues.put("mausac", mausac);
+            contentValues.put("trongluong", trongluong);
+            contentValues.put("chatlieu", chatlieu);
+            contentValues.put("cpu", cpu);
+            contentValues.put("ocung", ocung);
+            contentValues.put("ram", ram);
+            contentValues.put("rom", rom);
+            contentValues.put("card", card);
+            contentValues.put("tocdocpu", tocdocpu);
+            contentValues.put("congusb", congusb);
+            contentValues.put("vantay", vantay);
+
+            long check = sqLiteDatabase.update("GAMING", contentValues, "masp = ?", new String[]{String.valueOf(masp)});
+            if (check == -1) {
+                return false;
+            }
+            return true;
+
+        }
+        public boolean updateVP ( int masp, String tensp,int gia, String thuonghieu, String
+        xuatxu, String kichthuocmanhinh, String mausac, String trongluong, String chatlieu, String
+        cpu, String ocung, String ram, String rom, String card, String tocdocpu, String
+        congusb, String vantay){
+            SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("tensp", tensp);
+            contentValues.put("gia", gia);
+            contentValues.put("thuonghieu", thuonghieu);
+            contentValues.put("xuatxu", xuatxu);
+            contentValues.put("kichthuocmanhinh", kichthuocmanhinh);
+            contentValues.put("mausac", mausac);
+            contentValues.put("trongluong", trongluong);
+            contentValues.put("chatlieu", chatlieu);
+            contentValues.put("cpu", cpu);
+            contentValues.put("ocung", ocung);
+            contentValues.put("ram", ram);
+            contentValues.put("rom", rom);
+            contentValues.put("card", card);
+            contentValues.put("tocdocpu", tocdocpu);
+            contentValues.put("congusb", congusb);
+            contentValues.put("vantay", vantay);
+
+            long check = sqLiteDatabase.update("VANPHONG", contentValues, "masp = ?", new String[]{String.valueOf(masp)});
+            if (check == -1) {
+                return false;
+            }
+            return true;
+
+        }
+
+
+        //add
+        public boolean addGAM (String tensp,int gia, String thuonghieu, String xuatxu, String
+        kichthuocmanhinh, String mausac, String trongluong, String chatlieu, String cpu, String
+        ocung, String ram, String rom, String card, String tocdocpu, String congusb, String vantay){
+            SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("tensp", tensp);
+            contentValues.put("gia", gia);
+            contentValues.put("thuonghieu", thuonghieu);
+            contentValues.put("xuatxu", xuatxu);
+            contentValues.put("kichthuocmanhinh", kichthuocmanhinh);
+            contentValues.put("mausac", mausac);
+            contentValues.put("trongluong", trongluong);
+            contentValues.put("chatlieu", chatlieu);
+            contentValues.put("cpu", cpu);
+            contentValues.put("ocung", ocung);
+            contentValues.put("ram", ram);
+            contentValues.put("rom", rom);
+            contentValues.put("card", card);
+            contentValues.put("tocdocpu", tocdocpu);
+            contentValues.put("congusb", congusb);
+            contentValues.put("vantay", vantay);
+
+            long check = sqLiteDatabase.insert("GAMING", null, contentValues);
+            if (check == -1) {
+                return false;
+            }
+            return true;
+        }
+        public boolean addVP (String tensp,int gia, String thuonghieu, String xuatxu, String
+        kichthuocmanhinh, String mausac, String trongluong, String chatlieu, String cpu, String
+        ocung, String ram, String rom, String card, String tocdocpu, String congusb, String vantay){
+            SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("tensp", tensp);
+            contentValues.put("gia", gia);
+            contentValues.put("thuonghieu", thuonghieu);
+            contentValues.put("xuatxu", xuatxu);
+            contentValues.put("kichthuocmanhinh", kichthuocmanhinh);
+            contentValues.put("mausac", mausac);
+            contentValues.put("trongluong", trongluong);
+            contentValues.put("chatlieu", chatlieu);
+            contentValues.put("cpu", cpu);
+            contentValues.put("ocung", ocung);
+            contentValues.put("ram", ram);
+            contentValues.put("rom", rom);
+            contentValues.put("card", card);
+            contentValues.put("tocdocpu", tocdocpu);
+            contentValues.put("congusb", congusb);
+            contentValues.put("vantay", vantay);
+
+            long check = sqLiteDatabase.insert("VANPHONG", null, contentValues);
+            if (check == -1) {
+                return false;
+            }
+            return true;
+        }
+        public boolean addSP (String tensp,int gia, String thuonghieu, String xuatxu, String
+        kichthuocmanhinh, String mausac, String trongluong, String chatlieu, String cpu, String
+        ocung, String ram, String rom, String card, String tocdocpu, String congusb, String vantay){
+            SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("tensp", tensp);
+            contentValues.put("gia", gia);
+            contentValues.put("thuonghieu", thuonghieu);
+            contentValues.put("xuatxu", xuatxu);
+            contentValues.put("kichthuocmanhinh", kichthuocmanhinh);
+            contentValues.put("mausac", mausac);
+            contentValues.put("trongluong", trongluong);
+            contentValues.put("chatlieu", chatlieu);
+            contentValues.put("cpu", cpu);
+            contentValues.put("ocung", ocung);
+            contentValues.put("ram", ram);
+            contentValues.put("rom", rom);
+            contentValues.put("card", card);
+            contentValues.put("tocdocpu", tocdocpu);
+            contentValues.put("congusb", congusb);
+            contentValues.put("vantay", vantay);
+
+            long check = sqLiteDatabase.insert("SANPHAM", null, contentValues);
+            if (check == -1) {
+                return false;
+            }
+            return true;
+        }
+
+    }
 }

@@ -44,4 +44,57 @@ public class PhuKienDAO {
         sqLiteDatabase.close();
     }
 
+    //add phụ kiện
+    public boolean ThemPhuKien(String tenpk, int gia , String dungluong, String loairam, String hotro, String voltage, String busram, String hangsanxuat){
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("tenpk", tenpk);
+        contentValues.put("gia", gia);
+        contentValues.put("dungluong", dungluong);
+        contentValues.put("loairam", loairam);
+        contentValues.put("hotro", hotro);
+        contentValues.put("voltage", voltage);
+        contentValues.put("busram", busram);
+        contentValues.put("hangsanxuat", hangsanxuat);
+
+        long check = sqLiteDatabase.insert("PHUKIEN", null, contentValues);
+        if (check == -1){
+            return false;
+        }
+        return true;
+    }
+
+    //delete
+    public boolean deletePhuKien(int mapk){
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        long row = sqLiteDatabase.delete("PHUKIEN","mapk=?",new String[]{String.valueOf(mapk)});
+        if (row <= 0){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean updatePhuKien(int mapk, String tenpk, int gia , String dungluong, String loairam, String hotro, String voltage, String busram, String hangsanxuat){
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("tenpk", tenpk);
+        contentValues.put("gia", gia);
+        contentValues.put("dungluong", dungluong);
+        contentValues.put("loairam", loairam);
+        contentValues.put("hotro", hotro);
+        contentValues.put("voltage", voltage);
+        contentValues.put("busram", busram);
+        contentValues.put("hangsanxuat", hangsanxuat);
+
+        long check = sqLiteDatabase.update("PHUKIEN", contentValues, "mapk = ?", new String[]{String.valueOf(mapk)});
+        if (check == -1){
+            return false;
+        }
+        return true;
+
+    }
+
+
+
+
 }
