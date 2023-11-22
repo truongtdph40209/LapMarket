@@ -6,7 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DbHelper extends SQLiteOpenHelper {
     public DbHelper(Context context) {
-        super(context, "LapMarket", null, 9);
+        super(context, "LapMarket", null, 18);
+
     }
 
 
@@ -70,6 +71,34 @@ public class DbHelper extends SQLiteOpenHelper {
                 " (8,'RAM Laptop Kingston',1490000, '16GB', 'DDR5', 'SO-DIMM(Laptop)', '1.1V', '3200MHz','Kingston')");
 
 
+        String giohang = "CREATE TABLE GIOHANG(ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "tensp TEXT REFERENCES SANPHAM(tensp), " +
+                "gia INTEGER REFERENCES SANPHAM(gia),  SOLUONG INTEGER)";
+        db.execSQL(giohang);
+
+        db.execSQL("INSERT INTO GIOHANG VALUES (1,'Acer Nitro 5', 15900000,8)");
+
+
+
+
+        String hoadon_sanpham = "CREATE TABLE HOADON (mahd INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "hoten TEXT REFERENCES ACCOUNT(hoten), " +
+                "tensp TEXT REFERENCES GIOHANG(tensp),  " +
+                "SOLUONG INTEGER REFERENCES GIOHANG(SOLUONG),  " +
+                "gia INTEGER REFERENCES GIOHANG(gia)," +
+                "ngaymua TEXT," +
+                "trangthai INTEGER )";
+        db.execSQL(hoadon_sanpham);
+        db.execSQL("INSERT INTO HOADON VALUES (1, 'Trịnh Đình Trường', 'Acer Nitro 5',4 ,15900000, '21/11/2023',0)");
+
+
+        String chitiet_hoadon = "CREATE TABLE CTHOADON (mahdct INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "masp INTEGER REFERENCES SANPHAM(masp),  " +
+                "ID INTEGER REFERENCES GIOHANG(ID))";
+        db.execSQL(chitiet_hoadon);
+        db.execSQL("INSERT INTO CTHOADON VALUES (1, 1, 1)");
+
+
 
 
 
@@ -84,6 +113,9 @@ public class DbHelper extends SQLiteOpenHelper {
             db.execSQL("drop table if exists GAMING");
             db.execSQL("drop table if exists VANPHONG");
             db.execSQL("drop table if exists PHUKIEN");
+            db.execSQL("drop table if exists GIOHANG");
+            db.execSQL("drop table if exists HOADON");
+            db.execSQL("drop table if exists CTHOADON");
             onCreate(db);
         }
     }

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lapmarket.dao.AccountDAO;
+import com.example.lapmarket.designPantter.AccountSingle;
 import com.example.lapmarket.util.SendMail;
 
 import org.w3c.dom.Text;
@@ -84,6 +85,7 @@ public class man_hinh_dang_nhap extends AppCompatActivity {
 
 
                     startActivity(new Intent(man_hinh_dang_nhap.this, MainActivity.class));
+
 
                 }else {
                     Toast.makeText(man_hinh_dang_nhap.this, "Tài khoản hoặc mật khẩu sai", Toast.LENGTH_SHORT).show();

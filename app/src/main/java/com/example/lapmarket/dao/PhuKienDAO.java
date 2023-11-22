@@ -33,6 +33,16 @@ public class PhuKienDAO {
 
     }
 
+    public void addToCart(phukien phuKien) {
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("TENPK", phuKien.getTenpk());
+        values.put("GIA", phuKien.getGia());
+
+        // Insert the product into the GIOHANG table
+        sqLiteDatabase.insert("GIOHANG", null, values);
+        sqLiteDatabase.close();
+    }
 
     //add phụ kiện
     public boolean ThemPhuKien(String tenpk, int gia , String dungluong, String loairam, String hotro, String voltage, String busram, String hangsanxuat){
@@ -83,7 +93,6 @@ public class PhuKienDAO {
         return true;
 
     }
-
 
 
 

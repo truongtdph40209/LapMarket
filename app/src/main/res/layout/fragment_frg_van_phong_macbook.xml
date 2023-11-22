@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#C1B7B7"
     tools:context=".frg.frg_vanPhong_macbook">
 
 
 
 
         <LinearLayout
+            android:padding="10dp"
+
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">

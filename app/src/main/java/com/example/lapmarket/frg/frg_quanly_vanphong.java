@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -168,8 +169,8 @@ public class frg_quanly_vanphong extends Fragment {
         sanPhamDAO = new SanPhamDAO(getContext());
         list = sanPhamDAO.selectMACBOOK();
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerQuanliSP.setLayoutManager(linearLayoutManager);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(requireActivity(),2);
+        recyclerQuanliSP.setLayoutManager(gridLayoutManager);
 
         quanLyVanPhongAdapter = new QuanLyVanPhongAdapter(getContext(), list, sanPhamDAO);
         recyclerQuanliSP.setAdapter(quanLyVanPhongAdapter);

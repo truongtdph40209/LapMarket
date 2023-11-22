@@ -190,10 +190,10 @@ public class MainActivity extends AppCompatActivity {
             menu.findItem(R.id.cskh).setVisible(false);
             menu.findItem(R.id.giohang).setVisible(false);
             menu.findItem(R.id.lichsu).setVisible(false);
-//            menu.findItem(R.id.lapGaming_doHoa).setVisible(false);
-//            menu.findItem(R.id.lapVanPhong_macbook).setVisible(false);
-//            menu.findItem(R.id.phuKien).setVisible(false);
-//            menu.findItem(R.id.trangchu).setVisible(false);
+            menu.findItem(R.id.lapGaming_doHoa).setVisible(false);
+            menu.findItem(R.id.lapVanPhong_macbook).setVisible(false);
+            menu.findItem(R.id.phuKien).setVisible(false);
+            menu.findItem(R.id.trangchu).setVisible(false);
         }
 
         //

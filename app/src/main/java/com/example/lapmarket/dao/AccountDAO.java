@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.lapmarket.database.DbHelper;
+import com.example.lapmarket.designPantter.AccountSingle;
 import com.example.lapmarket.model.account;
 
 import java.util.ArrayList;
@@ -29,7 +30,9 @@ public class AccountDAO {
         if (cursor.getCount() != 0){
             cursor.moveToFirst();
             do {
-                list.add(new account(cursor.getInt(0),cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),cursor.getString(5)));
+                list.add(
+                        new account(cursor.getInt(0),cursor.getString(1), cursor.getString(2), cursor.getString(3),
+                                cursor.getString(4),cursor.getString(5)));
 
             }while (cursor.moveToNext());
         }
@@ -48,6 +51,8 @@ public class AccountDAO {
             editor.putString("loaitaikhoan", cursor.getString(5));
             editor.putString("hoten", cursor.getString(2));
             editor.commit();
+            AccountSingle.getInstance().setAccount(new account(cursor.getInt(0),cursor.getString(1), cursor.getString(2), cursor.getString(3),
+                    cursor.getString(4),cursor.getString(5)));
             return true;
         }else {
             return false;

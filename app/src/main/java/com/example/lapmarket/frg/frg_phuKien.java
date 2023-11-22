@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -84,9 +85,8 @@ public class frg_phuKien extends Fragment {
         phuKienDAO = new PhuKienDAO(getContext());
         list = phuKienDAO.selectPHUKIEN();
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerPhukien.setLayoutManager(linearLayoutManager);
-
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(requireActivity(),2);
+        recyclerPhukien.setLayoutManager(gridLayoutManager);
         phuKienAdapter = new PhuKienAdapter(getContext(), list, phuKienDAO);
         recyclerPhukien.setAdapter(phuKienAdapter);
     }

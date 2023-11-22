@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#C1B7B7"
     tools:context=".frg.frg_phuKien">
 
 
 
         <LinearLayout
+            android:padding="10dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -23,6 +23,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView_phukien"
+                android:backgroundTint="#FAC4C4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 

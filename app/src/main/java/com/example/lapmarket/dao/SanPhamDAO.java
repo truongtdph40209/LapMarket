@@ -255,5 +255,16 @@ public class SanPhamDAO {
         }
         return true;
     }
+    public void addToCart(sanpham sanPham) {
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("TENSP", sanPham.getTensp());
+        values.put("GIA", sanPham.getGia());
+        values.put("SOLUONG", 1);
+
+        // Insert the product into the GIOHANG table
+        sqLiteDatabase.insert("GIOHANG", null, values);
+        sqLiteDatabase.close();
+    }
 
 }
