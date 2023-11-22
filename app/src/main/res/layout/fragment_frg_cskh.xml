@@ -14,11 +14,14 @@
         android:padding="5dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="THÔNG TIN LIÊN HỆ"
-            android:textSize="30sp"
+            android:textSize="23dp"
             android:textStyle="bold"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:background="#E88364"
             android:gravity="center"/>
 
     </LinearLayout>
@@ -27,8 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
-
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="80dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp">
 
@@ -36,87 +38,101 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             <LinearLayout
+
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
                 <ImageView
+                    android:padding="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
                     android:src="@drawable/call" />
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:src="@drawable/location"/>
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="15dp"
-                    android:src="@drawable/email"/>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:padding="8dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="Hotline:"
-                    android:textSize="26sp"
+                    android:textSize="20dp"
                     android:textStyle="bold" />
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Địa chỉ:"
-                    android:textSize="26sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Email:"
-                    android:textSize="26sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
+                    android:padding="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1800 6601"
                     android:textStyle="bold"
-                    android:textSize="26sp"
-                    android:textColor="#FF0000"/>
+                    android:textSize="20dp"
+                    android:textColor="#E88364"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <ImageView
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/location"/>
                 <TextView
+                    android:padding="8dp"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Địa chỉ:"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:padding="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Trịnh Văn Bô"
                     android:textStyle="bold"
-                    android:textSize="24sp"
-                    android:textColor="#FF0000"/>
+                    android:textSize="20dp"
+                    android:textColor="#E88364"/>
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <ImageView
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/email"/>
                 <TextView
+                    android:padding="8dp"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Email:"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+
+
+                <TextView
+                    android:padding="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="LapMarket@gmail.com"
                     android:textStyle="bold"
-                    android:textSize="24sp"
-                    android:textColor="#FF0000"/>
+                    android:textSize="20dp"
+                    android:textColor="#E88364"/>
 
 
             </LinearLayout>
 
 
         </LinearLayout>
+
+
+
+
     </androidx.cardview.widget.CardView>
 
 

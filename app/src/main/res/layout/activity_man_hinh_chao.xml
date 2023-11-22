@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:background="#E88364"
     android:layout_height="match_parent">
 
     <ImageView
@@ -16,7 +17,7 @@
         android:layout_height="wrap_content"
         android:text="Welcome to LapMarket"
         android:textStyle="bold"
-        android:textColor="#F44336"
+        android:textColor="@color/white"
         android:textSize="30dp"
         android:layout_marginBottom="50dp"
         android:gravity="center"/>
