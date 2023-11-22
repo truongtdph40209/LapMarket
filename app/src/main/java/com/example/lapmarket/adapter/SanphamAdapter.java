@@ -7,14 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lapmarket.R;
 import com.example.lapmarket.dao.SanPhamDAO;
 import com.example.lapmarket.model.sanpham;
+import com.example.lapmarket.util.Amount;
 
 import java.util.ArrayList;
 
@@ -25,11 +28,13 @@ public class SanphamAdapter extends RecyclerView.Adapter<SanphamAdapter.ViewHold
     private ArrayList<sanpham> list;
 
     private SanPhamDAO sanPhamDAO;
+    private OnAddToCartClickListener addToCartClickListener;
 
-    public SanphamAdapter(Context context, ArrayList<sanpham> list, SanPhamDAO sanPhamDAO) {
+    public SanphamAdapter(Context context, ArrayList<sanpham> list, SanPhamDAO sanPhamDAO, OnAddToCartClickListener addToCartClickListener) {
         this.context = context;
         this.list = list;
         this.sanPhamDAO = sanPhamDAO;
+        this.addToCartClickListener = addToCartClickListener;
     }
 
     @NonNull
@@ -43,7 +48,7 @@ public class SanphamAdapter extends RecyclerView.Adapter<SanphamAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.txt_tensp.setText(list.get(position).getTensp());
-        holder.txt_gia.setText("Giá: " + list.get(position).getGia() + "VND");
+        holder.txt_gia.setText("Giá: " + Amount.moneyFormat( list.get(position).getGia()));
 
         holder.txt_xemthem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +56,33 @@ public class SanphamAdapter extends RecyclerView.Adapter<SanphamAdapter.ViewHold
                 showdialogXemThem(list.get(holder.getAdapterPosition()));
             }
         });
+
+        holder.btn_giohang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addToCartClickListener.onAddToCartClick(list.get(holder.getAdapterPosition()));
+            }
+        });
+
+        holder.btn_giohang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                sanPhamDAO.addToCart(list.get(holder.getAdapterPosition()));
+
+                Toast.makeText(context, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+
+    public void updateData(ArrayList<sanpham> newList) {
+        this.list = newList;
+        notifyDataSetChanged();
+    }
+    public interface OnAddToCartClickListener {
+        void onAddToCartClick(sanpham sanPham);
     }
 
     @Override
@@ -60,12 +92,14 @@ public class SanphamAdapter extends RecyclerView.Adapter<SanphamAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView txt_tensp, txt_gia, txt_xemthem;
+        AppCompatButton btn_giohang;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             txt_tensp = itemView.findViewById(R.id.txt_tensp_home);
             txt_gia = itemView.findViewById(R.id.txt_giasp_home);
             txt_xemthem = itemView.findViewById(R.id.txt_xemthem_home);
+            btn_giohang = itemView.findViewById(R.id.btn_giohang_home);
 
         }
     }
@@ -99,7 +133,8 @@ public class SanphamAdapter extends RecyclerView.Adapter<SanphamAdapter.ViewHold
 
         //code
         txt_tensp_chitiet.setText("Tên: " + sanPham.getTensp());
-        txt_giasp_chitiet.setText("Giá: " + sanPham.getGia() + "VND");
+        txt_giasp_chitiet.setText("Giá: " + Amount.moneyFormat(sanPham.getGia())
+        );
         txt_thuonghieu_chtiet.setText("Thương hiệu: " + sanPham.getThuonghieu());
         txt_xuatxu_chtiet.setText("Xuất xứ: " + sanPham.getXuatxu());
         txt_kichthuoc_chitiet.setText("Kích thước: " + sanPham.getKichthuocmanhinh());

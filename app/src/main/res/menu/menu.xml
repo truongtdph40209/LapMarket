@@ -39,6 +39,26 @@
 
         </menu>
     </item>
+    <item
+        android:title="ADMIN">
+        <menu>
+            <item
+                android:id="@+id/quanli_phukien"
+                android:title="Quản lí phụ kiện" />
+            <item
+                android:id="@+id/quanli_sp_home"
+                android:title="Quản lí sản phẩm" />
+            <item
+                android:id="@+id/quanli_sp_gaming"
+                android:title="Quản lí SP gaming" />
+            <item
+                android:id="@+id/quanli_sp_vanphong"
+                android:title="Quản lí SP văn phòng" />
+
+
+
+        </menu>
+    </item>
 
 
     <item

@@ -6,7 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DbHelper extends SQLiteOpenHelper {
     public DbHelper(Context context) {
-        super(context, "LapMarket", null, 6);
+        super(context, "LapMarket", null, 18);
+
     }
 
 
@@ -24,11 +25,11 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO SANPHAM VALUES (1,'Acer Nitro 5',15900000, 'Acer', 'Trung Quốc', '15.6 inch', 'Đen', '2.5 kg', 'Nhựa', 'Intel i5 11400H', 'SSD', '8GB', '256GB', 'RTX 3050', '2.7GHz', '3 cổng', 'Không')," +
                 "(2,'Asus Vivo Book',16900000, 'Asus', 'Trung Quốc', '15.6 inch', 'Đen', '1.7 kg', 'Nhôm', 'Ryzen 5 7530U', 'SSD', '8GB', '256GB', 'Iris Xe', '4.3GHz', '3 cổng', 'Không'),"  +
                 "(3,'Lenovo Thinkpad',18900000, 'Lenovo', 'Nga', '15.6 inch', 'Trắng', '2.8 kg', 'Nhựa', 'Intel i3 13400H', 'HDD', '12GB', '512GB', 'GTX 1680', '2.7GHz', '3 cổng', 'Có'),"  +
-                "(4,'Acer Aspire 3',8600000, 'Acer', 'Triều Tiên', '15.6 inch', 'Đen', '2.5 kg', 'Nhựa', 'Ryzen 5 10530H', 'SSD', '8GB', '256GB', 'RTX 3050', '2.2GHz', '3 cổng', 'Không'),"  +
+                "(4,'Acer Aspire 3',8690000, 'Acer', 'Triều Tiên', '15.6 inch', 'Đen', '2.5 kg', 'Nhựa', 'Ryzen 5 10530H', 'SSD', '8GB', '256GB', 'RTX 3050', '2.2GHz', '3 cổng', 'Không'),"  +
                 "(5,'MSI Modern 15',13790000, 'MSI', 'Trung Quốc', '15.6 inch', 'Đỏ', '3.1 kg', 'Nhựa', 'Intel i7 10400H', 'HDD', '8GB', '256GB', 'RTX 1030', '2.1GHz', '2 cổng', 'Có'),"  +
                 "(6,'Macbook Air 2020',17690000, 'Apple', 'Nhật Bản', '13.3 inch', 'Trắng', '1.5 kg', 'Nhôm', 'Intel i5 11400H', 'SSD', '8GB', '256GB', 'RTX 3050', '2.7GHz', '3 cổng', 'Không'),"  +
                 "(7,'Macbook Air 2022',25450000, 'Apple', 'Việt Nam', '15.6 inch', 'Đen', '2.5 kg', 'Nhựa', 'Intel i5 11400H', 'SSD', '8GB', '256GB', 'RTX 3050', '2.7GHz', '3 cổng', 'Không'),"  +
-                "(8,'Macbook Pro 16',57000000, 'Apple', 'Thái Lan', '15.6 inch', 'Đen', '2.5 kg', 'Nhựa', 'Intel i5 11400H', 'SSD', '12GB', '256GB', 'RTX 3050', '2.7GHz', '3 cổng', 'Có')" );
+                "(8,'Macbook Pro 16',57500000, 'Apple', 'Thái Lan', '15.6 inch', 'Đen', '2.5 kg', 'Nhựa', 'Intel i5 11400H', 'SSD', '12GB', '256GB', 'RTX 3050', '2.7GHz', '3 cổng', 'Có')" );
 
         String sanpham_gaming = "CREATE TABLE GAMING(masp INTEGER PRIMARY KEY AUTOINCREMENT,tensp TEXT , gia INTEGER, thuonghieu TEXT, xuatxu TEXT, kichthuocmanhinh TEXT, mausac TEXT, trongluong TEXT, chatlieu TEXT, cpu TEXT, ocung TEXT, ram TEXT, rom TEXT, card TEXT, tocdocpu TEXT, congusb TEXT, vantay TEXT)";
         db.execSQL(sanpham_gaming);
@@ -57,7 +58,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "(9,'Macbook Pro 16',57000000, 'Apple', 'Thái Lan', '12.6 inch', 'Đen', '2.5 kg', 'Nhựa', 'Appple m2', 'HDD', '12GB', '256GB', 'RTX 1050', '4.7GHz', '3 cổng', 'Có')");
 
 
-        String sanpham_phukien = "CREATE TABLE PHUKIEN(mapk INTEGER PRIMARY KEY AUTOINCREMENT,tenpk TEXT , gia INTEGER, dungluong TEXT, loairam TEXT, hotro TEXT, voltage TEXT, busram TEXT, hangsanxuat TEXT)";
+        String sanpham_phukien = "CREATE TABLE PHUKIEN (mapk INTEGER PRIMARY KEY AUTOINCREMENT,tenpk TEXT , gia INTEGER, dungluong TEXT, loairam TEXT, hotro TEXT, voltage TEXT, busram TEXT, hangsanxuat TEXT)";
         db.execSQL(sanpham_phukien);
 
         db.execSQL("INSERT INTO PHUKIEN VALUES (1,'RAM Laptop Kingston',570000, '8GB', 'DDR4', 'SO-DIMM(Laptop)', '1.2V', '3200MHz', 'Kingston')," +
@@ -68,6 +69,34 @@ public class DbHelper extends SQLiteOpenHelper {
                 " (6,'RAM Laptop Kingston',890000, '8GB', 'DDR5', 'SO-DIMM(Laptop)', '1.1V', '4800MT/s','Kingston')," +
                 " (7,'RAM Laptop Samsung',790000, '8GB', 'DDR5', 'SO-DIMM(Laptop)', '1.1V', '4800MT/s','Samsung')," +
                 " (8,'RAM Laptop Kingston',1490000, '16GB', 'DDR5', 'SO-DIMM(Laptop)', '1.1V', '3200MHz','Kingston')");
+
+
+        String giohang = "CREATE TABLE GIOHANG(ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "tensp TEXT REFERENCES SANPHAM(tensp), " +
+                "gia INTEGER REFERENCES SANPHAM(gia),  SOLUONG INTEGER)";
+        db.execSQL(giohang);
+
+        db.execSQL("INSERT INTO GIOHANG VALUES (1,'Acer Nitro 5', 15900000,8)");
+
+
+
+
+        String hoadon_sanpham = "CREATE TABLE HOADON (mahd INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "hoten TEXT REFERENCES ACCOUNT(hoten), " +
+                "tensp TEXT REFERENCES GIOHANG(tensp),  " +
+                "SOLUONG INTEGER REFERENCES GIOHANG(SOLUONG),  " +
+                "gia INTEGER REFERENCES GIOHANG(gia)," +
+                "ngaymua TEXT," +
+                "trangthai INTEGER )";
+        db.execSQL(hoadon_sanpham);
+        db.execSQL("INSERT INTO HOADON VALUES (1, 'Trịnh Đình Trường', 'Acer Nitro 5',4 ,15900000, '21/11/2023',0)");
+
+
+        String chitiet_hoadon = "CREATE TABLE CTHOADON (mahdct INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "masp INTEGER REFERENCES SANPHAM(masp),  " +
+                "ID INTEGER REFERENCES GIOHANG(ID))";
+        db.execSQL(chitiet_hoadon);
+        db.execSQL("INSERT INTO CTHOADON VALUES (1, 1, 1)");
 
 
 
@@ -84,6 +113,9 @@ public class DbHelper extends SQLiteOpenHelper {
             db.execSQL("drop table if exists GAMING");
             db.execSQL("drop table if exists VANPHONG");
             db.execSQL("drop table if exists PHUKIEN");
+            db.execSQL("drop table if exists GIOHANG");
+            db.execSQL("drop table if exists HOADON");
+            db.execSQL("drop table if exists CTHOADON");
             onCreate(db);
         }
     }

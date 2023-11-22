@@ -1,9 +1,11 @@
 package com.example.lapmarket.frg;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -13,11 +15,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.lapmarket.R;
+
 import com.example.lapmarket.adapter.PhotoAdapter;
 import com.example.lapmarket.adapter.SanphamAdapter;
+import com.example.lapmarket.dao.GioHangDAO;
 import com.example.lapmarket.dao.SanPhamDAO;
 import com.example.lapmarket.model.photo;
 import com.example.lapmarket.model.sanpham;
+
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +44,7 @@ public class frg_trangchu extends Fragment {
     RecyclerView recyclerSanpham;
 
 
+
     public frg_trangchu() {
         // Required empty public constructor
     }
@@ -55,15 +62,28 @@ public class frg_trangchu extends Fragment {
         recyclerSanpham = view.findViewById(R.id.recyclerView_Sanpham);
         SearchView searchView = view.findViewById(R.id.search_sanpham);
 
+        sanphamAdapter = new SanphamAdapter(getContext(), list, sanPhamDAO, new SanphamAdapter.OnAddToCartClickListener() {
+            @Override
+            public void onAddToCartClick(sanpham sanPham) {
+                addToCart(sanPham);
+            }
+        });
+
         viewPager = view.findViewById(R.id.viewPager);
         circleIndicator = view.findViewById(R.id.circleindicator);
-        photoAdapter = new PhotoAdapter(getContext(), getListPhoto());
+        photoAdapter = new PhotoAdapter(getContext(), getListPhoto(), viewPager);
         viewPager.setAdapter(photoAdapter);
         circleIndicator.setViewPager(viewPager);
         photoAdapter.registerDataSetObserver(circleIndicator.getDataSetObserver());
 
         loadData();
 
+        sanphamAdapter = new SanphamAdapter(getContext(), list, sanPhamDAO, new SanphamAdapter.OnAddToCartClickListener() {
+            @Override
+            public void onAddToCartClick(sanpham sanPham) {
+                addToCart(sanPham);
+            }
+        });
 
 
 
@@ -91,6 +111,17 @@ public class frg_trangchu extends Fragment {
         return view;
     }
 
+    private void addToCart(sanpham sanPham) {
+        GioHangDAO gioHangDAO = new GioHangDAO(getContext());
+        gioHangDAO.addToCart(sanPham);
+
+        // Cập nhật dữ liệu trên RecyclerView của frg_trangchu
+        list = sanPhamDAO.selectSANPHAM(); // Lấy danh sách sản phẩm mới
+        sanphamAdapter.updateData(list);
+    }
+
+
+
     private List<photo> getListPhoto(){
         List<photo> list = new ArrayList<>();
         list.add(new photo(R.drawable.laptop0));
@@ -105,10 +136,16 @@ public class frg_trangchu extends Fragment {
         sanPhamDAO = new SanPhamDAO(getContext());
         list = sanPhamDAO.selectSANPHAM();
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerSanpham.setLayoutManager(linearLayoutManager);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(requireActivity(),2);
+        recyclerSanpham.setLayoutManager(gridLayoutManager);
 
-        sanphamAdapter = new SanphamAdapter(getContext(), list, sanPhamDAO);
+        sanphamAdapter = new SanphamAdapter(getContext(), list, sanPhamDAO, new SanphamAdapter.OnAddToCartClickListener() {
+            @Override
+            public void onAddToCartClick(sanpham sanPham) {
+                addToCart(sanPham);
+            }
+        });
+
         recyclerSanpham.setAdapter(sanphamAdapter);
     }
 }
