@@ -22,7 +22,7 @@ public class giohang {
     }
 
     public void setSOLUONG(int SOLUONG) {
-        this.SOLUONG = SOLUONG;
+        this.SOLUONG = SOLUONG ;
     }
 
     public giohang(int ID, String tensp, int gia) {

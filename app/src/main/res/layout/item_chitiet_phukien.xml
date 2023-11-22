@@ -18,7 +18,7 @@
             android:layout_width="190dp"
             android:layout_height="180dp"
             android:padding="10dp"
-            android:background="#F3ECEC"
+            android:scaleType="fitXY"
             android:src="@drawable/phukien_laptop"/>
 
 

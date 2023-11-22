@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.lapmarket.R;
+
 import com.example.lapmarket.adapter.PhotoAdapter;
 import com.example.lapmarket.adapter.SanphamAdapter;
 import com.example.lapmarket.dao.GioHangDAO;
@@ -69,7 +71,7 @@ public class frg_trangchu extends Fragment {
 
         viewPager = view.findViewById(R.id.viewPager);
         circleIndicator = view.findViewById(R.id.circleindicator);
-        photoAdapter = new PhotoAdapter(getContext(), getListPhoto());
+        photoAdapter = new PhotoAdapter(getContext(), getListPhoto(), viewPager);
         viewPager.setAdapter(photoAdapter);
         circleIndicator.setViewPager(viewPager);
         photoAdapter.registerDataSetObserver(circleIndicator.getDataSetObserver());
@@ -131,11 +133,11 @@ public class frg_trangchu extends Fragment {
     }
 
     public void loadData(){
-        sanPhamDAO = new SanPhamDAO(getContext()); // Khởi tạo đối tượng SanPhamDAO
+        sanPhamDAO = new SanPhamDAO(getContext());
         list = sanPhamDAO.selectSANPHAM();
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerSanpham.setLayoutManager(linearLayoutManager);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(requireActivity(),2);
+        recyclerSanpham.setLayoutManager(gridLayoutManager);
 
         sanphamAdapter = new SanphamAdapter(getContext(), list, sanPhamDAO, new SanphamAdapter.OnAddToCartClickListener() {
             @Override

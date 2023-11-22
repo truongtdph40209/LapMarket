@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.example.lapmarket.database.DbHelper;
 import com.example.lapmarket.model.giohang;
@@ -18,9 +17,6 @@ public class GioHangDAO {
         dbHelper = new DbHelper(context);
     }
 
-//    String giohang = "CREATE TABLE GIOHANG(ID INTEGER PRIMARY KEY AUTOINCREMENT" +
-//            ", tensp TEXT REFERENCES SANPHAM(tensp), " +
-//            "gia INTEGER REFERENCES SANPHAM(gia),  SOLUONG INTEGER)";
     public ArrayList<giohang> listGH() {
         ArrayList<giohang> list = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
@@ -56,6 +52,28 @@ public class GioHangDAO {
         values.put("SOLUONG", newQuantity);
 
         sqLiteDatabase.update("GIOHANG", values, "ID=?", new String[]{String.valueOf(ID)});
+        sqLiteDatabase.close();
+    }
+
+
+
+
+
+
+
+
+
+    public void addHoaDon(giohang hd, String hoTen, String ngayMua) {
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("tensp", hd.getTensp());
+        values.put("SOLUONG", hd.getSOLUONG());
+        values.put("gia", hd.getGia());
+        values.put("hoten", hoTen.trim());
+        values.put("ngaymua", ngayMua.trim());
+
+        // Insert the product into the GIOHANG table
+        sqLiteDatabase.insert("HOADON", null, values);
         sqLiteDatabase.close();
     }
 

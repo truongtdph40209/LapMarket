@@ -7,6 +7,7 @@
 
 
         <LinearLayout
+            android:padding="10dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -32,15 +33,14 @@
                     android:layout_height="match_parent" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/float_add_pk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
-                    android:src="@drawable/add"
-                    android:layout_margin="10dp"
+                    android:layout_margin="30dp"
                     android:backgroundTint="#4CAF50"
-                    android:id="@+id/float_add_pk"/>
-
+                    android:src="@drawable/add" />
 
 
             </RelativeLayout>

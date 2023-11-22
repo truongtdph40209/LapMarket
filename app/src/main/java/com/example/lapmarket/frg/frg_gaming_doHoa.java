@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -87,8 +88,8 @@ public class frg_gaming_doHoa extends Fragment {
         sanPhamDAO = new SanPhamDAO(getContext());
         list = sanPhamDAO.selectGAMING();
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerSanpham.setLayoutManager(linearLayoutManager);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(requireActivity(),2);
+        recyclerSanpham.setLayoutManager(gridLayoutManager);
 
         sanphamAdapter = new SanphamAdapter(getContext(), list, sanPhamDAO, null);
         recyclerSanpham.setAdapter(sanphamAdapter);
