@@ -14,9 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LapMarket"
         tools:targetApi="31">
-        <activity
-            android:name=".man_hinh_thanh_toan"
-            android:exported="false" />
+
         <activity
             android:name=".man_hinh_dang_ki"
             android:exported="false" />
