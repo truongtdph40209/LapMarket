@@ -2,12 +2,16 @@ package com.example.lapmarket.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lapmarket.R;
@@ -23,6 +27,7 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
     private ArrayList<hoadon> list;
 
     private HoaDonDAO hoaDonDAO;
+
 
     public HoaDonAdapter(Context context, ArrayList<hoadon> list, HoaDonDAO hoaDonDAO) {
         this.context = context;
@@ -47,8 +52,28 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
         holder.txt_gia_hd.setText("Giá: " + Amount.moneyFormat( list.get(position).getGia() * list.get(position).getSOLUONG()));
         holder.txt_ngaymua_hd.setText("Ngày mua: " + list.get(position).getNgaymua());
 
+        String trangThai;
+        if (list.get(position).getTrangthai() == 1){
+            trangThai = "Đã thanh toán";
+            holder.btn_thanhToan.setVisibility(View.GONE);
 
-        holder.txt_trangthai_hd.setText("Trang Thái: " + list.get(position).getTrangthai());
+        }else {
+            trangThai = "Chưa thanh toán";
+            holder.btn_thanhToan.setVisibility(View.VISIBLE);
+
+        }
+        holder.txt_trangthai_hd.setText("Trang Thái: " + trangThai);
+
+        holder.btn_thanhToan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                dialogThanhToan(holder);
+
+
+            }
+        });
 
 
     }
@@ -61,6 +86,7 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView txt_mahd_hd,txt_hoten_hd,txt_tensp_hd,txt_soluong_hd,txt_gia_hd,txt_ngaymua_hd,txt_trangthai_hd;
+        Button btn_thanhToan;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,7 +98,44 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
             txt_gia_hd = itemView.findViewById(R.id.txt_gia_hd);
             txt_ngaymua_hd = itemView.findViewById(R.id.txt_ngaymua_hd);
             txt_trangthai_hd = itemView.findViewById(R.id.txt_trangthai_hd);
+            btn_thanhToan = itemView.findViewById(R.id.btn_thanhtoan_hd);
         }
+    }
+
+    public void dialogThanhToan(ViewHolder holder){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater layoutInflater = ((Activity)context).getLayoutInflater();
+        View view = layoutInflater.inflate(R.layout.item_thanhtoan, null);
+        builder.setView(view);
+
+
+
+
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                hoaDonDAO = new HoaDonDAO(context);
+                if (hoaDonDAO.thayDoiTrangThai(list.get(holder.getAdapterPosition()).getMahd())){
+                    list.clear();
+                    list = hoaDonDAO.selectHoaDon();
+                    hoaDonDAO.thayDoiTrangThai(1);
+                    notifyDataSetChanged();
+                }else {
+                    Toast.makeText(context, "Thanh toán không thành công", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        AlertDialog dialog = builder.create(); //tạo hộp thoại
+        dialog.show();
+
+
     }
 }
 

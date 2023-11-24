@@ -46,6 +46,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
     private AccountDAO accountDAO;
     private TotalUpdateListener totalUpdateListener;
     private frg_giohang fragment;
+    private int viTriXoa;
 
 
     public double calculateTotal() {
@@ -86,6 +87,8 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
         holder.txt_soLuong.setText(String.valueOf(giohang.getSOLUONG()));
 
         holder.txt_giaTiengh.setText(Amount.moneyFormat(giohang.getGia() * giohang.getSOLUONG()));
+
+        viTriXoa = holder.getAdapterPosition();
 
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -147,16 +150,6 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
         });
 
 
-
-//        holder.btn_giohang.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                sanPhamDAO.addToCart(list.get(holder.getAdapterPosition()));
-//
-//                Toast.makeText(context, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
-//            }
-//        });
     }
 
     private void tangSoLuong(ViewHolder holder, int viTri) {
@@ -213,7 +206,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                     builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            int viTriXoa = holder.getAdapterPosition();
+//                            int viTriXoa = holder.getAdapterPosition();
                             xoaSanPham(viTriXoa);
                             Toast.makeText(context, "Đã xóa sản phẩm này", Toast.LENGTH_SHORT).show();
 
@@ -222,12 +215,14 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                     builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+
                         }
                     });
                     AlertDialog dialog = builder.create(); //tạo hộp thoại
                     dialog.show();
 
                 }
+
                 int giaMoiT = soLuongMoiT * list.get(viTri).getGia();
                 gioHangDAO.updateQuantity(list.get(viTri).getID(), soLuongMoiT);
                 holder.txt_giaTiengh.setText(Amount.moneyFormat(giaMoiT));
@@ -239,6 +234,11 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
 
         }
     }
+
+
+
+
+
 
 
     private void xoaSanPham(int viTri) {
@@ -314,18 +314,14 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                     Toast.makeText(context, "Không được để trống dữ liệu", Toast.LENGTH_SHORT).show();
                 }else {
 
-                    account account = AccountSingle.getInstance().getAccount();
-                    Calendar calendar = Calendar.getInstance();
+                    account ac = AccountSingle.getInstance().getAccount();
 
-
-                    gioHangDAO.addHoaDon(giohang, account.getHoten(), ngayHienTai() );
-                    Log.e(GioHangAdapter.class.getSimpleName(), "onClick: " + giohang.getTensp() );
-//                    Toast.makeText(context, "mua thanh cong", Toast.LENGTH_SHORT).show();
+                    gioHangDAO.addHoaDon(giohang, ac.getHoten(), ngayHienTai() );
                     Toast.makeText(context, "Đã mua hàng thành công", Toast.LENGTH_SHORT).show();
+                    xoaSanPham(viTriXoa);
+
 
                 }
-
-
             }
         });
 

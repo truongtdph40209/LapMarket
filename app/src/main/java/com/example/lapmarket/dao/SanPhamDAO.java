@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.lapmarket.database.DbHelper;
+import com.example.lapmarket.designPantter.AccountSingle;
 import com.example.lapmarket.model.sanpham;
 
 import java.util.ArrayList;
@@ -25,7 +26,23 @@ public class SanPhamDAO {
         if (cursor.getCount() != 0){
             cursor.moveToFirst();
             do {
-                list.add(new sanpham(cursor.getInt(0), cursor.getString(1),  cursor.getInt(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), cursor.getString(12), cursor.getString(13), cursor.getString(14), cursor.getString(15), cursor.getString(16)));
+                    list.add(new sanpham(cursor.getInt(0),
+                            cursor.getString(1),
+                            cursor.getInt(2),
+                            cursor.getString(3),
+                            cursor.getString(4),
+                            cursor.getString(5),
+                            cursor.getString(6),
+                            cursor.getString(7),
+                            cursor.getString(8),
+                            cursor.getString(9),
+                            cursor.getString(10),
+                            cursor.getString(11),
+                            cursor.getString(12),
+                            cursor.getString(13),
+                            cursor.getString(14),
+                            cursor.getString(15),
+                            cursor.getString(16)));
 
             }while (cursor.moveToNext());
         }
@@ -248,6 +265,7 @@ public class SanPhamDAO {
         contentValues.put("tocdocpu", tocdocpu);
         contentValues.put("congusb", congusb);
         contentValues.put("vantay", vantay);
+//        contentValues.put("id_ac", AccountSingle.getInstance().getAccount().getId());
 
         long check = sqLiteDatabase.insert("SANPHAM", null, contentValues);
         if (check == -1){
@@ -261,6 +279,7 @@ public class SanPhamDAO {
         values.put("TENSP", sanPham.getTensp());
         values.put("GIA", sanPham.getGia());
         values.put("SOLUONG", 1);
+        values.put("id_ac", AccountSingle.getInstance().getAccount().getId());
 
         // Insert the product into the GIOHANG table
         sqLiteDatabase.insert("GIOHANG", null, values);

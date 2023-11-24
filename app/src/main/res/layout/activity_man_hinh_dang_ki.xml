@@ -24,19 +24,7 @@
         android:layout_height="wrap_content">
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="User: "
-            android:textSize="15dp"/>
-        <EditText
-            android:id="@+id/edt_username_dk"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nhập tài khoản"
-            android:padding="10dp"
-            android:background="#DAD6D6"
-            android:textSize="15dp"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,6 +35,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nhập họ tên"
+            android:padding="10dp"
+            android:background="#DAD6D6"
+            android:textSize="15dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email: "
+            android:textSize="15dp"/>
+        <EditText
+            android:id="@+id/edt_email_dk"
+            android:layout_width="match_parent"
+            android:hint="Nhập email"
+            android:layout_height="wrap_content"
             android:padding="10dp"
             android:background="#DAD6D6"
             android:textSize="15dp"/>
@@ -68,7 +69,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Confirn pass:"
+            android:text="Confirm pass:"
             android:textSize="15dp"/>
         <EditText
             android:id="@+id/edt_repassword_dk"
@@ -79,19 +80,7 @@
             android:padding="10dp"
             android:background="#DAD6D6"
             android:textSize="15dp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Email: "
-            android:textSize="15dp"/>
-        <EditText
-            android:id="@+id/edt_email_dk"
-            android:layout_width="match_parent"
-            android:hint="Nhập email"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:background="#DAD6D6"
-            android:textSize="15dp"/>
+
 
 
 

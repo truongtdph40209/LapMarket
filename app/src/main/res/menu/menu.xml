@@ -42,9 +42,7 @@
     <item
         android:title="ADMIN">
         <menu>
-            <item
-                android:id="@+id/quanli_phukien"
-                android:title="Quản lí phụ kiện" />
+
             <item
                 android:id="@+id/quanli_sp_home"
                 android:title="Quản lí sản phẩm" />
@@ -54,6 +52,13 @@
             <item
                 android:id="@+id/quanli_sp_vanphong"
                 android:title="Quản lí SP văn phòng" />
+            <item
+                android:id="@+id/quanli_phukien"
+                android:title="Quản lí phụ kiện" />
+
+            <item
+                android:id="@+id/thongKe_dt"
+                android:title="Thống kê doanh thu" />
 
 
 
@@ -70,7 +75,7 @@
                 android:icon="@drawable/giohang"/>
             <item
                 android:id="@+id/lichsu"
-                android:title="Lịch sử mua hàng"
+                android:title="Hóa đơn"
                 android:icon="@drawable/lichsu"/>
             <item
                 android:id="@+id/doimk"

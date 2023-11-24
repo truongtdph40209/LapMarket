@@ -2,7 +2,6 @@ package com.example.lapmarket.model;
 
 public class account {
     private int id;
-    private String taikhoan;
     private String hoten;
     private String matkhau;
     private String email;
@@ -20,9 +19,8 @@ public class account {
         this.email = email;
     }
 
-    public account(int id,String taikhoan, String hoten, String matkhau, String email, String loaitaikhoan) {
+    public account(int id, String hoten, String matkhau, String email, String loaitaikhoan) {
         this.id = id;
-        this.taikhoan = taikhoan;
         this.hoten = hoten;
         this.matkhau = matkhau;
         this.email = email;
@@ -37,13 +35,6 @@ public class account {
         this.id = id;
     }
 
-    public String getTaikhoan() {
-        return taikhoan;
-    }
-
-    public void setTaikhoan(String taikhoan) {
-        this.taikhoan = taikhoan;
-    }
 
     public String getHoten() {
         return hoten;

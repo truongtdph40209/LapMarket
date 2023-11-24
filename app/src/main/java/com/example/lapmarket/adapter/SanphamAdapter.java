@@ -69,7 +69,6 @@ public class SanphamAdapter extends RecyclerView.Adapter<SanphamAdapter.ViewHold
             public void onClick(View view) {
 
                 sanPhamDAO.addToCart(list.get(holder.getAdapterPosition()));
-
                 Toast.makeText(context, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
             }
         });

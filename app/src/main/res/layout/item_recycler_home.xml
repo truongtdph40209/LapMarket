@@ -52,21 +52,14 @@
 
 
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_mua_home"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="#F47F76"
-            android:text="MUA NGAY"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:textColor="@color/white"/>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_giohang_home"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:background="#03A9F4"
-            android:text="GIỎ HÀNG"
+            android:background="#E88364"
+            android:layout_marginTop="10dp"
+            android:text="ADD TO CART"
             android:textColor="@color/white"/>
 
 

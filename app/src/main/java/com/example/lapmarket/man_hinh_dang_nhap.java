@@ -52,7 +52,7 @@ public class man_hinh_dang_nhap extends AppCompatActivity {
 
         boolean rememberMe = sharedPreferences.getBoolean("remember_me", false);
         if (rememberMe) {
-            String savedUsername = sharedPreferences.getString("taikhoan","" );
+            String savedUsername = sharedPreferences.getString("email","" );
             String savedPassword = sharedPreferences.getString("matkhau","");
             chk_remember.setChecked(true);
             edt_user.setText(savedUsername);
@@ -65,13 +65,12 @@ public class man_hinh_dang_nhap extends AppCompatActivity {
                 String user = edt_user.getText().toString();
                 String pass = edt_pass.getText().toString();
 
-
                 if (accountDAO.checkdn(user, pass)){
 
-//                    editor.putString("taikhoan", user);
+
                     //
                     if (chk_remember.isChecked()) {
-                        editor.putString("taikhoan", user);
+                        editor.putString("email", user);
                         editor.putString("matkhau", pass);
                         editor.putBoolean("remember_me", true);
                         editor.apply();

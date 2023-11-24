@@ -38,6 +38,7 @@ import com.example.lapmarket.frg.frg_quanly_gaming;
 import com.example.lapmarket.frg.frg_quanly_phukien;
 import com.example.lapmarket.frg.frg_quanly_sanpham_home;
 import com.example.lapmarket.frg.frg_quanly_vanphong;
+import com.example.lapmarket.frg.frg_thongke_dt;
 import com.example.lapmarket.frg.frg_trangchu;
 import com.example.lapmarket.frg.frg_vanPhong_macbook;
 import com.example.lapmarket.model.account;
@@ -160,6 +161,13 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
+                else if (item.getItemId()==R.id.thongKe_dt) {
+
+                    frg_thongke_dt frgthongkedt = new frg_thongke_dt();
+                    replaceFragment(frgthongkedt);
+
+                }
+
 
 
 
@@ -185,6 +193,8 @@ public class MainActivity extends AppCompatActivity {
             menu.findItem(R.id.quanli_sp_home).setVisible(false);
             menu.findItem(R.id.quanli_sp_gaming).setVisible(false);
             menu.findItem(R.id.quanli_sp_vanphong).setVisible(false);
+            menu.findItem(R.id.thongKe_dt).setVisible(false);
+
         } else if (loaitk.equals("admin")) {
             Menu menu = nav.getMenu();
             menu.findItem(R.id.cskh).setVisible(false);
@@ -247,9 +257,9 @@ public class MainActivity extends AppCompatActivity {
                 if (mkMoi.equals(nhaplai_mkMoi)){
                     SharedPreferences sharedPreferences = getSharedPreferences("THONGTIN", MODE_PRIVATE);
 
-                    String matt = sharedPreferences.getString("taikhoan", "");
+                    String email = sharedPreferences.getString("email", "");
                     accountDAO  = new AccountDAO(MainActivity.this);
-                    boolean check = accountDAO.capNhatMatKhau(matt, mkCu, mkMoi);
+                    boolean check = accountDAO.capNhatMatKhau(email, mkCu, mkMoi);
                     if (check){
                         Toast.makeText(MainActivity.this, "Đổi mk thành công", Toast.LENGTH_SHORT).show();
                         finish();

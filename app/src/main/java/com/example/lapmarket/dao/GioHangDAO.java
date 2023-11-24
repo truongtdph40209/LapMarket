@@ -4,8 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.lapmarket.database.DbHelper;
+import com.example.lapmarket.designPantter.AccountSingle;
 import com.example.lapmarket.model.giohang;
 import com.example.lapmarket.model.sanpham;
 
@@ -24,7 +26,9 @@ public class GioHangDAO {
         if (cursor.getCount() != 0) {
             cursor.moveToFirst();
             do {
-                list.add(new giohang(cursor.getInt(0), cursor.getString(1), cursor.getInt(2),cursor.getInt(3)));
+                if (cursor.getInt(4) == AccountSingle.getInstance().getAccount().getId()){
+                    list.add(new giohang(cursor.getInt(0), cursor.getString(1), cursor.getInt(2),cursor.getInt(3)));
+                }
             } while (cursor.moveToNext());
         }
         return list;
@@ -35,6 +39,9 @@ public class GioHangDAO {
         ContentValues values = new ContentValues();
         values.put("TENSP", sanPham.getTensp());
         values.put("GIA", sanPham.getGia());
+        values.put("id_ac", AccountSingle.getInstance().getAccount().getId());
+
+
 
         sqLiteDatabase.insert("GIOHANG", null, values);
         sqLiteDatabase.close();
@@ -71,10 +78,14 @@ public class GioHangDAO {
         values.put("gia", hd.getGia());
         values.put("hoten", hoTen.trim());
         values.put("ngaymua", ngayMua.trim());
+        values.put("id_ac_hd", AccountSingle.getInstance().getAccount().getId());
 
-        // Insert the product into the GIOHANG table
+
+
         sqLiteDatabase.insert("HOADON", null, values);
         sqLiteDatabase.close();
     }
+
+
 
 }

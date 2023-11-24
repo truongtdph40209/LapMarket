@@ -26,7 +26,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tên Phụ Kiện"
+            android:text="Tên phụ kiện: "
             android:textSize="15dp"/>
         <EditText
             android:id="@+id/edt_tenpk_add"
@@ -40,7 +40,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Giá"
+            android:text="Giá: "
             android:textSize="15dp"/>
 
         <EditText
@@ -54,7 +54,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dung Lượng"
+            android:text="Dung lượng: "
             android:textSize="15dp"/>
         <EditText
             android:id="@+id/edt_duongluong_add"
@@ -67,7 +67,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Loại Ram"
+            android:text="Loại ram: "
             android:textSize="15dp"/>
         <EditText
             android:id="@+id/edt_loairam_add"
@@ -80,7 +80,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hỗ trợ"
+            android:text="Hỗ trợ: "
             android:textSize="15dp"/>
         <EditText
             android:id="@+id/edt_hotro_add"
@@ -93,7 +93,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Voltage"
+            android:text="Voltage: "
             android:textSize="15dp"/>
         <EditText
             android:id="@+id/edt_voltage_add"
@@ -106,7 +106,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bus Ram"
+            android:text="Bus ram: "
             android:textSize="15dp"/>
         <EditText
             android:id="@+id/edt_busram_add"
@@ -119,7 +119,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hãng sản xuất"
+            android:text="Hãng sản xuất: "
             android:textSize="15dp"/>
         <EditText
             android:id="@+id/edt_hangsanxuat_add"

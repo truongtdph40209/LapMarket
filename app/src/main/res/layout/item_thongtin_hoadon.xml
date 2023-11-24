@@ -56,7 +56,20 @@
         android:textSize="15dp"
         android:text="trang thái"/>
 
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_thanhtoan_hd"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="THANH TOÁN"
+            android:textSize="15dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:background="#E88364"/>
     </LinearLayout>
+
+
+
 
 
 </androidx.cardview.widget.CardView>

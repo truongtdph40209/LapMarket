@@ -21,13 +21,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="User:"
+            android:text="Email:"
             android:textSize="15dp"/>
         <EditText
             android:id="@+id/edt_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nhập tài khoản"
+            android:hint="Nhập email "
             android:padding="10dp"
             android:background="#DAD6D6"
             android:textSize="15dp"/>

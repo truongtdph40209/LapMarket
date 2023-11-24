@@ -75,7 +75,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Xuất xứ"
+            android:text="Xuất xứ: "
             android:textSize="15dp"/>
         <EditText
             android:id="@+id/edt_xuatxu_add"
@@ -88,7 +88,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Kích thước màn hình"
+            android:text="Kích thước màn hình: "
             android:textSize="15dp"/>
         <EditText
             android:id="@+id/edt_kichthuocmanhinh_add"
@@ -101,7 +101,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Màu sắc"
+            android:text="Màu sắc: "
             android:textSize="15dp"/>
         <EditText
             android:id="@+id/edt_mausac_add"
@@ -114,7 +114,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Trọng lượng"
+            android:text="Trọng lượng: "
             android:textSize="15dp"/>
         <EditText
             android:id="@+id/edt_trongluong_add"
@@ -127,7 +127,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Chất liệu"
+            android:text="Chất liệu: "
             android:textSize="15dp" />
         <EditText
             android:id="@+id/edt_chatlieu_add"
@@ -140,7 +140,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CPU"
+            android:text="CPU: "
             android:textSize="15dp"/>
         <EditText
             android:id="@+id/edt_cpu_add"
@@ -153,7 +153,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ổ cứng"
+            android:text="Ổ cứng: "
             android:textSize="15dp"/>
         <EditText
             android:id="@+id/edt_ocung_add"
@@ -166,7 +166,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ram"
+            android:text="Ram: "
             android:textSize="15dp"/>
         <EditText
             android:id="@+id/edt_ram_add"
@@ -179,7 +179,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Rom"
+            android:text="Rom: "
             android:textSize="15dp"/>
         <EditText
             android:id="@+id/edt_rom_add"
@@ -192,7 +192,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Card"
+            android:text="Card: "
             android:textSize="15dp"/>
         <EditText
             android:id="@+id/edt_card_add"
@@ -206,7 +206,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tốc độ cpu"
+            android:text="Tốc độ cpu: "
             android:textSize="15dp"/>
         <EditText
             android:id="@+id/edt_tocdocpu_add"
@@ -219,7 +219,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cổng usb"
+            android:text="Cổng usb: "
             android:textSize="15dp"/>
         <EditText
             android:id="@+id/edt_congusb_add"
@@ -232,7 +232,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Vân tay"
+            android:text="Vân tay: "
             android:textSize="15dp"/>
         <EditText
             android:id="@+id/edt_vantay_add"

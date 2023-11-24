@@ -18,6 +18,7 @@ public class sanpham {
     private  String tocdocpu;
     private  String congusb;
     private  String vantay;
+//    private  int id_ac;
 
 
 
@@ -46,7 +47,16 @@ public class sanpham {
         this.tocdocpu = tocdocpu;
         this.congusb = congusb;
         this.vantay = vantay;
+//        this.id_ac = ic_ac;
     }
+
+//    public int getId_ac() {
+//        return id_ac;
+//    }
+//
+//    public void setId_ac(int id_ac) {
+//        this.id_ac = id_ac;
+//    }
 
     public int getMasp() {
         return masp;

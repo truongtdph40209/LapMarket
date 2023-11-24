@@ -6,20 +6,23 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DbHelper extends SQLiteOpenHelper {
     public DbHelper(Context context) {
-        super(context, "LapMarket", null, 18);
+        super(context, "LapMarket", null, 30);
 
     }
 
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String account = "CREATE TABLE ACCOUNT(id INTEGER PRIMARY KEY AUTOINCREMENT,taikhoan TEXT , hoten TEXT, matkhau TEXT,email TEXT, loaitaikhoan TEXT)";
+        String account = "CREATE TABLE ACCOUNT(id INTEGER PRIMARY KEY AUTOINCREMENT, hoten TEXT, matkhau TEXT,email TEXT, loaitaikhoan TEXT)";
         db.execSQL(account);
 
-        db.execSQL("INSERT INTO ACCOUNT VALUES (1,'admin','Trịnh Đình Trường','123456','anhlabachu2004@gmail.com', 'admin')," +
-                "(2,'user','Trịnh Đình Sơn ','654321','truongtdph40209@fpt.edu.vn', 'user')");
+        db.execSQL("INSERT INTO ACCOUNT VALUES (1,'admin','admin','anhlabachu2004@gmail.com', 'admin')," +
+                "(2,'admin','admin','admin', 'admin')," +
+                "(3,'user1','user1','user1', 'user')," +
+                "(4,'user2','user2','user2', 'user')");
 
-        String sanpham_home = "CREATE TABLE SANPHAM(masp INTEGER PRIMARY KEY AUTOINCREMENT,tensp TEXT , gia INTEGER, thuonghieu TEXT, xuatxu TEXT, kichthuocmanhinh TEXT, mausac TEXT, trongluong TEXT, chatlieu TEXT, cpu TEXT, ocung TEXT, ram TEXT, rom TEXT, card TEXT, tocdocpu TEXT, congusb TEXT, vantay TEXT)";
+
+        String sanpham_home = "CREATE TABLE SANPHAM(masp INTEGER PRIMARY KEY AUTOINCREMENT,tensp TEXT , gia INTEGER, thuonghieu TEXT, xuatxu TEXT, kichthuocmanhinh TEXT, mausac TEXT, trongluong TEXT, chatlieu TEXT, cpu TEXT, ocung TEXT, ram TEXT, rom TEXT, card TEXT, tocdocpu TEXT, congusb TEXT, vantay TEXT  )";
         db.execSQL(sanpham_home);
 
         db.execSQL("INSERT INTO SANPHAM VALUES (1,'Acer Nitro 5',15900000, 'Acer', 'Trung Quốc', '15.6 inch', 'Đen', '2.5 kg', 'Nhựa', 'Intel i5 11400H', 'SSD', '8GB', '256GB', 'RTX 3050', '2.7GHz', '3 cổng', 'Không')," +
@@ -73,10 +76,9 @@ public class DbHelper extends SQLiteOpenHelper {
 
         String giohang = "CREATE TABLE GIOHANG(ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "tensp TEXT REFERENCES SANPHAM(tensp), " +
-                "gia INTEGER REFERENCES SANPHAM(gia),  SOLUONG INTEGER)";
+                "gia INTEGER REFERENCES SANPHAM(gia),  SOLUONG INTEGER, id_ac INTEGER REFERENCES ACCOUNT(id))";
         db.execSQL(giohang);
 
-        db.execSQL("INSERT INTO GIOHANG VALUES (1,'Acer Nitro 5', 15900000,8)");
 
 
 
@@ -87,16 +89,15 @@ public class DbHelper extends SQLiteOpenHelper {
                 "SOLUONG INTEGER REFERENCES GIOHANG(SOLUONG),  " +
                 "gia INTEGER REFERENCES GIOHANG(gia)," +
                 "ngaymua TEXT," +
-                "trangthai INTEGER )";
+                "trangthai INTEGER, id_ac_hd INTEGER REFERENCES ACCOUNT(id) )";
         db.execSQL(hoadon_sanpham);
-        db.execSQL("INSERT INTO HOADON VALUES (1, 'Trịnh Đình Trường', 'Acer Nitro 5',4 ,15900000, '21/11/2023',0)");
 
 
         String chitiet_hoadon = "CREATE TABLE CTHOADON (mahdct INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "masp INTEGER REFERENCES SANPHAM(masp),  " +
                 "ID INTEGER REFERENCES GIOHANG(ID))";
         db.execSQL(chitiet_hoadon);
-        db.execSQL("INSERT INTO CTHOADON VALUES (1, 1, 1)");
+
 
 
 
@@ -118,5 +119,11 @@ public class DbHelper extends SQLiteOpenHelper {
             db.execSQL("drop table if exists CTHOADON");
             onCreate(db);
         }
+    }
+
+    public void resetLocalData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("HOADON", null, null);
+        db.delete("GIOHANG", null, null);
     }
 }

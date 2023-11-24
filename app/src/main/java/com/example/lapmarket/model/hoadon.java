@@ -10,6 +10,7 @@ public class hoadon {
     private int gia;
     private String ngaymua;
     private int trangthai;
+//    private int id_ac_hd;
 
     public hoadon() {
     }
@@ -22,7 +23,10 @@ public class hoadon {
         this.gia = gia;
         this.ngaymua = ngaymua;
         this.trangthai = trangthai;
+//        this.id_ac_hd = id_ac_hd;
     }
+
+
 
     public int getMahd() {
         return mahd;

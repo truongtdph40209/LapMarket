@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.lapmarket.database.DbHelper;
 import com.example.lapmarket.designPantter.AccountSingle;
@@ -30,29 +31,33 @@ public class AccountDAO {
         if (cursor.getCount() != 0){
             cursor.moveToFirst();
             do {
-                list.add(
-                        new account(cursor.getInt(0),cursor.getString(1), cursor.getString(2), cursor.getString(3),
-                                cursor.getString(4),cursor.getString(5)));
+
+                list.add(new account(cursor.getInt(0),cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4)));
 
             }while (cursor.moveToNext());
         }
         return list;
     }
 
-    public boolean checkdn(String taikhoan, String matkhau){
+    public boolean checkdn( String email, String matkhau){
         SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
 
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM ACCOUNT WHERE taikhoan = ? AND matkhau = ?", new String[]{taikhoan, matkhau});
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM ACCOUNT WHERE email = ? AND matkhau = ?", new String[]{email, matkhau});
+
+
         if (cursor.getCount() != 0) {
 
             cursor.moveToFirst();
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("taikhoan", cursor.getString(1));
-            editor.putString("loaitaikhoan", cursor.getString(5));
-            editor.putString("hoten", cursor.getString(2));
+
+
+            editor.putString("email", cursor.getString(3));
+            editor.putString("loaitaikhoan", cursor.getString(4));
+            editor.putString("hoten", cursor.getString(1));
             editor.commit();
             AccountSingle.getInstance().setAccount(new account(cursor.getInt(0),cursor.getString(1), cursor.getString(2), cursor.getString(3),
-                    cursor.getString(4),cursor.getString(5)));
+                    cursor.getString(4)));
+            Log.e("TAG", "checkdn: " + AccountSingle.getInstance().getAccount().getId() );
             return true;
         }else {
             return false;
@@ -60,11 +65,10 @@ public class AccountDAO {
     }
 
     //singup
-    public boolean signup(String taikhoan,String hoten, String matkhau,String email ){
+    public boolean signup(String hoten, String matkhau,String email ){
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put("taikhoan", taikhoan);
         contentValues.put("hoten", hoten);
         contentValues.put("matkhau", matkhau);
         contentValues.put("email", email);
@@ -72,7 +76,11 @@ public class AccountDAO {
 
         long check = sqLiteDatabase.insert("ACCOUNT", null, contentValues);
 
+        dbHelper.resetLocalData();
+
             return check != -1;
+
+
 
     }
 
@@ -90,17 +98,23 @@ public class AccountDAO {
 
 
     // doimk
-    public boolean capNhatMatKhau(String taikhoan, String mathauCu, String matkhauMoi){
+    public boolean capNhatMatKhau(String email, String mathauCu, String matkhauMoi){
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM ACCOUNT WHERE taikhoan = ? AND matkhau = ? ", new String[]{taikhoan,mathauCu});
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM ACCOUNT WHERE email = ? AND matkhau = ? ", new String[]{email,mathauCu});
         if (cursor.getCount() > 0 ){
             ContentValues contentValues = new ContentValues();
             contentValues.put("matkhau", matkhauMoi);
-            long check =  sqLiteDatabase.update("ACCOUNT",contentValues, "taikhoan = ?", new String[]{taikhoan} );
+            long check =  sqLiteDatabase.update("ACCOUNT",contentValues, "email = ?", new String[]{email} );
             if (check == -1){
                 return false;
             }return true;
         }
         return false;
     }
+
+
+//    public Cursor getCartByAccountId(int accountId) {
+//        SQLiteDatabase db = dbHelper.getReadableDatabase();
+//        return db.query("GIOHANG", null, "id_ac = ?", new String[]{String.valueOf(accountId)}, null, null, null);
+//    }
 }

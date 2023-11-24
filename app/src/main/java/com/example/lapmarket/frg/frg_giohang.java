@@ -1,5 +1,6 @@
 package com.example.lapmarket.frg;
 
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -55,6 +56,10 @@ public class frg_giohang extends Fragment implements TotalUpdateListener {
 
         loadData();
         updateTotal();
+
+
+
+
 
 
 
