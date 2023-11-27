@@ -27,7 +27,7 @@ public class GioHangDAO {
             cursor.moveToFirst();
             do {
                 if (cursor.getInt(4) == AccountSingle.getInstance().getAccount().getId()){
-                    list.add(new giohang(cursor.getInt(0), cursor.getString(1), cursor.getInt(2),cursor.getInt(3)));
+                    list.add(new giohang(cursor.getInt(0), cursor.getString(1), cursor.getInt(2),cursor.getInt(3), cursor.getInt(5)));
                 }
             } while (cursor.moveToNext());
         }

@@ -68,8 +68,12 @@ public class SanphamAdapter extends RecyclerView.Adapter<SanphamAdapter.ViewHold
             @Override
             public void onClick(View view) {
 
-                sanPhamDAO.addToCart(list.get(holder.getAdapterPosition()));
-                Toast.makeText(context, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                if (sanPhamDAO.addToCart(list.get(holder.getAdapterPosition()))){
+                    Toast.makeText(context, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+
+                }else {
+                    Toast.makeText(context, "Them that bai", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
