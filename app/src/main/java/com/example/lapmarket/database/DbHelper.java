@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DbHelper extends SQLiteOpenHelper {
     public DbHelper(Context context) {
-        super(context, "LapMarket", null, 30);
+        super(context, "LapMarket", null, 31);
 
     }
 
@@ -76,7 +76,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
         String giohang = "CREATE TABLE GIOHANG(ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "tensp TEXT REFERENCES SANPHAM(tensp), " +
-                "gia INTEGER REFERENCES SANPHAM(gia),  SOLUONG INTEGER, id_ac INTEGER REFERENCES ACCOUNT(id))";
+                "gia INTEGER REFERENCES SANPHAM(gia),  SOLUONG INTEGER, id_ac INTEGER REFERENCES ACCOUNT(id), masp INTEGER REFERENCES SANPHAM(masp))";
         db.execSQL(giohang);
 
 

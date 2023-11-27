@@ -5,16 +5,27 @@ public class giohang {
     private String tensp;
     private int gia;
     private int SOLUONG;
+    private int masp;
 
     public giohang(int SOLUONG) {
         this.SOLUONG = SOLUONG;
     }
 
-    public giohang(int ID, String tensp, int gia, int SOLUONG) {
+
+    public giohang(int ID, String tensp, int gia, int SOLUONG, int masp) {
         this.ID = ID;
         this.tensp = tensp;
         this.gia = gia;
         this.SOLUONG = SOLUONG;
+        this.masp = masp;
+    }
+
+    public int getMasp() {
+        return masp;
+    }
+
+    public void setMasp(int masp) {
+        this.masp = masp;
     }
 
     public int getSOLUONG() {
