@@ -140,9 +140,9 @@ public class man_hinh_dang_nhap extends AppCompatActivity {
 
                 String email = edt_email.getText().toString();
                 String matkhau = accountDAO.fogotpass(email);
-//                Toast.makeText(man_hinh_dang_nhap.this, matkhau, Toast.LENGTH_SHORT).show();
+
                 if (matkhau.isEmpty()){
-                    Toast.makeText(man_hinh_dang_nhap.this, "Không tìm thấy tài khoản", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(man_hinh_dang_nhap.this, "Email chưa được đăng kí", Toast.LENGTH_SHORT).show();
                 }else {
                     sendMail.Send(man_hinh_dang_nhap.this, email, "Lấy lại mật khẩu LapMarket"," Mật khẩu của bạn là: "+ matkhau );
                     Toast.makeText(man_hinh_dang_nhap.this, "Vui lòng kiểm tra email để lấy lại mật khẩu", Toast.LENGTH_SHORT).show();
