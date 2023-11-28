@@ -18,6 +18,9 @@ public class sanpham {
     private  String tocdocpu;
     private  String congusb;
     private  String vantay;
+    private  String url1;
+    private  String url2;
+    private  String url3;
 //    private  int id_ac;
 
 
@@ -27,9 +30,7 @@ public class sanpham {
     public sanpham() {
     }
 
-
-
-    public sanpham(int masp,String tensp, int gia, String thuonghieu, String xuatxu, String kichthuocmanhinh, String mausac, String trongluong, String chatlieu, String cpu, String ocung, String ram, String rom, String card, String tocdocpu, String congusb, String vantay) {
+    public sanpham(int masp, String tensp, int gia, String thuonghieu, String xuatxu, String kichthuocmanhinh, String mausac, String trongluong, String chatlieu, String cpu, String ocung, String ram, String rom, String card, String tocdocpu, String congusb, String vantay, String url1, String url2, String url3) {
         this.masp = masp;
         this.tensp = tensp;
         this.gia = gia;
@@ -47,10 +48,36 @@ public class sanpham {
         this.tocdocpu = tocdocpu;
         this.congusb = congusb;
         this.vantay = vantay;
-//        this.id_ac = ic_ac;
+        this.url1 = url1;
+        this.url2 = url2;
+        this.url3 = url3;
     }
 
-//    public int getId_ac() {
+    public String getUrl1() {
+        return url1;
+    }
+
+    public void setUrl1(String url1) {
+        this.url1 = url1;
+    }
+
+    public String getUrl2() {
+        return url2;
+    }
+
+    public void setUrl2(String url2) {
+        this.url2 = url2;
+    }
+
+    public String getUrl3() {
+        return url3;
+    }
+
+    public void setUrl3(String url3) {
+        this.url3 = url3;
+    }
+
+    //    public int getId_ac() {
 //        return id_ac;
 //    }
 //

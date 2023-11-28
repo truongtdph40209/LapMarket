@@ -1,5 +1,7 @@
 package com.example.lapmarket.adapter;
 
+import static com.example.lapmarket.SlideShow.SlideShow.slideShow;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -14,6 +16,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.AnimationTypes;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.lapmarket.R;
 import com.example.lapmarket.dao.SanPhamDAO;
 import com.example.lapmarket.model.sanpham;
@@ -152,6 +158,7 @@ public class SanphamAdapter extends RecyclerView.Adapter<SanphamAdapter.ViewHold
         txt_rom_chitiet.setText("ROM: " + sanPham.getRom());
         tocdoCPU_chitiet.setText("Tốc độ: " + sanPham.getTocdocpu());
         txt_vantay_chitiet.setText("Vân tay: " + sanPham.getVantay());
+        slideShow(view,view.findViewById(R.id.image_slider), sanPham.getUrl1(), sanPham.getUrl2(), sanPham.getUrl3());
 
 
 
@@ -171,5 +178,8 @@ public class SanphamAdapter extends RecyclerView.Adapter<SanphamAdapter.ViewHold
 
 
     }
+
+
+
 
 }

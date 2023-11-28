@@ -47,5 +47,7 @@ dependencies {
     implementation ("de.hdodenhof:circleimageview:3.1.0")
     implementation ("androidx.recyclerview:recyclerview:1.3.2")
 
+    implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
+
 
 }

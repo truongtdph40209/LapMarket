@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.example.lapmarket.R;
 
+import com.example.lapmarket.SlideShow.SlideShow;
 import com.example.lapmarket.adapter.PhotoAdapter;
 import com.example.lapmarket.adapter.SanphamAdapter;
 import com.example.lapmarket.dao.GioHangDAO;
@@ -32,9 +33,7 @@ import me.relex.circleindicator.CircleIndicator;
 
 
 public class frg_trangchu extends Fragment {
-    private ViewPager viewPager;
-    private CircleIndicator circleIndicator;
-    private PhotoAdapter photoAdapter;
+
 
     SanPhamDAO sanPhamDAO;
     ArrayList<sanpham> list;
@@ -62,6 +61,9 @@ public class frg_trangchu extends Fragment {
         recyclerSanpham = view.findViewById(R.id.recyclerView_Sanpham);
         SearchView searchView = view.findViewById(R.id.search_sanpham);
 
+        SlideShow.slideShowFoDraw(view,view.findViewById(R.id.image_slider),R.drawable.laptop1,R.drawable.laptop2,R.drawable.laptop3, R.drawable.laptop0);
+
+
         sanphamAdapter = new SanphamAdapter(getContext(), list, sanPhamDAO, new SanphamAdapter.OnAddToCartClickListener() {
             @Override
             public void onAddToCartClick(sanpham sanPham) {
@@ -69,12 +71,8 @@ public class frg_trangchu extends Fragment {
             }
         });
 
-        viewPager = view.findViewById(R.id.viewPager);
-        circleIndicator = view.findViewById(R.id.circleindicator);
-        photoAdapter = new PhotoAdapter(getContext(), getListPhoto(), viewPager);
-        viewPager.setAdapter(photoAdapter);
-        circleIndicator.setViewPager(viewPager);
-        photoAdapter.registerDataSetObserver(circleIndicator.getDataSetObserver());
+
+
 
         loadData();
 

@@ -17,11 +17,29 @@
         android:orientation="vertical">
 
 
-        <ImageView
+       <!-- <ImageView
             android:layout_width="250dp"
             android:layout_height="150dp"
             android:padding="5dp"
-            android:src="@drawable/laptop_mau"/>
+            android:src="@drawable/laptop_mau"/>-->
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/image_slider"
+                android:layout_width="250dp"
+                android:layout_height="150dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="20dp"
+                app:iss_auto_cycle="false"
+                app:iss_delay="1000"
+                app:iss_period="1000"
+                app:iss_text_align="CENTER" />
+        </RelativeLayout>
 
         <TextView
             android:layout_width="match_parent"
