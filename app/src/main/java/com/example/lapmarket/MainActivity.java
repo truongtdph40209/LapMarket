@@ -45,6 +45,8 @@ import com.example.lapmarket.model.account;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -104,10 +106,10 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(frgVanPhongMacbook);
                 }
 
-                else if (item.getItemId()==R.id.phuKien) {
-                    frg_phuKien frgPhuKien = new frg_phuKien();
-                    replaceFragment(frgPhuKien);
-                }
+//                else if (item.getItemId()==R.id.phuKien) {
+//                    frg_phuKien frgPhuKien = new frg_phuKien();
+//                    replaceFragment(frgPhuKien);
+//                }
 
                 else if (item.getItemId()==R.id.doimk) {
                     showDoiMK();
@@ -129,13 +131,12 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(frgLichsu);
                 }
 
-                else if (item.getItemId()==R.id.quanli_phukien) {
-
-                    frg_quanly_phukien frgQuanlyPhukien = new frg_quanly_phukien();
-                    replaceFragment(frgQuanlyPhukien);
-
-
-                }
+//                else if (item.getItemId()==R.id.quanli_phukien) {
+//
+//                    frg_quanly_phukien frgQuanlyPhukien = new frg_quanly_phukien();
+//                    replaceFragment(frgQuanlyPhukien);
+//
+//                }
 
                 else if (item.getItemId()==R.id.quanli_sp_home) {
 
@@ -189,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
         String loaitk = sharedPreferences.getString("loaitaikhoan", "");
         if (!loaitk.equals("admin")){
             Menu menu = nav.getMenu();
-            menu.findItem(R.id.quanli_phukien).setVisible(false);
+//            menu.findItem(R.id.quanli_phukien).setVisible(false);
             menu.findItem(R.id.quanli_sp_home).setVisible(false);
             menu.findItem(R.id.quanli_sp_gaming).setVisible(false);
             menu.findItem(R.id.quanli_sp_vanphong).setVisible(false);
@@ -202,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
             menu.findItem(R.id.lichsu).setVisible(false);
             menu.findItem(R.id.lapGaming_doHoa).setVisible(false);
             menu.findItem(R.id.lapVanPhong_macbook).setVisible(false);
-            menu.findItem(R.id.phuKien).setVisible(false);
+//            menu.findItem(R.id.phuKien).setVisible(false);
             menu.findItem(R.id.trangchu).setVisible(false);
         }
 
@@ -250,9 +251,13 @@ public class MainActivity extends AppCompatActivity {
                 String mkMoi = edt_mkMoi.getText().toString();
                 String nhaplai_mkMoi = edt_nhapLai_mkMoi.getText().toString();
 
-                if (mkCu.isEmpty() || mkMoi.isEmpty() || nhaplai_mkMoi.isEmpty()){
+                if (mkCu.isEmpty() ||  nhaplai_mkMoi.isEmpty()){
                     Toast.makeText(MainActivity.this, "Nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                } else if (!validate_matkhau(mkMoi)) {
+                    Toast.makeText(MainActivity.this, "Mật khẩu cần ít nhất 8 ký tự, và có ít nhất một kí tự viết hoa và một kí tự viết thường.", Toast.LENGTH_SHORT).show();
+                    return; // Không gọi đăng ký nếu mật khẩu không hợp lệ
                 }
+
 
                 if (mkMoi.equals(nhaplai_mkMoi)){
                     SharedPreferences sharedPreferences = getSharedPreferences("THONGTIN", MODE_PRIVATE);
@@ -279,6 +284,18 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+    private boolean validate_matkhau(String matkhau) {
+        // Biểu thức chính quy kiểm tra mật khẩu:
+        // - Ít nhất 8 ký tự
+        // - Ít nhất một chữ viết hoa
+        // - Ít nhất một chữ viết thường
+        String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z]).{8,}$";
+
+        Pattern pattern = Pattern.compile(passwordRegex);
+        Matcher matcher = pattern.matcher(matkhau);
+
+        return matcher.matches();
     }
 
 
