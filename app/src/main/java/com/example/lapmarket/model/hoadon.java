@@ -1,21 +1,16 @@
 package com.example.lapmarket.model;
 
 public class hoadon {
-
     private int mahd;
     private String hoten;
     private String tensp;
     private int SOLUONG;
-
     private int gia;
     private String ngaymua;
     private int trangthai;
-//    private int id_ac_hd;
 
     public hoadon() {
-    }
-
-    public hoadon(int mahd, String hoten, String tensp,int SOLUONG, int gia, String ngaymua, int trangthai) {
+    }    public hoadon(int mahd, String hoten, String tensp,int SOLUONG, int gia, String ngaymua, int trangthai) {
         this.mahd = mahd;
         this.hoten = hoten;
         this.tensp = tensp;
@@ -23,7 +18,7 @@ public class hoadon {
         this.gia = gia;
         this.ngaymua = ngaymua;
         this.trangthai = trangthai;
-//        this.id_ac_hd = id_ac_hd;
+
     }
 
 

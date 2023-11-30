@@ -43,7 +43,6 @@ dependencies {
     implementation ("me.relex:circleindicator:2.1.6")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
 
-
     implementation ("de.hdodenhof:circleimageview:3.1.0")
     implementation ("androidx.recyclerview:recyclerview:1.3.2")
 

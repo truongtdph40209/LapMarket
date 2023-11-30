@@ -53,7 +53,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
         double total = 0;
         for (giohang item : list) {
             double gia = item.getGia();
-            int soLuong = item.getSOLUONG();
+            int soLuong = item.getSoluong();
             total += gia * soLuong;
         }
         return total;
@@ -84,9 +84,9 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
         giohang giohang = list.get(position);
         holder.txt_tenGioHang.setText(giohang.getTensp());
 
-        holder.txt_soLuong.setText(String.valueOf(giohang.getSOLUONG()));
+        holder.txt_soLuong.setText(String.valueOf(giohang.getSoluong()));
 
-        holder.txt_giaTiengh.setText(Amount.moneyFormat(giohang.getGia() * giohang.getSOLUONG()));
+        holder.txt_giaTiengh.setText(Amount.moneyFormat(giohang.getGia() * giohang.getSoluong()));
 
         viTriXoa = holder.getAdapterPosition();
 
@@ -155,9 +155,9 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
     private void tangSoLuong(ViewHolder holder, int viTri) {
 
 
-        int magh = list.get(viTri).getID();
+        int magh = list.get(viTri).getId();
 
-        int soLuongHienTai = list.get(viTri).getSOLUONG() ;
+        int soLuongHienTai = list.get(viTri).getSoluong() ;
         int soLuongMoiC = soLuongHienTai + 1;
         int giaGoc = list.get(viTri).getGia();
 
@@ -166,13 +166,13 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
             if (soLuongMoiC >= 0) {
 
                 gioHangDAO.updateQuantity(magh, soLuongMoiC);
-                list.get(viTri).setSOLUONG(soLuongMoiC);
+                list.get(viTri).setSoluong(soLuongMoiC);
                 int giaMoiC = soLuongMoiC * giaGoc;
-                gioHangDAO.updateQuantity(list.get(viTri).getID(), soLuongMoiC);
+                gioHangDAO.updateQuantity(list.get(viTri).getId(), soLuongMoiC);
                 holder.txt_giaTiengh.setText(Amount.moneyFormat(giaMoiC));
                 holder.txt_soLuong.setText(String.valueOf(soLuongMoiC));
 
-                list.get(viTri).setSOLUONG(soLuongMoiC);
+                list.get(viTri).setSoluong(soLuongMoiC);
                 updateTotal();
 
             }
@@ -185,8 +185,8 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
 
 
     private void giamSoLuong(ViewHolder holder, int viTri) {
-        int magh = list.get(viTri).getID();
-        int soLuongHienTai = list.get(viTri).getSOLUONG();
+        int magh = list.get(viTri).getId();
+        int soLuongHienTai = list.get(viTri).getSoluong();
         int soLuongMoiT = soLuongHienTai - 1;
 
 
@@ -194,7 +194,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
         if (soLuongMoiT >= 0) {
             gioHangDAO.updateQuantity(magh, soLuongMoiT);
 
-            list.get(viTri).setSOLUONG(soLuongMoiT);
+            list.get(viTri).setSoluong(soLuongMoiT);
 
             if (soLuongMoiT >= 0) {
 
@@ -224,10 +224,10 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                 }
 
                 int giaMoiT = soLuongMoiT * list.get(viTri).getGia();
-                gioHangDAO.updateQuantity(list.get(viTri).getID(), soLuongMoiT);
+                gioHangDAO.updateQuantity(list.get(viTri).getId(), soLuongMoiT);
                 holder.txt_giaTiengh.setText(Amount.moneyFormat(giaMoiT));
                 holder.txt_soLuong.setText(String.valueOf(soLuongMoiT));
-                list.get(viTri).setSOLUONG(soLuongMoiT);
+                list.get(viTri).setSoluong(soLuongMoiT);
                 updateTotal();
             }
 
@@ -243,7 +243,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
 
     private void xoaSanPham(int viTri) {
         if (gioHangDAO != null) {
-            int magh = list.get(viTri).getID();
+            int magh = list.get(viTri).getId();
             gioHangDAO.deleteFromCart(magh);
         }
         list.remove(viTri);

@@ -47,7 +47,6 @@ public class SanPhamDAO {
                             cursor.getString(14),
                             cursor.getString(15),
                             cursor.getString(16)));
-
             }while (cursor.moveToNext());
         }
         return list;
@@ -64,7 +63,22 @@ public class SanPhamDAO {
         if (cursor.getCount() != 0){
             cursor.moveToFirst();
             do {
-                list.add(new sanpham(cursor.getInt(0), cursor.getString(1),  cursor.getInt(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), cursor.getString(12), cursor.getString(13), cursor.getString(14), cursor.getString(15), cursor.getString(16)));
+                list.add(new sanpham(cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getInt(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5),
+                        cursor.getString(6),
+                        cursor.getString(7),
+                        cursor.getString(8), cursor.getString(9),
+                        cursor.getString(10),
+                        cursor.getString(11),
+                        cursor.getString(12),
+                        cursor.getString(13),
+                        cursor.getString(14),
+                        cursor.getString(15),
+                        cursor.getString(16)));
 
             }while (cursor.moveToNext());
         }
@@ -78,9 +92,23 @@ public class SanPhamDAO {
         if (cursor.getCount() != 0){
             cursor.moveToFirst();
             do {
-                list.add(new sanpham(cursor.getInt(0), cursor.getString(1),  cursor.getInt(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), cursor.getString(12), cursor.getString(13), cursor.getString(14), cursor.getString(15), cursor.getString(16)));
-
-
+                list.add(new sanpham(cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getInt(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5),
+                        cursor.getString(6),
+                        cursor.getString(7),
+                        cursor.getString(8),
+                        cursor.getString(9),
+                        cursor.getString(10),
+                        cursor.getString(11),
+                        cursor.getString(12),
+                        cursor.getString(13),
+                        cursor.getString(14),
+                        cursor.getString(15),
+                        cursor.getString(16)));
             }while (cursor.moveToNext());
         }
         return list;
@@ -89,7 +117,8 @@ public class SanPhamDAO {
     //delete
     public boolean deleteSP(int masp){
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
-        long row = sqLiteDatabase.delete("SANPHAM","masp = ?",new String[]{String.valueOf(masp)});
+        long row = sqLiteDatabase.delete("SANPHAM","masp = ?",
+                new String[]{String.valueOf(masp)});
         if (row <= 0){
             return false;
         }
@@ -250,7 +279,10 @@ public class SanPhamDAO {
         }
         return true;
     }
-    public boolean addSP(String tensp, int gia , String thuonghieu, String xuatxu, String kichthuocmanhinh, String mausac, String trongluong, String chatlieu, String cpu,String ocung, String ram,String rom,String card, String tocdocpu, String congusb, String vantay){
+    public boolean addSP(String tensp, int gia , String thuonghieu, String xuatxu, String kichthuocmanhinh,
+                         String mausac, String trongluong, String chatlieu, String cpu,String ocung,
+                         String ram,String rom,String card,
+                         String tocdocpu, String congusb, String vantay){
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("tensp", tensp);
@@ -269,8 +301,6 @@ public class SanPhamDAO {
         contentValues.put("tocdocpu", tocdocpu);
         contentValues.put("congusb", congusb);
         contentValues.put("vantay", vantay);
-//        contentValues.put("id_ac", AccountSingle.getInstance().getAccount().getId());
-
         long check = sqLiteDatabase.insert("SANPHAM", null, contentValues);
         if (check == -1){
             return false;
@@ -278,31 +308,27 @@ public class SanPhamDAO {
         return true;
     }
     public Boolean addToCart(sanpham sanPham) {
-
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-
         ArrayList<giohang> list = new GioHangDAO(context).listGH();
-
         for (int i = 0; i < list.size(); i++){
             if (list.get(i).getMasp() == sanPham.getMasp()){
-                values.put("TENSP", sanPham.getTensp());
-                values.put("GIA", sanPham.getGia());
-                values.put("SOLUONG", list.get(i).getSOLUONG() + 1);
+                values.put("tensp", sanPham.getTensp());
+                values.put("gia", sanPham.getGia());
+                values.put("soluong", list.get(i).getSoluong() + 1);
                 values.put("id_ac", AccountSingle.getInstance().getAccount().getId());
                 values.put("masp", sanPham.getMasp());
-                sqLiteDatabase.update("GIOHANG", values, "masp =?",  new String[]{String.valueOf(list.get(i).getMasp())});
+                sqLiteDatabase.update("GIOHANG", values, "masp =?",
+                        new String[]{String.valueOf(list.get(i).getMasp())});
                 sqLiteDatabase.close();
                 return true;
             }
         }
-
-        values.put("TENSP", sanPham.getTensp());
-        values.put("GIA", sanPham.getGia());
-        values.put("SOLUONG", 1);
+        values.put("tensp", sanPham.getTensp());
+        values.put("gia", sanPham.getGia());
+        values.put("soluong", 1);
         values.put("id_ac", AccountSingle.getInstance().getAccount().getId());
         values.put("masp", sanPham.getMasp());
-        // Insert the product into the GIOHANG table
         sqLiteDatabase.insert("GIOHANG", null, values);
         sqLiteDatabase.close();
         return true;
