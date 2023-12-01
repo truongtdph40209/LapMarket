@@ -60,6 +60,10 @@
                 android:id="@+id/thongKe_dt"
                 android:title="Thống kê doanh thu" />
 
+            <item
+                android:id="@+id/thongtin_datHang"
+                android:title="Thông tin đặt hàng" />
+
 
 
         </menu>

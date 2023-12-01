@@ -312,14 +312,14 @@ public class SanPhamDAO {
         ContentValues values = new ContentValues();
         ArrayList<giohang> list = new GioHangDAO(context).listGH();
         for (int i = 0; i < list.size(); i++){
-            if (list.get(i).getMasp() == sanPham.getMasp()){
+
+            if (list.get(i).getTensp().equals(sanPham.getTensp())){
                 values.put("tensp", sanPham.getTensp());
                 values.put("gia", sanPham.getGia());
                 values.put("soluong", list.get(i).getSoluong() + 1);
-                values.put("id_ac", AccountSingle.getInstance().getAccount().getId());
+                values.put("id_ac", AccountSingle.getInstance().getAccount().getId() );
                 values.put("masp", sanPham.getMasp());
-                sqLiteDatabase.update("GIOHANG", values, "masp =?",
-                        new String[]{String.valueOf(list.get(i).getMasp())});
+                sqLiteDatabase.update("GIOHANG", values, "tensp =?", new String[]{String.valueOf(list.get(i).getTensp() )});
                 sqLiteDatabase.close();
                 return true;
             }

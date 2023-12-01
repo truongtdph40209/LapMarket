@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="7dp"
+    app:cardCornerRadius="10dp">
+
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/txt_sophieu_tt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="số phiếu"/>
+            <TextView
+                android:id="@+id/txt_mahd_tt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="mã hóa đơn"/>
+            <TextView
+                android:id="@+id/txt_hoten_tt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="họ tên "/>
+            <TextView
+                android:id="@+id/txt_sdt_tt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="SDT "/>
+            <TextView
+                android:id="@+id/txt_namsinh_tt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="năm sinh"/>
+            <TextView
+                android:id="@+id/txt_diachi_tt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="địa chỉ"/>
+            <TextView
+                android:id="@+id/txt_tensp_tt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="tên sp"/>
+            <TextView
+                android:id="@+id/txt_soluong_tt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="số lượng"/>
+
+            <TextView
+                android:id="@+id/txt_gia_tt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="giá"/>
+
+            <TextView
+                android:id="@+id/txt_trangthai_tt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="trạng thái"/>
+
+            <TextView
+                android:id="@+id/txt_xacnhan_tt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="xác nhận"/>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_xacnhan_tt"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="Đã giao"
+                android:textSize="15dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                android:background="#E88364"/>
+        </LinearLayout>
+
+
+
+
+</androidx.cardview.widget.CardView>

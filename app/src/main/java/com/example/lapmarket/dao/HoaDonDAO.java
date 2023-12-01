@@ -9,6 +9,7 @@ import com.example.lapmarket.database.DbHelper;
 import com.example.lapmarket.designPantter.AccountSingle;
 import com.example.lapmarket.model.giohang;
 import com.example.lapmarket.model.hoadon;
+import com.example.lapmarket.model.infor;
 import com.example.lapmarket.model.sanpham;
 
 import java.util.ArrayList;
@@ -21,9 +22,10 @@ public class HoaDonDAO {
         dbHelper = new DbHelper(context);
     }
 
+    public ArrayList<hoadon> list = new ArrayList<>();
+
 
     public ArrayList<hoadon> selectHoaDon() {
-        ArrayList<hoadon> list = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM HOADON", null);
         if (cursor.getCount() != 0) {
@@ -41,6 +43,10 @@ public class HoaDonDAO {
                 } while (cursor.moveToNext());
         }
         return list;
+    }
+
+    public hoadon getHoaDon(int index){
+        return list.get(index);
     }
 
 

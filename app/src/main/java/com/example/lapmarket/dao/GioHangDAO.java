@@ -54,11 +54,11 @@ public class GioHangDAO {
         sqLiteDatabase.close();
     }
 
-    public void updateQuantity(int ID, int newQuantity) {
+    public void updateQuantity(int id, int newQuantity) {
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("soluong", newQuantity);
-        sqLiteDatabase.update("GIOHANG", values, "id=?", new String[]{String.valueOf(ID)});
+        sqLiteDatabase.update("GIOHANG", values, "id=?", new String[]{String.valueOf(id)});
         sqLiteDatabase.close();
     }
 

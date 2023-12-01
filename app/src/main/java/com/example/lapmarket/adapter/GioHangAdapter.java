@@ -20,12 +20,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.lapmarket.R;
 import com.example.lapmarket.dao.AccountDAO;
 import com.example.lapmarket.dao.GioHangDAO;
+import com.example.lapmarket.dao.HoaDonDAO;
+import com.example.lapmarket.dao.InforDAO;
+import com.example.lapmarket.dao.ThongTinDatHangDAO;
 import com.example.lapmarket.designPantter.AccountSingle;
 import com.example.lapmarket.frg.frg_giohang;
 import com.example.lapmarket.inteface.TotalUpdateListener;
 import com.example.lapmarket.model.account;
+import com.example.lapmarket.model.dathang;
 import com.example.lapmarket.model.giohang;
 import com.example.lapmarket.model.hoadon;
+import com.example.lapmarket.model.infor;
 import com.example.lapmarket.util.Amount;
 
 import java.text.DateFormat;
@@ -41,8 +46,11 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
     private ViewHolder holder;
     private ArrayList<giohang> list;
     private ArrayList<account> accountArrayList;
+    private ArrayList<infor> inforArrayList;
+
 
     private GioHangDAO gioHangDAO;
+    private InforDAO inforDAO;
     private AccountDAO accountDAO;
     private TotalUpdateListener totalUpdateListener;
     private frg_giohang fragment;
@@ -66,7 +74,10 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
         this.gioHangDAO = gioHangDAO;
         this.fragment = fragment;
 
+
+
     }
+
 
 
     @NonNull
@@ -185,7 +196,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
 
 
     private void giamSoLuong(ViewHolder holder, int viTri) {
-        int magh = list.get(viTri).getId();
+        int magh = (list.get(viTri).getId()) ;
         int soLuongHienTai = list.get(viTri).getSoluong();
         int soLuongMoiT = soLuongHienTai - 1;
 
@@ -206,7 +217,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                     builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-//                            int viTriXoa = holder.getAdapterPosition();
+                            int viTriXoa = holder.getAdapterPosition();
                             xoaSanPham(viTriXoa);
                             Toast.makeText(context, "Đã xóa sản phẩm này", Toast.LENGTH_SHORT).show();
 
@@ -243,7 +254,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
 
     private void xoaSanPham(int viTri) {
         if (gioHangDAO != null) {
-            int magh = list.get(viTri).getId();
+            int magh = (list.get(viTri).getId()) ;
             gioHangDAO.deleteFromCart(magh);
         }
         list.remove(viTri);
@@ -265,8 +276,6 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
         fragment.setSumPrice(tongTien);
 
     }
-
-
 
 
     @Override
@@ -315,10 +324,29 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                 }else {
 
                     account ac = AccountSingle.getInstance().getAccount();
-
                     gioHangDAO.addHoaDon(giohang, ac.getHoten(), ngayHienTai() );
-                    Toast.makeText(context, "Đã mua hàng thành công", Toast.LENGTH_SHORT).show();
-                    xoaSanPham(viTriXoa);
+
+
+                    inforDAO = new InforDAO(context);
+                    boolean check = inforDAO.addInfor(sdt, namsinh, diachi);
+
+                    if (check){
+                        hoadon hoadon; infor infor;
+                        infor = inforDAO.getInfor(inforDAO.selectInfor().size()-1);
+                        HoaDonDAO hoaDonDAO = new HoaDonDAO(context);
+                        hoadon = hoaDonDAO.getHoaDon(hoaDonDAO.selectHoaDon().size() -1 );
+                        new ThongTinDatHangDAO(context).add_TT_DatHang(new dathang(
+                                infor.getSdt(), infor.getNamsinh(), infor.getDiachi(),
+                                hoadon.getTensp(), hoadon.getSOLUONG(), hoadon.getGia(), 0
+                        ));
+                        Toast.makeText(context, "Đã mua hàng thành công", Toast.LENGTH_SHORT).show();
+                        xoaSanPham(viTriXoa);
+                    }else {
+                        Toast.makeText(context, "Mua thất bại", Toast.LENGTH_SHORT).show();
+                    }
+
+
+
 
 
                 }

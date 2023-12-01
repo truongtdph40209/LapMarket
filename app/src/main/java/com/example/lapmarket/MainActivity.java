@@ -38,6 +38,7 @@ import com.example.lapmarket.frg.frg_quanly_gaming;
 import com.example.lapmarket.frg.frg_quanly_phukien;
 import com.example.lapmarket.frg.frg_quanly_sanpham_home;
 import com.example.lapmarket.frg.frg_quanly_vanphong;
+import com.example.lapmarket.frg.frg_thongTin_datHang;
 import com.example.lapmarket.frg.frg_thongke_dt;
 import com.example.lapmarket.frg.frg_trangchu;
 import com.example.lapmarket.frg.frg_vanPhong_macbook;
@@ -166,6 +167,13 @@ public class MainActivity extends AppCompatActivity {
 
                     frg_thongke_dt frgthongkedt = new frg_thongke_dt();
                     replaceFragment(frgthongkedt);
+
+                }
+
+                else if (item.getItemId()==R.id.thongtin_datHang) {
+
+                    frg_thongTin_datHang frgthongTindatHang  = new frg_thongTin_datHang();
+                    replaceFragment(frgthongTindatHang);
 
                 }
 

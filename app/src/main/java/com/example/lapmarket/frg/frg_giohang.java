@@ -15,8 +15,10 @@ import android.widget.TextView;
 import com.example.lapmarket.R;
 import com.example.lapmarket.adapter.GioHangAdapter;
 import com.example.lapmarket.dao.GioHangDAO;
+import com.example.lapmarket.dao.InforDAO;
 import com.example.lapmarket.inteface.TotalUpdateListener;
 import com.example.lapmarket.model.giohang;
+import com.example.lapmarket.model.infor;
 import com.example.lapmarket.util.Amount;
 
 import java.util.ArrayList;
@@ -25,7 +27,9 @@ import java.util.ArrayList;
 public class frg_giohang extends Fragment implements TotalUpdateListener {
 
     GioHangDAO gioHangDAO;
+//    InforDAO inforDAO;
     ArrayList<giohang> list;
+//    ArrayList<infor> listInfor;
 
     GioHangAdapter gioHangAdapter;
 

@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DbHelper extends SQLiteOpenHelper {
     public DbHelper(Context context) {
-        super(context, "LapMarket", null, 33);
+        super(context, "LapMarket", null, 39);
 
     }
 
@@ -156,12 +156,22 @@ public class DbHelper extends SQLiteOpenHelper {
                 "trangthai INTEGER, id_ac_hd INTEGER REFERENCES ACCOUNT(id) )";
         db.execSQL(hoadon_sanpham);
 
+        String infor_nguoidung = "CREATE TABLE INFOR(id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "sdt text, namsinh TEXT, diachi TEXT)";
+        db.execSQL(infor_nguoidung);
 
-        String chitiet_hoadon = "CREATE TABLE CTHOADON (mahdct INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "sdt TEXT,  " +
-                "namsinh TEXT, " +
-                "diachi TEXT, " +
-                "hoten TEXT REFERENCES ACCOUNT(hoten))";
+
+        String chitiet_hoadon = "CREATE TABLE CTHOADON (sophieu INTEGER PRIMARY KEY AUTOINCREMENT," +
+//                "mahd INTEGER REFERENCES HOADON(mahd), " +
+//                "hoten TEXT REFERENCES HOADON(hoten), " +
+                "sdt TEXT REFERENCES INFOR(sdt),  " +
+                "namsinh TEXT REFERENCES INFOR(namsinh), " +
+                "diachi TEXT REFERENCES INFOR(diachi), " +
+                "tensp TEXT REFERENCES HOADON(tensp),  " +
+                "soluong INTEGER REFERENCES HOADON(soluong),  " +
+                "gia INTEGER REFERENCES HOADON(gia)," +
+//                "trangthai TEXT REFERENCES HOADON(trangthai)," +
+                "xacnhan INTEGER)";
         db.execSQL(chitiet_hoadon);
 
 
@@ -183,6 +193,7 @@ public class DbHelper extends SQLiteOpenHelper {
             db.execSQL("drop table if exists GIOHANG");
             db.execSQL("drop table if exists HOADON");
             db.execSQL("drop table if exists CTHOADON");
+            db.execSQL("drop table if exists INFOR");
             onCreate(db);
         }
     }
