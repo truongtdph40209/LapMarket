@@ -68,7 +68,7 @@ public class frg_lichsu extends Fragment {
             public boolean onQueryTextChange(String newText) {
                 list.clear();
                 for (hoadon hd : list1 ) {
-                    if (String.valueOf(hd.getMahd()).contains(newText) ){
+                    if (String.valueOf(hd.getMahd()).contains(newText) || String.valueOf(hd.getTensp()).contains(newText) ){
                         list.add(hd);
                     }
                     hoaDonAdapter.notifyDataSetChanged();
