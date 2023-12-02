@@ -34,6 +34,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHolder> {
 
@@ -101,7 +103,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                 builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        int viTriXoa = holder.getAdapterPosition();
+                        viTriXoa = holder.getAdapterPosition();
                         xoaSanPham(viTriXoa);
                         Toast.makeText(context, "Đã xóa sản phẩm này", Toast.LENGTH_SHORT).show();
 
@@ -206,22 +208,28 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                     builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-//                            int viTriXoa = holder.getAdapterPosition();
+                            viTriXoa = holder.getAdapterPosition();
                             xoaSanPham(viTriXoa);
                             Toast.makeText(context, "Đã xóa sản phẩm này", Toast.LENGTH_SHORT).show();
 
                         }
                     });
+
+
                     builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
                         }
                     });
+
+
                     AlertDialog dialog = builder.create(); //tạo hộp thoại
                     dialog.show();
 
                 }
+
+
 
                 int giaMoiT = soLuongMoiT * list.get(viTri).getGia();
                 gioHangDAO.updateQuantity(list.get(viTri).getID(), soLuongMoiT);
@@ -254,6 +262,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
         updateTotal();
 
     }
+
 
 
     private void updateTotal() {
@@ -317,11 +326,16 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                     account ac = AccountSingle.getInstance().getAccount();
 
                     gioHangDAO.addHoaDon(giohang, ac.getHoten(), ngayHienTai() );
+
+
+
+
                     Toast.makeText(context, "Đã mua hàng thành công", Toast.LENGTH_SHORT).show();
-                    xoaSanPham(viTriXoa);
+
 
 
                 }
+
             }
         });
 
