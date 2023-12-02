@@ -285,13 +285,13 @@ public class SanPhamDAO {
         ArrayList<giohang> list = new GioHangDAO(context).listGH();
 
         for (int i = 0; i < list.size(); i++){
-            if (list.get(i).getMasp() == sanPham.getMasp()){
+            if (list.get(i).getMasp() == sanPham.getMasp() && list.get(i).getTensp().equals(sanPham.getTensp())){
                 values.put("TENSP", sanPham.getTensp());
                 values.put("GIA", sanPham.getGia());
                 values.put("SOLUONG", list.get(i).getSOLUONG() + 1);
                 values.put("id_ac", AccountSingle.getInstance().getAccount().getId());
                 values.put("masp", sanPham.getMasp());
-                sqLiteDatabase.update("GIOHANG", values, "masp =?",  new String[]{String.valueOf(list.get(i).getMasp())});
+                sqLiteDatabase.update("GIOHANG", values, "id =?",  new String[]{list.get(i).getTensp()});
                 sqLiteDatabase.close();
                 return true;
             }
