@@ -291,7 +291,7 @@ public class SanPhamDAO {
                 values.put("SOLUONG", list.get(i).getSOLUONG() + 1);
                 values.put("id_ac", AccountSingle.getInstance().getAccount().getId());
                 values.put("masp", sanPham.getMasp());
-                sqLiteDatabase.update("GIOHANG", values, "id =?",  new String[]{list.get(i).getTensp()});
+                sqLiteDatabase.update("GIOHANG", values, "tensp =?",  new String[]{list.get(i).getTensp()});
                 sqLiteDatabase.close();
                 return true;
             }

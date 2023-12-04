@@ -92,7 +92,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
 
         holder.txt_giaTiengh.setText(Amount.moneyFormat(giohang.getGia() * giohang.getSOLUONG()));
 
-        viTriXoa = holder.getAdapterPosition();
+//        viTriXoa = holder.getAdapterPosition();
 
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -105,8 +105,11 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                 builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        viTriXoa = holder.getAdapterPosition();
-                        xoaSanPham(viTriXoa);
+//                        viTriXoa = holder.getAdapterPosition();
+//                        xoaSanPham(viTriXoa);
+
+                        xoaSanPhamUseOBJ(giohang);
+
                         Toast.makeText(context, "Đã xóa sản phẩm này", Toast.LENGTH_SHORT).show();
 
                     }
@@ -138,7 +141,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 int viTri = holder.getAdapterPosition();
-                giamSoLuong(holder, viTri);
+                giamSoLuong(holder, viTri, giohang);
             }
         });
 
@@ -188,7 +191,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
 
 
 
-    private void giamSoLuong(ViewHolder holder, int viTri) {
+    private void giamSoLuong(ViewHolder holder, int viTri, giohang giohang) {
         int magh = list.get(viTri).getID();
         int soLuongHienTai = list.get(viTri).getSOLUONG();
         int soLuongMoiT = soLuongHienTai - 1;
@@ -210,8 +213,11 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                     builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            viTriXoa = holder.getAdapterPosition();
-                            xoaSanPham(viTriXoa);
+//                            viTriXoa = holder.getAdapterPosition();
+//                            xoaSanPham(viTriXoa);
+
+                            xoaSanPhamUseOBJ(giohang);
+
                             Toast.makeText(context, "Đã xóa sản phẩm này", Toast.LENGTH_SHORT).show();
 
                         }
@@ -251,16 +257,26 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
 
 
 
-    private void xoaSanPham(int viTri) {
+//    private void xoaSanPham(int viTri) {
+//        if (gioHangDAO != null) {
+//            int magh = list.get(viTri).getID();
+//            gioHangDAO.deleteFromCart(magh);
+//        }
+//        list.remove(viTri);
+//
+//        notifyItemRemoved(viTri);
+//        notifyItemRangeChanged(viTri, getItemCount());
+//
+//        updateTotal();
+//
+//    }
+
+    private void xoaSanPhamUseOBJ(giohang giohang) {
         if (gioHangDAO != null) {
-            int magh = list.get(viTri).getID();
-            gioHangDAO.deleteFromCart(magh);
+            gioHangDAO.deleteFromCartUseOBJ(giohang);
         }
-        list.remove(viTri);
-
-        notifyItemRemoved(viTri);
-        notifyItemRangeChanged(viTri, getItemCount());
-
+        list.remove(giohang);
+        notifyDataSetChanged();
         updateTotal();
 
     }
@@ -326,7 +342,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                     Toast.makeText(context, "Số điện thoại không hợp lệ", Toast.LENGTH_SHORT).show();
                 }
 
-                else if (sdt.isEmpty() || namsinh.isEmpty() || diachi.isEmpty()){
+                 else if (sdt.isEmpty() || namsinh.isEmpty() || diachi.isEmpty()){
                     Toast.makeText(context, "Không được để trống dữ liệu", Toast.LENGTH_SHORT).show();
                 }else {
 
@@ -334,8 +350,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
 
                     gioHangDAO.addHoaDon(giohang, ac.getHoten(), ngayHienTai() );
 
-
-
+                    xoaSanPhamUseOBJ(giohang);
 
                     Toast.makeText(context, "Đã mua hàng thành công", Toast.LENGTH_SHORT).show();
 
