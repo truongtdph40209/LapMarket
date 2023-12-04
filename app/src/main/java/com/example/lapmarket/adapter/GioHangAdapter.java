@@ -36,6 +36,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHolder> {
 
@@ -319,7 +321,12 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
                 String namsinh = edt_namsinh.getText().toString();
                 String diachi = edt_diachi.getText().toString();
 
-                if (sdt.isEmpty() || namsinh.isEmpty() || diachi.isEmpty()){
+
+                if (!isPhoneNumberValid(sdt)){
+                    Toast.makeText(context, "Số điện thoại không hợp lệ", Toast.LENGTH_SHORT).show();
+                }
+
+                else if (sdt.isEmpty() || namsinh.isEmpty() || diachi.isEmpty()){
                     Toast.makeText(context, "Không được để trống dữ liệu", Toast.LENGTH_SHORT).show();
                 }else {
 
@@ -360,5 +367,16 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String formattedDate = currentDate.format(formatter);
         return formattedDate;
+    }
+
+
+    private boolean isPhoneNumberValid(String phoneNumber) {
+        // Biểu thức chính quy cho số điện thoại (đối với một số trường hợp, bạn có thể cần điều chỉnh)
+        String regex = "^(\\+\\d{1,3}[- ]?)?\\d{10,}$";
+
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(phoneNumber);
+
+        return matcher.matches();
     }
 }
