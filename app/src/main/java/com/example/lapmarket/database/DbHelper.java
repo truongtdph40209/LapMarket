@@ -13,7 +13,12 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String account = "CREATE TABLE ACCOUNT(id INTEGER PRIMARY KEY AUTOINCREMENT, hoten TEXT, matkhau TEXT,email TEXT, loaitaikhoan TEXT)";
+
+        String account = "CREATE TABLE ACCOUNT(id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                " hoten TEXT, " +
+                "matkhau TEXT," +
+                "email TEXT," +
+                "loaitaikhoan TEXT)";
         db.execSQL(account);
 
         db.execSQL("INSERT INTO ACCOUNT VALUES (1,'admin','admin','anhlabachu2004@gmail.com', 'admin')," +
@@ -22,7 +27,23 @@ public class DbHelper extends SQLiteOpenHelper {
                 "(4,'user2','user2','user2', 'user')");
 
 
-        String sanpham_home = "CREATE TABLE SANPHAM(masp INTEGER PRIMARY KEY AUTOINCREMENT,tensp TEXT , gia INTEGER, thuonghieu TEXT, xuatxu TEXT, kichthuocmanhinh TEXT, mausac TEXT, trongluong TEXT, chatlieu TEXT, cpu TEXT, ocung TEXT, ram TEXT, rom TEXT, card TEXT, tocdocpu TEXT, congusb TEXT, vantay TEXT  )";
+        String sanpham_home = "CREATE TABLE SANPHAM(masp INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "tensp TEXT ," +
+                "gia INTEGER, " +
+                "thuonghieu TEXT, " +
+                "xuatxu TEXT, " +
+                "kichthuocmanhinh TEXT, " +
+                "mausac TEXT, " +
+                "trongluong TEXT, " +
+                "chatlieu TEXT, " +
+                "cpu TEXT, " +
+                "ocung TEXT, " +
+                "ram TEXT, " +
+                "rom TEXT, " +
+                "card TEXT, " +
+                "tocdocpu TEXT, " +
+                "congusb TEXT, " +
+                "vantay TEXT  )";
         db.execSQL(sanpham_home);
 
         db.execSQL("INSERT INTO SANPHAM VALUES (1,'Acer Nitro 5',15900000, 'Acer', 'Trung Quốc', '15.6 inch', 'Đen', '2.5 kg', 'Nhựa', 'Intel i5 11400H', 'SSD', '8GB', '256GB', 'RTX 3050', '2.7GHz', '3 cổng', 'Không')," +
@@ -34,7 +55,23 @@ public class DbHelper extends SQLiteOpenHelper {
                 "(7,'Macbook Air 2022',25450000, 'Apple', 'Việt Nam', '15.6 inch', 'Đen', '2.5 kg', 'Nhựa', 'Intel i5 11400H', 'SSD', '8GB', '256GB', 'RTX 3050', '2.7GHz', '3 cổng', 'Không'),"  +
                 "(8,'Macbook Pro 16',57500000, 'Apple', 'Thái Lan', '15.6 inch', 'Đen', '2.5 kg', 'Nhựa', 'Intel i5 11400H', 'SSD', '12GB', '256GB', 'RTX 3050', '2.7GHz', '3 cổng', 'Có')" );
 
-        String sanpham_gaming = "CREATE TABLE GAMING(masp INTEGER PRIMARY KEY AUTOINCREMENT,tensp TEXT , gia INTEGER, thuonghieu TEXT, xuatxu TEXT, kichthuocmanhinh TEXT, mausac TEXT, trongluong TEXT, chatlieu TEXT, cpu TEXT, ocung TEXT, ram TEXT, rom TEXT, card TEXT, tocdocpu TEXT, congusb TEXT, vantay TEXT)";
+        String sanpham_gaming = "CREATE TABLE GAMING(masp INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "tensp TEXT , " +
+                "gia INTEGER, " +
+                "thuonghieu TEXT, " +
+                "xuatxu TEXT, " +
+                "kichthuocmanhinh TEXT, " +
+                "mausac TEXT, " +
+                "trongluong TEXT, " +
+                "chatlieu TEXT, " +
+                "cpu TEXT, " +
+                "ocung TEXT, " +
+                "ram TEXT, " +
+                "rom TEXT, " +
+                "card TEXT, " +
+                "tocdocpu TEXT, " +
+                "congusb TEXT, " +
+                "vantay TEXT)";
         db.execSQL(sanpham_gaming);
 
         db.execSQL("INSERT INTO GAMING VALUES (1,'Acer Nitro Gaming',15900000, 'Acer', 'Trung Quốc', '15.6 inch', 'Đen', '2.5 kg', 'Nhựa', 'Intel i5 11400H', 'SSD', '8GB', '256GB', 'RTX 3050', '2.7GHz', '3 cổng', 'Không')," +
@@ -47,7 +84,23 @@ public class DbHelper extends SQLiteOpenHelper {
                 "(8,'Lenovo Thinkpad Gaming',17900000, 'Lenovo', 'Trung Quốc', '15.6 inch', 'Đen', '2.3 kg', 'Nhựa', 'Intel i7 12500H', 'SSD', '16GB', '512GB', 'RTX 3050', '3.2GHz', '3 cổng', 'Không')");
 
 
-        String sanpham_vanphong = "CREATE TABLE VANPHONG(masp INTEGER PRIMARY KEY AUTOINCREMENT,tensp TEXT , gia INTEGER, thuonghieu TEXT, xuatxu TEXT, kichthuocmanhinh TEXT, mausac TEXT, trongluong TEXT, chatlieu TEXT, cpu TEXT, ocung TEXT, ram TEXT, rom TEXT, card TEXT, tocdocpu TEXT, congusb TEXT, vantay TEXT)";
+        String sanpham_vanphong = "CREATE TABLE VANPHONG(masp INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "tensp TEXT , " +
+                "gia INTEGER, " +
+                "thuonghieu TEXT, " +
+                "xuatxu TEXT, " +
+                "kichthuocmanhinh TEXT, " +
+                "mausac TEXT, " +
+                "trongluong TEXT, " +
+                "chatlieu TEXT, " +
+                "cpu TEXT, " +
+                "ocung TEXT, " +
+                "ram TEXT, " +
+                "rom TEXT, " +
+                "card TEXT, " +
+                "tocdocpu TEXT, " +
+                "congusb TEXT, " +
+                "vantay TEXT)";
         db.execSQL(sanpham_vanphong);
 
         db.execSQL("INSERT INTO VANPHONG VALUES (1,'HP Pavilion 15',16800000, 'HP', 'Việt Nam', '15.6 inch', 'Đen', '1.3 kg', 'Nhựa', 'Intel i7 12500H', 'SSD', '16GB', '512GB', 'RTX 3050', '3.2GHz', '3 cổng', 'Có')," +
@@ -61,7 +114,15 @@ public class DbHelper extends SQLiteOpenHelper {
                 "(9,'Macbook Pro 16',57000000, 'Apple', 'Thái Lan', '12.6 inch', 'Đen', '2.5 kg', 'Nhựa', 'Appple m2', 'HDD', '12GB', '256GB', 'RTX 1050', '4.7GHz', '3 cổng', 'Có')");
 
 
-        String sanpham_phukien = "CREATE TABLE PHUKIEN (mapk INTEGER PRIMARY KEY AUTOINCREMENT,tenpk TEXT , gia INTEGER, dungluong TEXT, loairam TEXT, hotro TEXT, voltage TEXT, busram TEXT, hangsanxuat TEXT)";
+        String sanpham_phukien = "CREATE TABLE PHUKIEN (mapk INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "tenpk TEXT , " +
+                "gia INTEGER, " +
+                "dungluong TEXT, " +
+                "loairam TEXT, " +
+                "hotro TEXT, " +
+                "voltage TEXT, " +
+                "busram TEXT, " +
+                "hangsanxuat TEXT)";
         db.execSQL(sanpham_phukien);
 
         db.execSQL("INSERT INTO PHUKIEN VALUES (1,'RAM Laptop Kingston',570000, '8GB', 'DDR4', 'SO-DIMM(Laptop)', '1.2V', '3200MHz', 'Kingston')," +
@@ -74,9 +135,12 @@ public class DbHelper extends SQLiteOpenHelper {
                 " (8,'RAM Laptop Kingston',1490000, '16GB', 'DDR5', 'SO-DIMM(Laptop)', '1.1V', '3200MHz','Kingston')");
 
 
-        String giohang = "CREATE TABLE GIOHANG(ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+        String giohang = "CREATE TABLE GIOHANG(id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "tensp TEXT REFERENCES SANPHAM(tensp), " +
-                "gia INTEGER REFERENCES SANPHAM(gia),  SOLUONG INTEGER, id_ac INTEGER REFERENCES ACCOUNT(id), masp INTEGER REFERENCES SANPHAM(masp))";
+                "gia INTEGER REFERENCES SANPHAM(gia),  " +
+                "soluong INTEGER, " +
+                "id_ac INTEGER REFERENCES ACCOUNT(id), " +
+                "masp INTEGER REFERENCES SANPHAM(masp))";
         db.execSQL(giohang);
 
 
@@ -86,7 +150,7 @@ public class DbHelper extends SQLiteOpenHelper {
         String hoadon_sanpham = "CREATE TABLE HOADON (mahd INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "hoten TEXT REFERENCES ACCOUNT(hoten), " +
                 "tensp TEXT REFERENCES GIOHANG(tensp),  " +
-                "SOLUONG INTEGER REFERENCES GIOHANG(SOLUONG),  " +
+                "soluong INTEGER REFERENCES GIOHANG(soluong),  " +
                 "gia INTEGER REFERENCES GIOHANG(gia)," +
                 "ngaymua TEXT," +
                 "trangthai INTEGER, id_ac_hd INTEGER REFERENCES ACCOUNT(id) )";
@@ -94,8 +158,10 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
         String chitiet_hoadon = "CREATE TABLE CTHOADON (mahdct INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "masp INTEGER REFERENCES SANPHAM(masp),  " +
-                "ID INTEGER REFERENCES GIOHANG(ID))";
+                "sdt TEXT,  " +
+                "namsinh TEXT, " +
+                "diachi TEXT, " +
+                "hoten TEXT REFERENCES ACCOUNT(hoten))";
         db.execSQL(chitiet_hoadon);
 
 

@@ -18,17 +18,8 @@ public class sanpham {
     private  String tocdocpu;
     private  String congusb;
     private  String vantay;
-//    private  int id_ac;
-
-
-
-
-
     public sanpham() {
     }
-
-
-
     public sanpham(int masp,String tensp, int gia, String thuonghieu, String xuatxu, String kichthuocmanhinh, String mausac, String trongluong, String chatlieu, String cpu, String ocung, String ram, String rom, String card, String tocdocpu, String congusb, String vantay) {
         this.masp = masp;
         this.tensp = tensp;

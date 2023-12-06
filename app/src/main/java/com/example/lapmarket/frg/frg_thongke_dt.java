@@ -45,11 +45,7 @@ public class frg_thongke_dt extends Fragment {
         TextView edt_ngayKetthuc = view.findViewById(R.id.edt_ngayKetthuc);
         Button btn_thongKe = view.findViewById(R.id.btn_thongKe);
         TextView txt_ketquaThongke = view.findViewById(R.id.txt_ketQuaThongKe);
-
         Calendar calendar = Calendar.getInstance();
-
-
-
         edt_ngayBatdau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,23 +60,19 @@ public class frg_thongke_dt extends Fragment {
                                 }else {
                                     ngay = String.valueOf(i2);
                                 }
-
                                 if ((i1 + 1) < 10){
                                     thang = "0" + (i1 + 1);
                                 }else {
                                     thang = String.valueOf(i1 + 1);
                                 }
-
                                 edt_ngayBatdau.setText(i + "/" + thang + "/" + ngay);
                             }
                         },
                         calendar.get(Calendar.YEAR),
                         calendar.get(Calendar.MONTH),
                         calendar.get(Calendar.DAY_OF_MONTH)
-
                 );
                 datePickerDialog.show();
-
             }
         });
 
@@ -100,7 +92,6 @@ public class frg_thongke_dt extends Fragment {
                                 }else {
                                     ngay = String.valueOf(i2);
                                 }
-
                                 if ((i1 + 1) < 10){
                                     thang = "0" + (i1 + 1);
                                 }else {
@@ -113,7 +104,6 @@ public class frg_thongke_dt extends Fragment {
                         calendar.get(Calendar.YEAR),
                         calendar.get(Calendar.MONTH),
                         calendar.get(Calendar.DAY_OF_MONTH)
-
                 );
                 datePickerDialog.show();
             }

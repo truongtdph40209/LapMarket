@@ -1,22 +1,22 @@
 package com.example.lapmarket.model;
 
 public class giohang {
-    private int ID;
+    private int id;
     private String tensp;
     private int gia;
-    private int SOLUONG;
+    private int soluong;
     private int masp;
 
-    public giohang(int SOLUONG) {
-        this.SOLUONG = SOLUONG;
+    public giohang(int soluong) {
+        this.soluong = soluong;
     }
 
 
-    public giohang(int ID, String tensp, int gia, int SOLUONG, int masp) {
-        this.ID = ID;
+    public giohang(int id, String tensp, int gia, int soluong, int masp) {
+        this.id = id;
         this.tensp = tensp;
         this.gia = gia;
-        this.SOLUONG = SOLUONG;
+        this.soluong = soluong;
         this.masp = masp;
     }
 
@@ -28,26 +28,26 @@ public class giohang {
         this.masp = masp;
     }
 
-    public int getSOLUONG() {
-        return SOLUONG;
+    public int getSoluong() {
+        return soluong;
     }
 
-    public void setSOLUONG(int SOLUONG) {
-        this.SOLUONG = SOLUONG ;
+    public void setSoluong(int soluong) {
+        this.soluong = soluong ;
     }
 
-    public giohang(int ID, String tensp, int gia) {
-        this.ID = ID;
+    public giohang(int id, String tensp, int gia) {
+        this.id = id;
         this.tensp = tensp;
         this.gia = gia;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int ID) {
+        this.id = id;
     }
 
     public String getTensp() {

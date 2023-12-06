@@ -39,9 +39,11 @@ public class AccountDAO {
         if (cursor.getCount() != 0) {
             cursor.moveToFirst();
             do {
-
-                list.add(new account(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4)));
-
+                list.add(new account(cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4)));
             } while (cursor.moveToNext());
         }
         return list;
@@ -49,21 +51,19 @@ public class AccountDAO {
 
     public boolean checkdn(String email, String matkhau) {
         SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
-
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM ACCOUNT WHERE email = ? AND matkhau = ?", new String[]{email, matkhau});
-
-
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM ACCOUNT WHERE email = ? AND matkhau = ?",
+                new String[]{email, matkhau});
         if (cursor.getCount() != 0) {
-
             cursor.moveToFirst();
             SharedPreferences.Editor editor = sharedPreferences.edit();
-
-
             editor.putString("email", cursor.getString(3));
             editor.putString("loaitaikhoan", cursor.getString(4));
             editor.putString("hoten", cursor.getString(1));
             editor.commit();
-            AccountSingle.getInstance().setAccount(new account(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3),
+            AccountSingle.getInstance().setAccount(new account(cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
                     cursor.getString(4)));
             return true;
         } else {
@@ -74,39 +74,27 @@ public class AccountDAO {
     //singup
     public boolean signup(String hoten, String matkhau, String email) {
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
-
-
-        // Kiểm tra xem địa chỉ email đã tồn tại trong cơ sở dữ liệu hay chưa
-        Cursor cursor = sqLiteDatabase.query("ACCOUNT", null, "email = ?", new String[]{email}, null, null, null);
-
-        // Nếu có ít nhất một hàng trong kết quả, tức là địa chỉ email đã tồn tại
+        Cursor cursor = sqLiteDatabase.query("ACCOUNT", null, "email = ?",
+                new String[]{email}, null, null, null);
         if (cursor != null && cursor.getCount() > 0) {
-            cursor.close(); // Đóng con trỏ
-            sqLiteDatabase.close(); // Đóng cơ sở dữ liệu
-            return false; // Trả về false để chỉ ra rằng đăng ký không thành công
+            cursor.close();
+            sqLiteDatabase.close();
+            return false;
         }
-
-        // Nếu đến đây, có thể đăng ký tài khoản mới
         ContentValues contentValues = new ContentValues();
         contentValues.put("hoten", hoten);
         contentValues.put("matkhau", matkhau);
         contentValues.put("email", email);
-
         try {
             long check = sqLiteDatabase.insertOrThrow("ACCOUNT", null, contentValues);
-
             dbHelper.resetLocalData();
-
             return check != -1;
         } catch (SQLiteConstraintException e) {
-            // Xử lý vi phạm ràng buộc (có thể xảy ra nếu có ai đó thêm tài khoản trong khi bạn kiểm tra)
             return false;
         } finally {
-            cursor.close(); // Đóng con trỏ
-            sqLiteDatabase.close(); // Đóng cơ sở dữ liệu
+            cursor.close();
+            sqLiteDatabase.close();
         }
-
-
     }
 
     //quenmk
@@ -116,7 +104,6 @@ public class AccountDAO {
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
             return cursor.getString(0);
-
         }
         return "";
     }
@@ -125,7 +112,8 @@ public class AccountDAO {
     // doimk
     public boolean capNhatMatKhau(String email, String mathauCu, String matkhauMoi) {
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM ACCOUNT WHERE email = ? AND matkhau = ? ", new String[]{email, mathauCu});
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM ACCOUNT WHERE email = ? AND matkhau = ? ",
+                new String[]{email, mathauCu});
         if (cursor.getCount() > 0) {
             ContentValues contentValues = new ContentValues();
             contentValues.put("matkhau", matkhauMoi);
