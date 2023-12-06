@@ -52,6 +52,44 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
         holder.txt_gia_hd.setText("Giá: " + Amount.moneyFormat( list.get(position).getGia() * list.get(position).getSOLUONG()));
         holder.txt_ngaymua_hd.setText("Ngày mua: " + list.get(position).getNgaymua());
 
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context); //tạo dối tượng
+                builder.setIcon(R.drawable.canhbao); //set icon
+                builder.setMessage("Bạn chắc chắn muốn hủy đơn");
+
+
+                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        //
+                        boolean check = hoaDonDAO.deleteHD(list.get(holder.getAdapterPosition()).getMahd());
+                        if (check){
+                            loadData();
+
+                            Toast.makeText(context, "Hủy đơn thành công", Toast.LENGTH_SHORT).show();
+
+                        }else {
+                            Toast.makeText(context, "Hủy đơn thất bại", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                android.app.AlertDialog dialog = builder.create(); //tạo hộp thoại
+                dialog.show();
+
+
+
+            }
+        });
+
         String trangThai;
         if (list.get(position).getTrangthai() == 1){
             trangThai = "Đã thanh toán";
@@ -136,6 +174,12 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
         dialog.show();
 
 
+    }
+
+    private void loadData(){
+        list.clear();
+        list = hoaDonDAO.selectHoaDon();
+        notifyDataSetChanged();
     }
 }
 
