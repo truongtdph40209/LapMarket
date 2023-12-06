@@ -191,15 +191,11 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
 
 
 
-<<<<<<< HEAD
+
     private void giamSoLuong(ViewHolder holder, int viTri, giohang giohang) {
         int magh = list.get(viTri).getID();
         int soLuongHienTai = list.get(viTri).getSOLUONG();
-=======
-    private void giamSoLuong(ViewHolder holder, int viTri) {
-        int magh = list.get(viTri).getId();
-        int soLuongHienTai = list.get(viTri).getSoluong();
->>>>>>> 350eb1a94142266b4a858c47e846ee2a7c95fe0c
+
         int soLuongMoiT = soLuongHienTai - 1;
 
 
@@ -279,12 +275,9 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
 
     private void xoaSanPhamUseOBJ(giohang giohang) {
         if (gioHangDAO != null) {
-<<<<<<< HEAD
+
             gioHangDAO.deleteFromCartUseOBJ(giohang);
-=======
-            int magh = list.get(viTri).getId();
-            gioHangDAO.deleteFromCart(magh);
->>>>>>> 350eb1a94142266b4a858c47e846ee2a7c95fe0c
+
         }
         list.remove(giohang);
         notifyDataSetChanged();
