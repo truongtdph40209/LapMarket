@@ -57,6 +57,16 @@ public class HoaDonDAO {
     }
 
 
+    public boolean deleteHD(int mahd){
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        long row = sqLiteDatabase.delete("HOADON","mahd=?",new String[]{String.valueOf(mahd)});
+        if (row <= 0){
+            return false;
+        }
+        return true;
+    }
+
+
 
 
 }
