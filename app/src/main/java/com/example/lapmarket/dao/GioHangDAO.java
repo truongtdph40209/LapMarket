@@ -48,19 +48,13 @@ public class GioHangDAO {
         sqLiteDatabase.close();
     }
 
-<<<<<<< HEAD
+
 //    public void deleteFromCart(int magh) {
 //        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
 //        sqLiteDatabase.delete("GIOHANG", "ID=?", new String[]{String.valueOf(magh)});
 //        sqLiteDatabase.close();
 //    }
-=======
-    public void deleteFromCart(int magh) {
-        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
-        sqLiteDatabase.delete("GIOHANG", "id=?", new String[]{String.valueOf(magh)});
-        sqLiteDatabase.close();
-    }
->>>>>>> 350eb1a94142266b4a858c47e846ee2a7c95fe0c
+
 
     public void updateQuantity(int ID, int newQuantity) {
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
@@ -74,9 +68,9 @@ public class GioHangDAO {
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
 
 
-            int magh = giohang.getID();
+            int magh = giohang.getId();
             if (magh >= 0) {
-                sqLiteDatabase.delete("GIOHANG", "ID=?", new String[]{String.valueOf(magh)});
+                sqLiteDatabase.delete("GIOHANG", "id=?", new String[]{String.valueOf(magh)});
             }
 
 //

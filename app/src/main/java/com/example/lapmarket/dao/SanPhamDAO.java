@@ -312,24 +312,15 @@ public class SanPhamDAO {
         ContentValues values = new ContentValues();
         ArrayList<giohang> list = new GioHangDAO(context).listGH();
         for (int i = 0; i < list.size(); i++){
-<<<<<<< HEAD
+
             if (list.get(i).getMasp() == sanPham.getMasp() && list.get(i).getTensp().equals(sanPham.getTensp())){
                 values.put("TENSP", sanPham.getTensp());
                 values.put("GIA", sanPham.getGia());
-                values.put("SOLUONG", list.get(i).getSOLUONG() + 1);
+                values.put("SOLUONG", list.get(i).getSoluong() + 1);
                 values.put("id_ac", AccountSingle.getInstance().getAccount().getId());
                 values.put("masp", sanPham.getMasp());
                 sqLiteDatabase.update("GIOHANG", values, "tensp =?",  new String[]{list.get(i).getTensp()});
-=======
-            if (list.get(i).getMasp() == sanPham.getMasp()){
-                values.put("tensp", sanPham.getTensp());
-                values.put("gia", sanPham.getGia());
-                values.put("soluong", list.get(i).getSoluong() + 1);
-                values.put("id_ac", AccountSingle.getInstance().getAccount().getId());
-                values.put("masp", sanPham.getMasp());
-                sqLiteDatabase.update("GIOHANG", values, "masp =?",
-                        new String[]{String.valueOf(list.get(i).getMasp())});
->>>>>>> 350eb1a94142266b4a858c47e846ee2a7c95fe0c
+
                 sqLiteDatabase.close();
                 return true;
             }

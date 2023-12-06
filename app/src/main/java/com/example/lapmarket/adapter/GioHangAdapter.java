@@ -193,8 +193,8 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
 
 
     private void giamSoLuong(ViewHolder holder, int viTri, giohang giohang) {
-        int magh = list.get(viTri).getID();
-        int soLuongHienTai = list.get(viTri).getSOLUONG();
+        int magh = list.get(viTri).getId();
+        int soLuongHienTai = list.get(viTri).getSoluong();
 
         int soLuongMoiT = soLuongHienTai - 1;
 
