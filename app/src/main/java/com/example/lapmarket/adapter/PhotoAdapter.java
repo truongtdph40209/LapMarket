@@ -21,6 +21,8 @@ public class PhotoAdapter extends PagerAdapter {
     private Context context;
     private List<photo> mListPhoto;
     private ViewPager viewPager;
+    private Handler handler = new Handler();
+    private Runnable autoScrollRunnable;
 
 
     public PhotoAdapter(Context context, List<photo> mListPhoto, ViewPager viewPager) {
@@ -44,8 +46,8 @@ public class PhotoAdapter extends PagerAdapter {
         container.addView(view);
 
 
-
-
+//        startAutoScroll();
+//        stopAutoScroll();
 
         return view;
     }
@@ -67,5 +69,25 @@ public class PhotoAdapter extends PagerAdapter {
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.removeView((View)object) ;
+    }
+
+    public void startAutoScroll() {
+        autoScrollRunnable = new Runnable() {
+            @Override
+            public void run() {
+                int currentItem = viewPager.getCurrentItem();
+
+                int nextItem = (currentItem + 1) % getCount();
+
+                viewPager.setCurrentItem(nextItem, true);
+                handler.postDelayed(this, 4000); // Tự động cuộn sau mỗi 3 giây
+            }
+        };
+
+        handler.postDelayed(autoScrollRunnable, 4000); // Bắt đầu tự động cuộn sau khi khởi tạo
+    }
+
+    public void stopAutoScroll() {
+        handler.removeCallbacks(autoScrollRunnable);
     }
 }
