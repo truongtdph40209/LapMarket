@@ -4,17 +4,17 @@ public class hoadon {
     private int mahd;
     private String hoten;
     private String tensp;
-    private int SOLUONG;
+    private int soluong;
     private int gia;
     private String ngaymua;
     private int trangthai;
 
     public hoadon() {
-    }    public hoadon(int mahd, String hoten, String tensp,int SOLUONG, int gia, String ngaymua, int trangthai) {
+    }    public hoadon(int mahd, String hoten, String tensp,int soluong, int gia, String ngaymua, int trangthai) {
         this.mahd = mahd;
         this.hoten = hoten;
         this.tensp = tensp;
-        this.SOLUONG = SOLUONG;
+        this.soluong = soluong;
         this.gia = gia;
         this.ngaymua = ngaymua;
         this.trangthai = trangthai;
@@ -47,12 +47,12 @@ public class hoadon {
         this.tensp = tensp;
     }
 
-    public int getSOLUONG() {
-        return SOLUONG;
+    public int getSoluong() {
+        return soluong;
     }
 
-    public void setSOLUONG(int SOLUONG) {
-        this.SOLUONG = SOLUONG;
+    public void setSoluong(int soluong) {
+        this.soluong = soluong;
     }
 
     public int getGia() {

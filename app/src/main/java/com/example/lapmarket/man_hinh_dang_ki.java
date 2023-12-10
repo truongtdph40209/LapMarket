@@ -50,12 +50,12 @@ public class man_hinh_dang_ki extends AppCompatActivity {
         btn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String hoten = edt_hoten.getText().toString();
-                String pass = edt_pass.getText().toString();
-                String repass = edt_repass.getText().toString();
+                String hoten = edt_hoten.getText().toString().trim();
+                String pass = edt_pass.getText().toString().trim();
+                String repass = edt_repass.getText().toString().trim();
 
 
-                boolean email = CheckEmail.validateEmail(edt_email.getText().toString());
+                boolean email = CheckEmail.validateEmail(edt_email.getText().toString().trim());
 
 
                 if (!validate_matkhau(pass)) {

@@ -50,7 +50,7 @@ public class SanphamAdapter extends RecyclerView.Adapter<SanphamAdapter.ViewHold
         holder.txt_tensp.setText(list.get(position).getTensp());
         holder.txt_gia.setText("Giá: " + Amount.moneyFormat( list.get(position).getGia()));
 
-        holder.txt_xemthem.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showdialogXemThem(list.get(holder.getAdapterPosition()));

@@ -62,7 +62,7 @@ public class man_hinh_dang_nhap extends AppCompatActivity {
         btn_Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String user = edt_user.getText().toString();
+                String user = edt_user.getText().toString().trim();
                 String pass = edt_pass.getText().toString();
 
                 if (accountDAO.checkdn(user, pass)){

@@ -337,9 +337,9 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
         builder.setNegativeButton("Mua Ngay", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                String sdt = edt_sdt.getText().toString();
-                String namsinh = edt_namsinh.getText().toString();
-                String diachi = edt_diachi.getText().toString();
+                String sdt = edt_sdt.getText().toString().trim();
+                String namsinh = edt_namsinh.getText().toString().trim();
+                String diachi = edt_diachi.getText().toString().trim();
 
 
                 if (!isPhoneNumberValid(sdt)){

@@ -48,8 +48,8 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
         holder.txt_mahd_hd.setText("Mã hóa đơn: " + list.get(position).getMahd());
         holder.txt_hoten_hd.setText("Họ tên: " + list.get(position).getHoten());
         holder.txt_tensp_hd.setText("Tên sản phẩm: " + list.get(position).getTensp());
-        holder.txt_soluong_hd.setText("Số lượng: " + list.get(position).getSOLUONG());
-        holder.txt_gia_hd.setText("Giá: " + Amount.moneyFormat( list.get(position).getGia() * list.get(position).getSOLUONG()));
+        holder.txt_soluong_hd.setText("Số lượng: " + list.get(position).getSoluong());
+        holder.txt_gia_hd.setText("Giá: " + Amount.moneyFormat( list.get(position).getGia() * list.get(position).getSoluong()));
         holder.txt_ngaymua_hd.setText("Ngày mua: " + list.get(position).getNgaymua());
 
 

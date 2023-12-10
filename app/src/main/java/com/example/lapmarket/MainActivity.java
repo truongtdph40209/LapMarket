@@ -247,9 +247,9 @@ public class MainActivity extends AppCompatActivity {
         builder.setNegativeButton("Xác nhận", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String mkCu = edt_mkCu.getText().toString();
-                String mkMoi = edt_mkMoi.getText().toString();
-                String nhaplai_mkMoi = edt_nhapLai_mkMoi.getText().toString();
+                String mkCu = edt_mkCu.getText().toString().trim();
+                String mkMoi = edt_mkMoi.getText().toString().trim();
+                String nhaplai_mkMoi = edt_nhapLai_mkMoi.getText().toString().trim();
 
                 if (mkCu.isEmpty() ||  nhaplai_mkMoi.isEmpty()){
                     Toast.makeText(MainActivity.this, "Nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
