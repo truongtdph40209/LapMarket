@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,10 +29,15 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import me.relex.circleindicator.CircleIndicator;
 
 
 public class frg_trangchu extends Fragment {
+
+    private Handler handler;
+    private Runnable runnable;
+
     private ViewPager viewPager;
     private CircleIndicator circleIndicator;
     private PhotoAdapter photoAdapter;
@@ -76,6 +82,10 @@ public class frg_trangchu extends Fragment {
         circleIndicator.setViewPager(viewPager);
         photoAdapter.registerDataSetObserver(circleIndicator.getDataSetObserver());
 
+
+        //
+        slideshow();
+
         loadData();
 
         sanphamAdapter = new SanphamAdapter(getContext(), list, sanPhamDAO, new SanphamAdapter.OnAddToCartClickListener() {
@@ -108,6 +118,9 @@ public class frg_trangchu extends Fragment {
             }
         });
 
+
+
+
         return view;
     }
 
@@ -132,6 +145,22 @@ public class frg_trangchu extends Fragment {
         return list;
     }
 
+    public void slideshow(){
+        handler = new Handler();
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                int currentItem = viewPager.getCurrentItem();
+                int nextItem = (currentItem + 1) % photoAdapter.getCount();
+                viewPager.setCurrentItem(nextItem, true);
+                handler.postDelayed(this, 3000);
+            }
+        };
+        handler.postDelayed(runnable, 3000);
+    }
+
+
+
     public void loadData(){
         sanPhamDAO = new SanPhamDAO(getContext());
         list = sanPhamDAO.selectSANPHAM();
@@ -147,5 +176,14 @@ public class frg_trangchu extends Fragment {
         });
 
         recyclerSanpham.setAdapter(sanphamAdapter);
+    }
+
+    @Override
+    public void onDestroyView() {
+        // Dừng tự động cuộn khi Fragment bị hủy
+        if (handler != null && runnable != null) {
+            handler.removeCallbacks(runnable);
+        }
+        super.onDestroyView();
     }
 }
